@@ -1,0 +1,185 @@
+/*=====Perso==========*/
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ""; content: none; }
+ins { background-color: #ff9; color: #000; text-decoration: none; }
+mark { background-color: #ff9; color: #000; font-style: italic; font-weight: bold; }
+del { text-decoration: line-through; }
+abbr[title], dfn[title] { border-bottom: 1px dotted; cursor: help; }
+table { border-collapse: collapse; border-spacing: 0; }
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
+input, select { vertical-align: middle; }
+
+body { font:13px/1.231 sans-serif; *font-size:small; } /* Hack retained to preserve specificity */
+select, input, textarea, button { font:99% sans-serif; }
+pre, code, kbd, samp { font-family: monospace, sans-serif; }
+body { background: #EEE; color: #444; line-height: 1.4em; }
+
+header h1 { color: black; font-size: 2em; line-height: 1.1em; display: inline-block; height: 27px; margin: 20px 0 25px; }
+header h1 small { font-size: 0.6em; }
+
+div#content { background: white; border: 1px solid #ccc; border-width: 0 1px 1px; margin: 0 auto; padding: 40px 50px 40px; width: 738px; }
+
+footer { color: #999; padding-top: 40px; font-size: 0.8em; text-align: center; }
+
+body { font-family: sans-serif; font-size: 0.85em; }
+
+p { margin: 0 0 .7em; max-width: 700px; }
+table+p { margin-top: 1em; }
+
+h2 { border-bottom: 1px solid #ccc; font-size: 1.0em; margin: 3em 0 1em 0; font-weight: bold;}
+h3 { font-weight: bold; }
+
+h2.intro { border-bottom: none; font-size: 1em; font-weight: normal; margin-top:0; }
+
+ul li { margin-left: 1em; margin-bottom: 1em; }
+ol li { margin-left: 1em; }
+ol ul, ul ul { margin: .25em 0 0; }
+ol ul li, ul ul li { list-style-type: none; margin: 0 0 .18em 0.8em; }
+
+.bouton-forme {
+    display: inline-block;
+    font-weight: 400;
+    color: #050505;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .bouton-forme {
+        transition: none;
+    }
+}
+
+.bouton {
+    color: #000;
+    height: 50px;
+    width: 150px;
+    background-color: #01A9CB;
+    border-color: #01A9CB;
+}
+
+.bouton:hover {
+    color: #000;
+    background-color: #01A9CB;
+    border-color: #01A9CB;
+}
+
+.bouton:focus,
+.bouton.focus {
+    color: #000;
+    background-color: #01A9CB;
+    border-color: #01A9CB;
+    box-shadow: 0 0 0 0.2rem rgba(82, 161, 225, 0.5);
+}
+
+.form-control-perso {
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control-perso-plaintext {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0;
+    margin-bottom: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #212529;
+    background-color: transparent;
+    border: solid transparent;
+    border-width: 1px 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .form-control-perso {
+        transition: none;
+    }
+}
+
+.form-control-perso::-ms-expand {
+    background-color: transparent;
+    border: 0;
+}
+
+.form-control-perso:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #495057;
+}
+
+.form-control-perso:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.form-control-perso::-webkit-input-placeholder {
+    color: #6c757d;
+    opacity: 1;
+}
+
+.form-control-perso::-moz-placeholder {
+    color: #6c757d;
+    opacity: 1;
+}
+
+.form-control-perso:-ms-input-placeholder {
+    color: #6c757d;
+    opacity: 1;
+}
+
+.form-control-perso::-ms-input-placeholder {
+    color: #6c757d;
+    opacity: 1;
+}
+
+.form-control-perso::placeholder {
+    color: #6c757d;
+    opacity: 1;
+}
+
+.form-control-perso:disabled, .form-control-perso[readonly] {
+    background-color: #e9ecef;
+    opacity: 1;
+}
+
+input[type="date"].form-control-perso,
+input[type="time"].form-control-perso,
+input[type="datetime-local"].form-control-perso,
+input[type="month"].form-control-perso {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+select.form-control-perso:focus::-ms-value {
+    color: #495057;
+    background-color: #fff;
+}
+/*=====FinPerso=======*/

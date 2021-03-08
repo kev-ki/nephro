@@ -17,6 +17,14 @@ class HemostaseController extends Controller
         return view('hemostase.index');
     }
 
+    public function liste_hemostase($id)
+    {
+        $donnees =  Hemostase::where('id_consultation', $id)
+            ->paginate(7);
+
+        return view('hemostase.index', compact('donnees'));
+    }
+
     public function create()
     {
         return view('hemostase.create');
@@ -38,11 +46,11 @@ class HemostaseController extends Controller
         $hemostase->tck=$request->tck;
         $hemostase->dimere=$request->dimere;
 
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $hemostase->id_consultation = $consult;
+
         if ($hemostase->save())
         {
-            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_hemostase = $hemostase->id;
-            $consult->update();
             Session::flash('message', 'informations enregistrées.');
             Session::flash('alert-class', 'alert-success');
 

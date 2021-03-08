@@ -17,7 +17,7 @@
                     @csrf
                     <div class="col">
                         <div class="form-group row">
-                            <label class="font-weight-bold col-md-2 text-right">Nom Antecedent:</label>
+                            <label class="font-weight-bold col-md-2 text-right">Nom Antecedent<em style="color: red;">*</em> :</label>
                             <input type="text" name="nom" class="form-control col-md-10">
                         </div>
                     </div>
@@ -26,13 +26,13 @@
                         <div class="form-group row">
                             <label class="font-weight-bold col-md-2 text-right">Type:</label>
                             <input type="text" name="type" class="form-control col-md-4">
-                            <label class="font-weight-bold col-md-2 text-right">Date de découverte:</label>
+                            <label class="font-weight-bold col-md-2 text-right">Date de découverte<em style="color: red;">*</em> :</label>
                             <input type="date" name="datedecouverte" class="form-control col-md-4">
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group row">
-                            <label class="font-weight-bold col-md-2 text-right">Traitement:</label>
+                            <label class="font-weight-bold col-md-2 text-right">Traitement<em style="color: red;">*</em> :</label>
                             <input type="text" name="traitement" class="form-control col-md-10">
                         </div>
                     </div>

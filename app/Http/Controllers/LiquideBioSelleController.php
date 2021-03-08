@@ -18,6 +18,14 @@ class LiquideBioSelleController extends Controller
         return view('liquideBioSelle.index',['liquideBioSelle'=>$liquideBioSelle]);
     }
 
+    public function liste_liquide($id)
+    {
+        $donnees =  LiquideBioSelle::where('id_consultation', $id)
+            ->paginate(7);
+
+        return view('liquideBioSelle.index', compact('donnees'));
+    }
+
     public function create()
     {
         return view('liquideBioSelle.create');
@@ -41,11 +49,11 @@ class LiquideBioSelleController extends Controller
         $liquideBioSelle->antibiogramme=$request->antibiogramme;
         $liquideBioSelle->nature=$request->nature;
 
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $liquideBioSelle->id_consultation = $consult;
+
         if ($liquideBioSelle->save())
         {
-            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_bioselle = $liquideBioSelle->id;
-            $consult->update();
             Session::flash('message', 'informations enregistrées.');
             Session::flash('alert-class', 'alert-success');
             return back();

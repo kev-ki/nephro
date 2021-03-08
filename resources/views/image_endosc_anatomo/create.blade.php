@@ -22,7 +22,7 @@
                     @csrf
                     <div class="col">
                         <div class="form-group row">
-                            <label class="text-right col-form-label col-2 font-weight-bold">Type:</label>
+                            <label class="text-right col-form-label col-2 font-weight-bold">Type<em style="color: red;">*</em> :</label>
                             <select name="type" data-placeholder="Choisir un examen" data-style="btn-outline-secondary" class="selectpicker form-control col-10">
                                 <option value="imagerie">Imagerie</option>
                                 <option value="endoscopie">Endoscopie</option>
@@ -33,25 +33,25 @@
 
                     <div class="col">
                         <div class="form-group row">
-                            <label class="text-right col-form-label col-2 font-weight-bold">Date:</label>
+                            <label class="text-right col-form-label col-2 font-weight-bold">Date<em style="color: red;">*</em> :</label>
                             <input type="date" name="date" class="form-control col-4">
-                            <label class="text-right col-form-label col-2 font-weight-bold">Nature: </label>
+                            <label class="text-right col-form-label col-2 font-weight-bold">Nature<em style="color: red;">*</em> : </label>
                             <input type="text" name="nature" class="form-control col-4">
                         </div>
                     </div>
 
                     <div class="col">
                         <div class="form-group row">
-                            <label for="nom" class="text-right col-form-label col-2 font-weight-bold">Nom explorateur: </label>
+                            <label for="nom" class="text-right col-form-label col-2 font-weight-bold">Nom explorateur<em style="color: red;">*</em> : </label>
                             <input id="nom" class="form-control col-4" name="nom_explorateur">
-                            <label for="etablissement" class="text-right col-form-label col-2 font-weight-bold"> Son établissement: </label>
+                            <label for="etablissement" class="text-right col-form-label col-2 font-weight-bold"> Son établissement<em style="color: red;">*</em> : </label>
                             <input id="etablissement" class="form-control col-4" name="etablissement_explorateur">
                         </div>
                     </div>
 
                     <div class="col">
                         <div class="form-group row">
-                            <label for="commentaire" class="text-right col-form-label col-2 font-weight-bold">Commentaire: </label>
+                            <label for="commentaire" class="text-right col-form-label col-2 font-weight-bold">Commentaire<em style="color: red;">*</em>: </label>
                             <textarea id="commentaire" class="form-control col-10" name="commentaire"></textarea>
                         </div>
                     </div>

@@ -17,6 +17,14 @@ class SerologieController extends Controller
         return view('serologie.index');
     }
 
+    public function liste_serologie($id)
+    {
+        $donnees =  Serologie::where('id_consultation', $id)
+            ->paginate(7);
+
+        return view('serologie.index', compact('donnees'));
+    }
+
     public function create()
     {
         return view('serologie.create');
@@ -57,11 +65,11 @@ class SerologieController extends Controller
         $serologie->nom_autre1=$request->nom_autre1;
         $serologie->resultat1=$request->resultat1;
 
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $serologie->id_consultation = $consult;
+
         if ($serologie->save())
         {
-            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_chirurgie = $serologie->id;
-            $consult->update();
             Session::flash('message', 'informations enregistrées.');
             Session::flash('alert-class', 'alert-success');
             return back();

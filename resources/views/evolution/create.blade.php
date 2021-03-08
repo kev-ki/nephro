@@ -20,9 +20,14 @@
                             <input type="date" name="date" class="form-control col-md-10">
                         </div>--}}
                         <div class="form-group row">
-                            <label class="text-right col-md-form-label col-md-3 font-weight-bold">Informations sur l'évolution de la maladie:</label>
-                            <textarea type="date" name="date" class="form-control col-md-9" rows="8"></textarea>
+                            <label class="text-right col-md-form-label col-md-3 font-weight-bold">Informations sur l'évolution de la maladie<em style="color: red;">*</em> :</label>
+                            <textarea type="text" name="infos_evolution" class="form-control col-md-9 @error('infos_evolution') is-invalid @enderror" style="height: 200px;"></textarea>
                         </div>
+                        @error('infos_evolution')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                     </div>
 
                     <div class="d-flex justify-content-center">

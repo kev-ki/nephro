@@ -24,7 +24,7 @@
                             </span>
                             @enderror
                         </div>
-                        {{--<div class="form-group row">
+                        <div class="form-group row">
                             <label class="text-right col-md-form-label col-md-2 font-weight-bold">Prescription:</label>
                             <input type="text" name="prescription" class="form-control col-md-10 @error('prescription') is-invalid @enderror">
                             @error('prescription')
@@ -44,15 +44,15 @@
                         </div>
                         <div class="form-group row">
                             <label class="text-right col-md-form-label col-md-2 font-weight-bold">Voie d'administration:</label>
-                            <textarea name="administration" class="form-control col-md-10 @error('administration') is-invalid @enderror"></textarea>
-                            @error('administration')
+                            <textarea name="voie_administration" class="form-control col-md-10 @error('voie_administration') is-invalid @enderror"></textarea>
+                            @error('voie_administration')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
-                        </div>--}}
+                        </div>
 
-                        <div class="form-group row">
+                        {{--<div class="form-group row">
                             <label class="text-right col-md-form-label col-md-2 font-weight-bold">Traitement:</label>
                             <textarea name="traitement" placeholder="Posologie et voie d'administration" class="form-control col-md-10 @error('traitement') is-invalid @enderror"></textarea>
                             @error('traitement')
@@ -60,7 +60,7 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
-                        </div>
+                        </div>--}}
 
                         <div class="form-group row">
                             <label class="text-right col-md-form-label col-md-2 font-weight-bold">Prescripteur:</label>

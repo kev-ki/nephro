@@ -17,7 +17,7 @@
                     @csrf
                     <div class="col">
                         <div class="form-group row">
-                            <label for="nomexamen"  class="col-2 text-right col-form-label font-weight-bold">Nom Appareil :</label>
+                            <label for="nomexamen"  class="col-2 text-right col-form-label font-weight-bold">Nom Appareil<em style="color: red;">*</em> :</label>
                             <select id="nomexamen" name="nomexamen" onchange="examAppareil(this)" data-live-search="true" data-placeholder="Choisir" data-style="btn-outline-secondary"  class="col-4 selectpicker form-control @error('sit_matrimoniale') is-invalid @enderror">
                                 <option value="uro-nephrologique">uro-néphrologique</option>
                                 <option value="cardiovasculaire">cardiovasculaire</option>
@@ -28,21 +28,21 @@
                                 <option value="cutaneo-phanerien">cutanéo-phanérien</option>
                                 <option value="autre">Autres</option>
                             </select>
-                            <label for="date"  class="col-2 text-right col-form-label font-weight-bold">Date:</label>
+                            <label for="date"  class="col-2 text-right col-form-label font-weight-bold">Date<em style="color: red;">*</em> :</label>
                             <input type="date" id="date" name="dateexamen"  class="col-4 form-control">
                         </div>
                     </div>
 
                     <div class="col" id="nom_autre" style="display: none">
                         <div class="form-group row">
-                            <label  class="col-2 text-right col-form-label font-weight-bold">Nom de l'examen:</label>
+                            <label  class="col-2 text-right col-form-label font-weight-bold">Nom de l'examen<em style="color: red;">*</em> :</label>
                             <input type="text" name="nom_autre" class="col-10 form-control">
                         </div>
                     </div>
 
                     <div class="col">
                         <div class="form-group row">
-                            <label for="examen"  class="col-2 text-right col-form-label font-weight-bold">Informations Examen:</label>
+                            <label for="examen"  class="col-2 text-right col-form-label font-weight-bold">Informations Examen<em style="color: red;">*</em> :</label>
                             <textarea name="infoexamen" id="examen"  class="col-10 form-control" rows="3"></textarea>
                         </div>
                     </div>

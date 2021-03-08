@@ -37,6 +37,9 @@ class CreateGinecoObstetriquesTable extends Migration
             $table->string('grossesse')->nullable();
             $table->string('issue_grossesse')->nullable();
             $table->longText('autreginecoobs')->nullable();
+
+            $table->unsignedBigInteger('id_consultation');
+            $table->foreign('id_consultation')->references('id')->on('consultations');
             $table->timestamps();
         });
     }

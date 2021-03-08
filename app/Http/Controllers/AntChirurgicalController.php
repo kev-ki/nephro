@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\AffTumoraleMaligne;
 use App\AntChirurgical;
 use App\Consultation;
 use App\Dossier;
@@ -16,6 +15,14 @@ class AntChirurgicalController extends Controller
     public function index()
     {
         return view('chirurgical.index');
+    }
+
+    public function liste_chirurgie($id)
+    {
+        $donnees = AntChirurgical::where('id_consultation', $id)
+            ->paginate(7);
+
+        return view('chirurgical.index', compact('donnees'));
     }
 
     public function create()
@@ -37,11 +44,11 @@ class AntChirurgicalController extends Controller
         $antChirurgical->date= $request->date;
         $antChirurgical->infochirurgie= $request->chirurgical;
 
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $antChirurgical->id_consultation = $consult;
+
         if ($antChirurgical->save())
         {
-            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_chirurgie = $antChirurgical->id;
-            $consult->update();
             Session::flash('message', 'informations Chirurgicaux enregistrées.');
             Session::flash('alert-class', 'alert-success');
             return back();

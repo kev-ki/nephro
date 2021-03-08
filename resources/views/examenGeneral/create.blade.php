@@ -17,18 +17,18 @@
                     @csrf
                     <div class="col">
                         <div class="form-group row">
-                            <input type="text" name="taille" placeholder="Taille" class="col-md-2 form-control"  >
-                            <input type="text" name="poids" placeholder="Poids" class="col-md-2 form-control"  >
-                            <input type="text" name="sc" placeholder="SC" class="col-md-2 form-control"  >
-                            <input type="text" name="ta" placeholder="TA" class="col-md-2 form-control"  >
-                            <input type="text" name="pouls" placeholder="Pouls" class="col-md-2 form-control"  >
+                            <input type="text" name="taille" placeholder="Taille" class="col-md-2 form-control">
+                            <input type="text" name="poids" placeholder="Poids" class="col-md-2 form-control">
+                            <input type="text" name="sc" placeholder="SC" class="col-md-2 form-control">
+                            <input type="text" name="ta" placeholder="TA" class="col-md-2 form-control">
+                            <input type="text" name="pouls" placeholder="Pouls" class="col-md-2 form-control">
                             <input type="text" name="temperature" placeholder="Température" class="col-md-2 form-control"  >
                         </div>
                     </div>
 
                     <div class="col">
                         <div class="form-group row">
-                            <label class="text-right col-md-2 font-weight-bold">Etat général</label>
+                            <label class="text-right col-md-2 font-weight-bold">Etat général<em style="color: red;">*</em> :</label>
                             <select class="selectpicker form-control col-md-10" onchange="examGenearl(this)" data-placeholder="Choisir" data-style="btn-outline-secondary" name="etatgeneral">
                                 <option value="bon">Bon</option>
                                 <option value="moyen">Moyen</option>
@@ -42,23 +42,23 @@
 
                     <div class="col">
                         <div class="form-group row" id="amaigrissement" style="display: none">
-                            <label class="text-right col-md-2 font-weight-bold">Estimer la perte de poids:</label>
+                            <label class="text-right col-md-2 font-weight-bold">Estimer la perte de poids<em style="color: red;">*</em> :</label>
                             <input type="text" name="pertepoid" class="col-md-4 form-control">
-                            <label class="text-right col-md-2 font-weight-bold">Estimer la durée:</label>
+                            <label class="text-right col-md-2 font-weight-bold">Estimer la durée<em style="color: red;">*</em> :</label>
                             <input type="text" name="duree_amaigrissement" class="col-md-4 form-control">
                         </div>
                     </div>
 
                     <div class="col">
                         <div class="form-group row">
-                            <label class="text-right col-md-2 font-weight-bold">Conjonctives:</label>
+                            <label class="text-right col-md-2 font-weight-bold">Conjonctives<em style="color: red;">*</em> :</label>
                             <select class="selectpicker form-control col-md-4" name="conjonctive[]" data-placeholder="Choisir" data-style="btn-outline-secondary"  multiple>
                                 <option value="bien coloree">Bien colorées</option>
                                 <option value="moyennement coloree">Moyennement colorées</option>
                                 <option value="pale">Pâles</option>
                                 <option value="icterique">Ictérique</option>
                             </select>
-                            <label class="text-right col-md-2 font-weight-bold">Langue:</label>
+                            <label class="text-right col-md-2 font-weight-bold">Langue<em style="color: red;">*</em> :</label>
                             <select class="selectpicker form-control col-md-4"  data-placeholder="Choisir" data-style="btn-outline-secondary" multiple onchange="examGenearl(this)" name="etat_langue[]">
                                 <option value="propre">Propre </option>
                                 <option value="saburrale">Saburrale </option>
@@ -70,14 +70,14 @@
 
                     <div class="col" id="lesion_langue" style="display: none">
                         <div class="form-group row">
-                            <label class="text-right col-md-2 font-weight-bold">Autres lésions:</label>
+                            <label class="text-right col-md-2 font-weight-bold">Autres lésions<em style="color: red;">*</em> :</label>
                             <input type="text" name="lesion_langue"  class="col-md-10 form-control">
                         </div>
                     </div>
 
                     <div class="col">
                         <div class="form-group row">
-                            <label class="text-right col-md-2 font-weight-bold">Œdèmes:</label>
+                            <label class="text-right col-md-2 font-weight-bold">Œdèmes :</label>
                             <select class="selectpicker form-control col-md-4" data-placeholder="Choisir" data-style="btn-outline-secondary" name="oeudeme[]" multiple>
                                 <option value="mou">Mous</option>
                                 <option value="dur">Durs</option>
@@ -86,7 +86,7 @@
                                 <option value="blanc">Blancs </option>
                                 <option value="colore">Colorés </option>
                             </select>
-                            <label class="text-right font-weight-bold col-md-2">Siège Œdèmes:</label>
+                            <label class="text-right font-weight-bold col-md-2">Siège Œdèmes :</label>
                             <select class="selectpicker form-control col-md-4" data-placeholder="Choisir" data-style="btn-outline-secondary" name="siege[]" multiple>
                                 <option value="visage">Visage </option>
                                 <option value="paupiere">Paupières </option>
@@ -100,7 +100,7 @@
 
                     <div class="col">
                         <div class="form-group row">
-                            <label class="text-right font-weight-bold col-md-2">Déshydratation:</label>
+                            <label class="text-right font-weight-bold col-md-2">Déshydratation<em style="color: red;">*</em> :</label>
                             <select class="selectpicker form-control col-md-4" data-placeholder="Choisir" data-style="btn-outline-secondary" name="deshydratation">
                                 <option value="extracellulaire">Extracellulaire</option>
                                 <option value="intracellulaire">Intracellulaire</option>

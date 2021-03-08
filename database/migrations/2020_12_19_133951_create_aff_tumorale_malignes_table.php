@@ -18,6 +18,9 @@ class CreateAffTumoraleMalignesTable extends Migration
             $table->string('type_affection');
             $table->string('date_decouverte');
             $table->string('traitement');
+
+            $table->unsignedBigInteger('id_consultation');
+            $table->foreign('id_consultation')->references('id')->on('consultations');
             $table->timestamps();
         });
     }

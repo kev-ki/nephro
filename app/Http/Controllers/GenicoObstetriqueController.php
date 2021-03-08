@@ -15,8 +15,15 @@ class GenicoObstetriqueController extends Controller
 {
     public function index()
     {
-
         return view('ginecoObstetrique.index');
+    }
+
+    public function liste_obstetrique($id)
+    {
+        $donnees =  GinecoObstetrique::where('id_consultation', $id)
+            ->paginate(7);
+
+        return view('ginecoObstetrique.index', compact('donnees'));
     }
 
     public function create()
@@ -66,11 +73,11 @@ class GenicoObstetriqueController extends Controller
 
         $genicoObstetrique->autreginecoobs=$request->autre;
 
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $genicoObstetrique->id_consultation = $consult;
+
         if ($genicoObstetrique->save())
         {
-            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_genicoobs = $genicoObstetrique->id;
-            $consult->update();
             Session::flash('message', 'informations Gineco-Obstetriques enregistrées.');
             Session::flash('alert-class', 'alert-success');
             return back();

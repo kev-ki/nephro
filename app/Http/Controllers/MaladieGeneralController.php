@@ -6,7 +6,6 @@ use App\AntInfection;
 use App\Consultation;
 use App\Dossier;
 use App\MaladieGenerale;
-use App\Malagiegeneral;
 use App\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -17,6 +16,14 @@ class MaladieGeneralController extends Controller
     public function index()
     {
         //
+    }
+
+    public function liste_maladieG($id)
+    {
+        $donnees =  Maladiegenerale::where('id_consultation', $id)
+            ->paginate(7);
+
+        return view('maladiegeneral.index', compact('donnees'));
     }
 
     public function create()
@@ -35,7 +42,7 @@ class MaladieGeneralController extends Controller
             return redirect()->Back()->withInput()->withErrors($validation);
         }
 
-        $maladie= new Malagiegeneral();
+        $maladie= new Maladiegenerale();
 
         $maladie->nom= $request->nom;
         $maladie->traitement= $request->traitement;
@@ -60,11 +67,11 @@ class MaladieGeneralController extends Controller
             $maladie->type_diabete = Null;
         }
 
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $maladie->id_consultation = $consult;
+
         if ($maladie->save())
         {
-            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_maladiegenerale = $maladie->id;
-            $consult->update();
             Session::flash('message', 'Informations enregistrées.');
             Session::flash('alert-class', 'alert-success');
             return back();
@@ -81,7 +88,7 @@ class MaladieGeneralController extends Controller
         $consult = Consultation::where('id', $id)
             ->first();
         //die($consult);
-        $maladieG= Malagiegeneral::where('id', $consult->id_maladiegenerale)
+        $maladieG= Maladiegenerale::where('id', $consult->id_maladiegenerale)
             ->first();
         $doc = Dossier::select('id_patient')
             ->where('numD', $consult->num_dossier)
@@ -104,7 +111,7 @@ class MaladieGeneralController extends Controller
         //
     }
 
-    public function update(Request $request, Malagiegeneral $maladiegenerale)
+    public function update(Request $request, Maladiegenerale $maladiegenerale)
     {
         if ($maladiegenerale->update())
         {

@@ -17,6 +17,14 @@ class HabitudeAlimentaireController extends Controller
         return view('habitudealimentaire.index');
     }
 
+    public function liste_habitude($id)
+    {
+        $donnees =  HabitudeAlimentaire::where('id_consultation', $id)
+            ->paginate(7);
+
+        return view('habitudealimentaire.index', compact('donnees'));
+    }
+
     public function create()
     {
         return view('habitudealimentaire.create');
@@ -49,11 +57,11 @@ class HabitudeAlimentaireController extends Controller
         $habitudeHalimentaire->medication_moderne = $request->moderne;
         $habitudeHalimentaire->produits = $request->produits;
 
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $habitudeHalimentaire->id_consultation = $consult;
+
         if ($habitudeHalimentaire->save())
         {
-            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_halimentaire = $habitudeHalimentaire->id;
-            $consult->update();
             Session::flash('message', 'informations enregistrées.');
             Session::flash('alert-class', 'alert-success');
             return back();

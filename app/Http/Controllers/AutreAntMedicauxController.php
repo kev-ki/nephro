@@ -18,6 +18,14 @@ class AutreAntMedicauxController extends Controller
         //
     }
 
+    public function liste_AutreMed($id)
+    {
+        $donnees =  AutreAntMedicaux::where('id_consultation', $id)
+            ->paginate(7);
+
+        return view('autreantmedical.index', compact('donnees'));
+    }
+
     public function create()
     {
         return view('autreantmedical.create');
@@ -40,11 +48,11 @@ class AutreAntMedicauxController extends Controller
         $autre->date_decouverte=$request->datedecouverte;
         $autre->traitement=$request->traitement;
 
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $autre->id_consultation = $consult;
+
         if ($autre->save())
         {
-            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_autre_ant_medical = $autre->id;
-            $consult->update();
             Session::flash('message', 'informations enregistrées.');
             Session::flash('alert-class', 'alert-success');
             return back();

@@ -19,6 +19,9 @@ class CreateLiquideBioSellesTable extends Migration
             $table->string('nature');
             $table->string('analyse');
             $table->string('antibiogramme');
+
+            $table->unsignedBigInteger('id_consultation');
+            $table->foreign('id_consultation')->references('id')->on('consultations');
             $table->timestamps();
         });
     }

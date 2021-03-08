@@ -1,7 +1,174 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e4462e7-f364-445b-b81c-4200c423000f" name="Default Changelist" comment="" />
+    <list default="true" id="7e4462e7-f364-445b-b81c-4200c423000f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/js/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/image_endosc_anatomo/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AffTumoraleMaligneController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AffTumoraleMaligneController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AffectionIMMController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AffectionIMMController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AntChirurgicalController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AntChirurgicalController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AntFamilialController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AntFamilialController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AntInfectionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AntInfectionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AntUronephrologiqueController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AntUronephrologiqueController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AutreAntMedicauxController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AutreAntMedicauxController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BilanSanguinController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BilanSanguinController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BilanUrinaireController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BilanUrinaireController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ConsultationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ConsultationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ElectrophoreseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ElectrophoreseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EndocrinologieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EndocrinologieController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EvolutionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EvolutionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExamAppareilController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExamAppareilController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExamGeneralController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExamGeneralController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GenicoObstetriqueController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GenicoObstetriqueController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HabitudeAlimentaireController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HabitudeAlimentaireController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HemostaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HemostaseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ImgEndosAnatomopathologieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ImgEndosAnatomopathologieController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LiquideBioSelleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LiquideBioSelleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MaladieGeneralController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MaladieGeneralController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MarqueurTumoralController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MarqueurTumoralController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ParasitologieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ParasitologieController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SerologieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SerologieController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TraitementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TraitementController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Malagiegeneral.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Maladiegenerale.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_130757_create_affection_i_m_m_s_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_130757_create_affection_i_m_m_s_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_131004_create_ant_chirurgicals_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_131004_create_ant_chirurgicals_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_131043_create_ant_familials_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_131043_create_ant_familials_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_131119_create_ant_infections_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_131119_create_ant_infections_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_131143_create_ant_uronephrologiques_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_131143_create_ant_uronephrologiques_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_131206_create_autre_resultats_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_131206_create_autre_resultats_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_131227_create_bilan_sanguins_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_131227_create_bilan_sanguins_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_131252_create_bilan_urinaires_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_131252_create_bilan_urinaires_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_131402_create_electrophoreses_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_131402_create_electrophoreses_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_131425_create_endocrinologies_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_131425_create_endocrinologies_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_131447_create_examen_appareils_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_131447_create_examen_appareils_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_131510_create_examen_generals_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_131510_create_examen_generals_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_131534_create_gineco_obstetriques_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_131534_create_gineco_obstetriques_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_131644_create_habitude_alimentaires_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_131644_create_habitude_alimentaires_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_131706_create_hemostases_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_131706_create_hemostases_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_131727_create_hospitalisations_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_131727_create_hospitalisations_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_131748_create_i_m_g_endos_anatomopathologies_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_131748_create_i_m_g_endos_anatomopathologies_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_131811_create_liquide_bio_selles_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_131811_create_liquide_bio_selles_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_131859_create_malagiegenerals_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_131859_create_malagiegenerals_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_131922_create_marqueur_tumorals_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_131922_create_marqueur_tumorals_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_131944_create_parasitologies_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_131944_create_parasitologies_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_132022_create_serologies_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_132022_create_serologies_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_132102_create_traitements_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_132102_create_traitements_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_19_133951_create_aff_tumorale_malignes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_19_133951_create_aff_tumorale_malignes_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_01_20_142000_create_autre_ant_medicauxes_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_01_20_142000_create_autre_ant_medicauxes_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_01_26_001207_create_evolutions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_01_26_001207_create_evolutions_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_20_141157_create_consultations_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_20_141157_create_consultations_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/bootstrap.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/test.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/test.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/bootstrap.bundle.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/bootstrap.bundle.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/bootstrap.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/bootstrap.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/myjs.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/myjs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/editprofile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/editprofile.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/affectionIMM/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/affectionIMM/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/affectionIMM/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/affectionIMM/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/affectionIMM/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/affectionIMM/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/affectiontum/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/affectiontum/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/affectiontum/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/affectiontum/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/antFamilliaux/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/antFamilliaux/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/antInfection/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/antInfection/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/antInfection/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/antInfection/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/antUronephrologique/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/antUronephrologique/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/antUronephrologique/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/antUronephrologique/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/autreantmedical/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/autreantmedical/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/autreantmedical/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/autreantmedical/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/bilanSanguin/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/bilanSanguin/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/bilanSanguin/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/bilanSanguin/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/bilanUrinaire/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/bilanUrinaire/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/bilanUrinaire/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/bilanUrinaire/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/chirurgical/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/chirurgical/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/chirurgical/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/chirurgical/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/constante/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/constante/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/constante/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/constante/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/consultation/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/consultation/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/consultation/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/consultation/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/consultation/finconsultation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/consultation/finconsultation.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/consultation/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/consultation/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/consultation/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/consultation/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dossier/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dossier/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dossier/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dossier/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dossier/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dossier/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/electrophorese/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/electrophorese/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/electrophorese/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/electrophorese/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/electrophorese/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/electrophorese/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/endocrinologie/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/endocrinologie/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/endocrinologie/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/endocrinologie/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/endocrinologie/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/endocrinologie/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/evolution/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/evolution/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/evolution/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/evolution/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/evolution/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/evolution/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/examenGeneral/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/examenGeneral/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/examenGeneral/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/examenGeneral/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/examenGeneral/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/examenGeneral/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/examenappareil/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/examenappareil/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/examenappareil/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/examenappareil/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/ginecoObstetrique/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ginecoObstetrique/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/ginecoObstetrique/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ginecoObstetrique/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/ginecoObstetrique/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ginecoObstetrique/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/habitudealimentaire/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/habitudealimentaire/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/hemostase/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/hemostase/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/hemostase/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/hemostase/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/histoiremaladie/create.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/histoiremaladie/edit.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/histoiremaladie/index.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/histoiremaladie/show.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/hospitalisation/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/hospitalisation/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/image_endosc_anatomo/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/image_endosc_anatomo/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/infirmier/editprofile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/infirmier/editprofile.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/infirmier/indexhospitalisation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/infirmier/indexhospitalisation.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/medlayout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/medlayout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/liquideBioSelle/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/liquideBioSelle/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/liquideBioSelle/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/liquideBioSelle/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/maladiegeneral/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/maladiegeneral/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/maladiegeneral/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/maladiegeneral/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/maladiegeneral/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/maladiegeneral/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/marqueurTumoral/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/marqueurTumoral/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/marqueurTumoral/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/marqueurTumoral/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/marqueurTumoral/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/marqueurTumoral/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/medecin/editprofile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/medecin/editprofile.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/parasitologie/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/parasitologie/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/parasitologie/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/parasitologie/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/patient/listeconstante.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/patient/listeconstante.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/patient/listeconsultation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/patient/listeconsultation.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/secretaire/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/secretaire/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/secretaire/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/secretaire/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/secretaire/editprofile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/secretaire/editprofile.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/serologie/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/serologie/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/serologie/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/serologie/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/serologie/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/serologie/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/traitement/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/traitement/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/traitement/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/traitement/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/traitement/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/traitement/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/traitement/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/traitement/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,6 +177,14 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -132,6 +307,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1nD09GrNXelnSNAnvlDTjOYfNo9" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -140,19 +316,23 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Exports" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/js" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\laragon\www\DMCManager\app\Exports" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\laragon\www\DMCManager\public\js" />
       <recent name="C:\laragon\www\DMCManager\public\css" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\DMCManager\public\js" />
+      <recent name="C:\laragon\www\DMCManager\public\css" />
+      <recent name="C:\laragon\www\DMCManager\public" />
+      <recent name="C:\laragon\www\DMCManager\app\Exports" />
       <recent name="C:\laragon\www\DMCManager\resources\views\infirmier" />
-      <recent name="C:\laragon\www\DMCManager\public\css\images" />
     </key>
   </component>
   <component name="RunManager">
@@ -223,11 +403,44 @@
       <workItem from="1614509605552" duration="14193000" />
       <workItem from="1614591135979" duration="29356000" />
       <workItem from="1614684918172" duration="20856000" />
+      <workItem from="1614764339916" duration="836000" />
+      <workItem from="1614784030006" duration="7653000" />
+      <workItem from="1614851853364" duration="2054000" />
+      <workItem from="1614938215521" duration="15691000" />
+      <workItem from="1615107019232" duration="23812000" />
+      <workItem from="1615193932957" duration="1028000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="WindowStateProjectService">
     <state x="309" y="82" key="#Inspections" timestamp="1613926341766">
@@ -246,33 +459,68 @@
       <screen x="0" y="40" width="1366" height="728" />
     </state>
     <state x="488" y="86" key="#com.intellij.ide.util.MemberChooser/0.40.1366.728@0.40.1366.728" timestamp="1614257298914" />
-    <state x="428" y="64" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1613991201652">
+    <state x="428" y="64" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1615119052344">
       <screen x="0" y="40" width="1366" height="728" />
     </state>
-    <state x="428" y="64" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.40.1366.728@0.40.1366.728" timestamp="1613991201652" />
-    <state x="413" y="159" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1614690088144">
+    <state x="428" y="64" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.40.1366.728@0.40.1366.728" timestamp="1615119052344" />
+    <state x="413" y="159" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1615119168799">
       <screen x="0" y="40" width="1366" height="728" />
     </state>
-    <state x="413" y="159" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.40.1366.728@0.40.1366.728" timestamp="1614690088144" />
+    <state x="413" y="159" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.40.1366.728@0.40.1366.728" timestamp="1615119168799" />
     <state x="367" y="40" width="645" height="728" key="#phpunit.xml" timestamp="1613987500448">
       <screen x="0" y="40" width="1366" height="728" />
     </state>
     <state x="367" y="40" width="645" height="728" key="#phpunit.xml/0.40.1366.728@0.40.1366.728" timestamp="1613987500448" />
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1615194878324">
+      <screen x="0" y="40" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.40.1366.728@0.40.1366.728" timestamp="1615194878324" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1615194878324">
+      <screen x="0" y="40" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.40.1366.728@0.40.1366.728" timestamp="1615194878324" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1615194878324">
+      <screen x="0" y="40" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.40.1366.728@0.40.1366.728" timestamp="1615194878324" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1615194878324">
+      <screen x="0" y="40" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.40.1366.728@0.40.1366.728" timestamp="1615194878324" />
+    <state x="511" y="106" key="RollbackChangesDialog" timestamp="1614945047406">
+      <screen x="0" y="40" width="1366" height="728" />
+    </state>
+    <state x="511" y="106" key="RollbackChangesDialog/0.40.1366.728@0.40.1366.728" timestamp="1614945047406" />
     <state x="184" y="49" key="SettingsEditor" timestamp="1612372526153">
       <screen x="0" y="40" width="1366" height="728" />
     </state>
     <state x="184" y="49" key="SettingsEditor/0.40.1366.728@0.40.1366.728" timestamp="1612372526153" />
+    <state x="275" y="137" key="Vcs.Push.Dialog.v2" timestamp="1615194994475">
+      <screen x="0" y="40" width="1366" height="728" />
+    </state>
+    <state x="275" y="137" key="Vcs.Push.Dialog.v2/0.40.1366.728@0.40.1366.728" timestamp="1615194994475" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1611915922877">
       <screen x="0" y="40" width="1366" height="728" />
     </state>
     <state width="600" height="428" key="javadoc.popup/0.40.1366.728@0.40.1366.728" timestamp="1611915922877" />
-    <state x="339" y="182" key="run.anything.popup" timestamp="1614609427320">
+    <state x="339" y="182" key="run.anything.popup" timestamp="1615194850381">
       <screen x="0" y="40" width="1366" height="728" />
     </state>
-    <state x="339" y="182" key="run.anything.popup/0.40.1366.728@0.40.1366.728" timestamp="1614609427320" />
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1614733776422">
+    <state x="339" y="182" key="run.anything.popup/0.40.1366.728@0.40.1366.728" timestamp="1615194850381" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1615136741319">
       <screen x="0" y="40" width="1366" height="728" />
     </state>
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.40.1366.728@0.40.1366.728" timestamp="1614733776422" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.40.1366.728@0.40.1366.728" timestamp="1615136741319" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/routes/web.php</url>
+          <line>123</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

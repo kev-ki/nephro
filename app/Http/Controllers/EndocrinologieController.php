@@ -17,6 +17,14 @@ class EndocrinologieController extends Controller
         return  view('endocrinologie.index');
     }
 
+    public function liste_endo($id)
+    {
+        $donnees =  Endocrinologie::where('id_consultation', $id)
+            ->paginate(7);
+
+        return view('endocrinologie.index', compact('donnees'));
+    }
+
     public function create()
     {
         return view('endocrinologie.create');
@@ -47,11 +55,11 @@ class EndocrinologieController extends Controller
         $endocrinologie->nom_autre1=$request->nom_autre1;
         $endocrinologie->resultat1=$request->resultat1;
 
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $endocrinologie->id_consultation = $consult;
+
         if ($endocrinologie->save())
         {
-            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_endocrinologie = $endocrinologie->id;
-            $consult->update();
             Session::flash('message', 'informations enregistrées.');
             Session::flash('alert-class', 'alert-success');
 

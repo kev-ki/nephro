@@ -17,7 +17,7 @@
                   <input type="hidden"  name="num_dossier" class="form-control" value="{{$doc->numD}}">
               </div>
               <div class="form-group row">
-                  <label for="numQ" class=" col-md-3 text-right font-weight-bold" >Numero de la quittance:</label>
+                  <label for="numQ" class=" col-md-3 text-right font-weight-bold" >Numero de la quittance<em style="color: red;">*</em> :</label>
                   <input type="text"  name="numQ" id="numQ" class="col-md-8 form-control @error('numQ') is-invalid @enderror">
 
                   @error('numQ')
@@ -27,7 +27,7 @@
                   @enderror
               </div>
               <div class="form-group row">
-                  <label for="adresserpar" class=" col-md-3 text-right font-weight-bold" >Adressé par:</label>
+                  <label for="adresserpar" class=" col-md-3 text-right font-weight-bold" >Adressé par<em style="color: red;">*</em> :</label>
                   <input type="text" id="adresserpar"  name="adresserpar" class="col-md-8 form-control @error('adresserpar') is-invalid @enderror">
                   @error('adresserpar')
                   <span class="invalid-feedback" role="alert">
@@ -36,15 +36,25 @@
                   @enderror
               </div>
               <div class="form-group row">
-                  <label for="motifadmission" class=" col-md-3 text-right font-weight-bold" >Motif d'admission:</label>
+                  <label for="motifadmission" class=" col-md-3 text-right font-weight-bold" >Motif d'admission<em style="color: red;">*</em> :</label>
                   <input type="text" id="motifadmission"  name="motifadmission" class="col-md-8 form-control">
               </div>
               <div class="form-group row">
-                  <label for="motifhospitalisation" class="col-md-3 text-right font-weight-bold" >Motif d'hospitalisation:</label>
+                  <label for="bilan_admission" class=" col-md-3 text-right font-weight-bold" >Bilan à l'admission<em style="color: red;">*</em> :</label>
+                  <textarea type="text" id="bilan_admission"  name="bilan_admission" class="col-md-8 form-control @error('bilan_admission') is-invalid @enderror"></textarea>
+
+                  @error('bilan_admission')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+              </div>
+              <div class="form-group row">
+                  <label for="motifhospitalisation" class="col-md-3 text-right font-weight-bold" >Motif d'hospitalisation :</label>
                   <input type="text" id="motifhospitalisation"  name="motifhospitalisation" class="col-md-8 form-control">
               </div>
               <div class="form-group row">
-                  <label for="histoiremaladie" class="form-label font-weight-bold text-right col-md-3">Histoire de la maladie:</label>
+                  <label for="histoiremaladie" class="form-label font-weight-bold text-right col-md-3">Histoire de la maladie<em style="color: red;">*</em> :</label>
                   <textarea class="form-control col-md-8 @error('adresserpar') is-invalid @enderror" id="histoiremaladie" name="histoiremaladie"></textarea>
                   @error('histoiremaladie')
                   <span class="invalid-feedback" role="alert">
@@ -56,7 +66,6 @@
 
           <div class="d-flex justify-content-center"><button class="btn btn-primary">enregistrer</button></div>
        </form>
-        {{--<div><a href="#" class="btn btn-primary">Phase Examen</a></div>--}}
     </div>
 @endsection
 

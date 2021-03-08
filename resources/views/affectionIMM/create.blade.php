@@ -17,13 +17,13 @@
                     @csrf
                     <div class="col">
                         <div class="form-group row">
-                            <label class="col-md-2 font-weight-bold text-right">Nom affection:</label>
+                            <label class="col-md-2 font-weight-bold text-right">Nom affection<em style="color: red;">*</em> :</label>
                             <select class="selectpicker form-control col-md-4" id="nom_imm" onchange="affectionIMM(this)" name="nom" data-style="btn-outline-secondary" data-placeholder="Choisir une affection">
                                 <option value="lepus">Lépus</option>
                                 <option value="sclerodermie">Sclérodermie</option>
                                 <option value="autre">Autre</option>
                             </select>
-                            <label class="col-md-2 font-weight-bold text-right">Date de découverte:</label>
+                            <label class="col-md-2 font-weight-bold text-right">Date de découverte<em style="color: red;">*</em> :</label>
                             <input type="date" name="datedecouverte" class="col-md-4 form-control">
                         </div>
                     </div>
@@ -37,14 +37,14 @@
 
                     <div class="col">
                         <div class="form-group row">
-                            <label class="col-md-2 font-weight-bold text-right">Type affection:</label>
+                            <label class="col-md-2 font-weight-bold text-right">Type affection<em style="color: red;">*</em> :</label>
                             <input type="text" name="type" class="col-md-10 form-control">
                         </div>
                     </div>
 
                     <div id="traitement_imm" class="col">
                         <div class="form-group row">
-                            <label class="col-md-2 font-weight-bold text-right">Traitement:</label>
+                            <label class="col-md-2 font-weight-bold text-right">Traitement<em style="color: red;">*</em> :</label>
                             <input type="text" name="traitement" class="col-md-10 form-control">
                         </div>
                     </div>

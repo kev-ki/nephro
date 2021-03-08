@@ -18,6 +18,9 @@ class CreateExamenAppareilsTable extends Migration
             $table->date('date');
             $table->string('nom');
             $table->string('details');
+
+            $table->unsignedBigInteger('id_consultation');
+            $table->foreign('id_consultation')->references('id')->on('consultations');
             $table->timestamps();
         });
     }

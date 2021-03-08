@@ -16,12 +16,12 @@
                     @csrf
                     <div class="col">
                         <div class="form-group row">
-                            <label class="col-md-2 font-weight-bold text-right">Date:</label>
+                            <label class="col-md-2 font-weight-bold text-right">Date<em style="color: red;">*</em> :</label>
                             <input type="date" name="date" class="col-md-10 form-control">
                         </div>
                         <div class="form-group row">
-                            <label class="col-md-2 font-weight-bold text-right">Informations des antécédents:</label>
-                            <textarea class="form-control col-md-10" style="height: 200px;" name="chirurgical" placeholder="Antécédents chirurgucaux"></textarea>
+                            <label class="col-md-2 font-weight-bold text-right">Informations des antécédents<em style="color: red;">*</em> :</label>
+                            <textarea class="form-control col-md-10" style="height: 200px;" name="chirurgical"></textarea>
                         </div>
                     </div>
 

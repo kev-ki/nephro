@@ -17,6 +17,14 @@ class ExamGeneralController extends Controller
         return view('examenGeneral.index');
     }
 
+    public function liste_general($id)
+    {
+        $donnees =  ExamenGeneral::where('id_consultation', $id)
+            ->paginate(7);
+
+        return view('examenGeneral.index', compact('donnees'));
+    }
+
     public function create()
     {
         return view('examenGeneral.create');
@@ -50,6 +58,9 @@ class ExamGeneralController extends Controller
         $examenGeneral->poidsperdu=$request->pertepoid;
         $examenGeneral->duree_amaigrissement=$request->duree_amaigrissement;
 
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $examenGeneral->id_consultation = $consult;
+
         foreach ($request->conjonctive as $value) {
             $examenGeneral->conjonctive=$examenGeneral->conjonctive.','.$value;
         }
@@ -76,9 +87,6 @@ class ExamGeneralController extends Controller
 
         if ($examenGeneral->save())
         {
-            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_examgeneral = $examenGeneral->id;
-            $consult->update();
             Session::flash('message', 'informations enregistrées.');
             Session::flash('alert-class', 'alert-success');
             return back();

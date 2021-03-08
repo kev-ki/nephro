@@ -18,6 +18,14 @@ class AffTumoraleMaligneController extends Controller
         return view('affectiontum.index');
     }
 
+    public function liste_TMaligne($id)
+    {
+        $donnees = AffTumoraleMaligne::where('id_consultation', $id)
+            ->paginate(7);
+
+        return view('affectiontum.index', compact('donnees'));
+    }
+
     public function create()
     {
         return view('affectiontum.create');
@@ -39,11 +47,11 @@ class AffTumoraleMaligneController extends Controller
         $affectiontumorale->traitement=$request->traitement;
         $affectiontumorale->date_decouverte=$request->datedecouverte;
 
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $affectiontumorale->id_consultation = $consult;
+
         if ($affectiontumorale->save())
         {
-            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_affectiontumorale = $affectiontumorale->id;
-            $consult->update();
             Session::flash('message', 'informations Affections tumorales malignes enregistrées.');
             Session::flash('alert-class', 'alert-success');
             return back();

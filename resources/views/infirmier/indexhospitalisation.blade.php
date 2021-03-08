@@ -26,15 +26,6 @@
                                         </svg>
                                     </a>
                                 </button>
-
-                                {{--<div class="btn-group">
-                                    <button type="button" class="btn btn-outline-primary dropdown-toggle" aria-haspopup="true" data-toggle="dropdown" aria-expanded="false" v-pre>exporter données
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{route('export_excel')}}">Excel</a></li>
-                                        <li><a class="dropdown-item" href="{{route('export_pdf')}}">PDF</a></li>
-                                    </ul>
-                                </div>--}}
                             </div>
                             <form method="POST" class="col-md-7" action="{{route('hospi.search')}}">
                                 @csrf

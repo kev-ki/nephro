@@ -19,6 +19,14 @@ class AntUronephrologiqueController extends Controller
         return view('antUronephrologique.index',['uro'=>$uro]);
     }
 
+    public function liste_uro($id)
+    {
+        $donnees =  AntUronephrologique::where('id_consultation', $id)
+            ->paginate(7);
+
+        return view('antUronephrologique.index', compact('donnees'));
+    }
+
     public function create()
     {
         return view('antUronephrologique.create');
@@ -95,11 +103,11 @@ class AntUronephrologiqueController extends Controller
             $antUronephrologique->traitement_trouble=Null;
         }
 
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $antUronephrologique->id_consultation = $consult;
+
         if ($antUronephrologique->save())
         {
-            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_uronephro = $antUronephrologique->id;
-            $consult->update();
             Session::flash('message', 'informations Uronephrologique enregistrées.');
             Session::flash('alert-class', 'alert-success');
             return back();

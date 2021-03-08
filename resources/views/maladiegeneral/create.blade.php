@@ -17,7 +17,7 @@
                     @csrf
                     <div class="col">
                         <div class="form-group row">
-                            <label for="maladie_generale" class="col-md-2 text-right font-weight-bold">Nom maladie:</label>
+                            <label for="maladie_generale" class="col-md-2 text-right font-weight-bold">Nom maladie<em style="color: red;">*</em>:</label>
                             <select onchange="maladieGenerale(this)" id="maladie_generale" data-style="btn-outline-secondary" data-placeholder="Choisir une maladie" data-live-search="true" class="selectpicker form-control col-md-10" name="nom">
                                 <option value="drepanocytose">Drépanocytose</option>
                                 <option value="hypertension_arterielle">Hypertension Artérielle</option>
@@ -29,14 +29,14 @@
 
                     <div id="type_hemoglobine" style="display: none" class="col">
                         <div class="row form-group">
-                            <label class="col-md-2 text-right font-weight-bold">Type hémoglobine:</label>
+                            <label class="col-md-2 text-right font-weight-bold">Type hémoglobine<em style="color: red;">*</em> :</label>
                             <input type="text" name="hemoglobine" class="form-control col-md-10">
                         </div>
                     </div>
 
                     <div id="type_diabete" style="display: none" class="col">
                         <div class="form-group row">
-                            <label for="typediabete" class="font-weight-bold text-right col-md-2">Type diabète:</label>
+                            <label for="typediabete" class="font-weight-bold text-right col-md-2">Type diabète<em style="color: red;">*</em> :</label>
                             <select name="typediabete" id="typediabete" data-style="btn-outline-secondary" data-placeholder="Choisir un type" data-live-search="true" class="selectpicker form-control col-md-10">
                                 <option value="type1">Type 1</option>
                                 <option value="type2">Type 2</option>
@@ -46,21 +46,21 @@
 
                     <div id="decouverte_mgenerale" class="col">
                         <div class="row form-group">
-                            <label class="col-md-2 text-right font-weight-bold">Date de decouverte:</label>
+                            <label class="col-md-2 text-right font-weight-bold">Date de decouverte<em style="color: red;">*</em> :</label>
                             <input type="date" name="datedecouverte" class="form-control col-md-10">
                         </div>
                     </div>
 
                     <div id="traitement_mgenerale" class="col">
                         <div class="form-group row">
-                            <label class="font-weight-bold text-right col-md-2">Traitement:</label>
+                            <label class="font-weight-bold text-right col-md-2">Traitement<em style="color: red;">*</em> :</label>
                             <input type="text" name="traitement" class="form-control col-md-10">
                         </div>
                     </div>
 
                     <div id="frequence_traitement" style="display: none" class="col">
                         <div class="form-group row">
-                            <label for="frequence" class="font-weight-bold text-right col-md-2">Fréquence du traitement:</label>
+                            <label for="frequence" class="font-weight-bold text-right col-md-2">Fréquence du traitement<em style="color: red;">*</em> :</label>
                             <select name="frequence" id="frequence" data-style="btn-outline-secondary" data-placeholder="Choisir une fréquence" data-live-search="true" class="selectpicker form-control col-md-10">
                                 <option value="regulier">Régulier</option>
                                 <option value="irregulier">Irrégulier</option>

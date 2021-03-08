@@ -21,6 +21,9 @@ class CreateIMGEndosAnatomopathologiesTable extends Migration
             $table->string('nom_explorateur');
             $table->string('etablissement_explorateur');
             $table->string('commentaire');
+
+            $table->unsignedBigInteger('id_consultation');
+            $table->foreign('id_consultation')->references('id')->on('consultations');
             $table->timestamps();
         });
     }

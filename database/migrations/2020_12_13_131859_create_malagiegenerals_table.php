@@ -20,6 +20,9 @@ class CreateMalagiegeneralsTable extends Migration
             $table->date('dateddecouverte')->nullable();
             $table->string('traitement');
             $table->string('frequence_traitement')->nullable();
+
+            $table->unsignedBigInteger('id_consultation');
+            $table->foreign('id_consultation')->references('id')->on('consultations');
             $table->timestamps();
         });
     }

@@ -17,6 +17,14 @@ class MarqueurTumoralController extends Controller
         return view('marqueurTumoral.index');
     }
 
+    public function liste_marqueur($id)
+    {
+        $donnees =  MarqueurTumoral::where('id_consultation', $id)
+            ->paginate(7);
+
+        return view('marqueurTumoral.index', compact('donnees'));
+    }
+
     public function create()
     {
         return view('marqueurTumoral.create');
@@ -46,11 +54,11 @@ class MarqueurTumoralController extends Controller
         $marqueurTumoral->nom_autre1=$request->nom_autre1;
         $marqueurTumoral->resultat1=$request->resultat1;
 
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $marqueurTumoral->id_consultation = $consult;
+
         if ($marqueurTumoral->save())
         {
-            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_marqueurtumoral = $marqueurTumoral->id;
-            $consult->update();
             Session::flash('message', 'informations enregistrées.');
             Session::flash('alert-class', 'alert-success');
             return back();

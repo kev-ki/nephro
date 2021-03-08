@@ -29,9 +29,14 @@ class CreateBilanUrinairesTable extends Migration
             $table->string('caliciturie');
             $table->string('phosphaturie');
             $table->string('cristallurie');
-            $table->string('autreburinaire1');
-            $table->string('autreburinaire2');
-            $table->string('autreburinaire3');
+
+            $table->string('nom_autre');
+            $table->string('resultat');
+            $table->string('nom_autre1');
+            $table->string('resultat1');
+
+            $table->unsignedBigInteger('id_consultation');
+            $table->foreign('id_consultation')->references('id')->on('consultations');
             $table->timestamps();
         });
     }

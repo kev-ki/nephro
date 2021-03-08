@@ -17,7 +17,7 @@
                     @csrf
                     <div class="col">
                         <div class="form-group row">
-                            <label for="infection" class="text-right font-weight-bold col-md-2">Nom infection:</label>
+                            <label for="infection" class="text-right font-weight-bold col-md-2">Nom infection<em style="color: red;">*</em> :</label>
                             <select onchange="showHideInfection(this)" id="infection" class="selectpicker form-control col-md-10" data-live-search="true" data-placeholder="Choisir une infection" data-style="btn-perso btn-outline-secondary" name="nom" >
                                 <option value="infectionfocale">Infection focale</option>
                                 <option value="infectionurinaire">Infection urinaire</option>
@@ -31,7 +31,7 @@
 
                     <div id="typeInfection" style="display: none" class="col">
                         <div class="form-group row">
-                            <label class="text-right col-md-2 font-weight-bold">Type infection:</label>
+                            <label class="text-right col-md-2 font-weight-bold">Type infection<em style="color: red;">*</em> :</label>
                             <select class="selectpicker form-control col-md-10" onchange="infectiontype()" id="type" data-live-search="true" data-placeholder="Choisir le type d'infection" data-style="btn-perso btn-outline-secondary" name="type_infection" >
                                 <option class="font-weight-bold" disabled>Type Infection focale</option>
                                 <option value="angine">Angines</option>
@@ -61,63 +61,63 @@
 
                     <div id="precision_autre" style="display: none"  class="col">
                         <div class="form-group row">
-                            <label class="text-right col-md-2 font-weight-bold">Précision type:</label>
+                            <label class="text-right col-md-2 font-weight-bold">Précision type<em style="color: red;">*</em> :</label>
                             <input type="text" name="precision" class="col-md-10 form-control">
                         </div>
                     </div>
 
                     <div id="type_vih" style="display: none" class="col">
                         <div class="form-group row">
-                            <label class="text-right col-md-2 font-weight-bold">Type VIH:</label>
+                            <label class="text-right col-md-2 font-weight-bold">Type VIH<em style="color: red;">*</em> :</label>
                             <input type="text" name="type_vih" class="col-md-10 form-control">
                         </div>
                     </div>
 
                     <div id="episode" style="display: none" class="col">
                         <div class="form-group row">
-                            <label class="text-right col-md-2 font-weight-bold">Nombres d'épisode:</label>
+                            <label class="text-right col-md-2 font-weight-bold">Nombres d'épisode<em style="color: red;">*</em> :</label>
                             <input type="text" name="nombreepisode" class="col-md-10 form-control">
                         </div>
                     </div>
 
                     <div id="nombreacces" style="display: none" class="col">
                         <div class="form-group row">
-                            <label class="text-right col-md-2 font-weight-bold">Nombres d'accès par an:</label>
+                            <label class="text-right col-md-2 font-weight-bold">Nombres d'accès par an<em style="color: red;">*</em> :</label>
                             <input type="text" name="nombreacces" class="col-md-10 form-control">
                         </div>
                     </div>
 
                     <div id="datedernierepisode" style="display: none" class="col">
                         <div class="form-group row">
-                            <label class="text-right font-weight-bold col-md-2">Date du dernier épisode:</label>
+                            <label class="text-right font-weight-bold col-md-2">Date du dernier épisode<em style="color: red;">*</em> :</label>
                             <input type="date" name="datedernierepisode" class="form-control col-md-10">
                         </div>
                     </div>
 
                     <div id="siege_infection" style="display: none" class="col">
                         <div class="form-group row">
-                            <label class="text-right font-weight-bold col-md-2">Siège infection:</label>
+                            <label class="text-right font-weight-bold col-md-2">Siège infection<em style="color: red;">*</em> :</label>
                             <input type="text" name="siegeinfection" class="form-control col-md-10">
                         </div>
                     </div>
 
                     <div id="decouverte" style="display: none" class="col">
                         <div class="form-group row">
-                            <label class="text-right font-weight-bold col-md-2">Date de découverte:</label>
+                            <label class="text-right font-weight-bold col-md-2">Date de découverte<em style="color: red;">*</em> :</label>
                             <input type="date" name="datedecouverte" class="form-control col-md-10">
                         </div>
                     </div>
 
                     <div id="traitement" class="col">
                         <div class="form-group row">
-                            <label class="text-right col-md-2 font-weight-bold">Traitement reçu:</label>
+                            <label class="text-right col-md-2 font-weight-bold">Traitement reçu<em style="color: red;">*</em> :</label>
                             <input type="text" name="traitement" class="col-md-10 form-control">
                         </div>
                     </div>
 
                     <div id="duree_tuberculose" style="display: none" class="col">
                         <div class="form-group row">
-                            <label class="text-right font-weight-bold col-md-2">Durée traitement tuberculose:</label>
+                            <label class="text-right font-weight-bold col-md-2">Durée traitement tuberculose<em style="color: red;">*</em> :</label>
                             <input type="text" name="duree" class="form-control col-md-10">
                         </div>
                     </div>

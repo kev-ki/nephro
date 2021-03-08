@@ -17,6 +17,14 @@ class ExamAppareilController extends Controller
         return view('examenappareil.index');
     }
 
+    public function liste_appareil($id)
+    {
+        $donnees =  ExamenAppareil::where('id_consultation', $id)
+            ->paginate(7);
+
+        return view('examenappareil.index', compact('donnees'));
+    }
+
     public function create()
     {
         return view('examenappareil.create');
@@ -44,11 +52,11 @@ class ExamAppareilController extends Controller
             $examenAppareil->nom_autre = Null;
         }
 
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $examenAppareil->id_consultation = $consult;
+
         if ($examenAppareil->save())
         {
-            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_examappareil = $examenAppareil->id;
-            $consult->update();
             Session::flash('message', 'informations enregistrées.');
             Session::flash('alert-class', 'alert-success');
             return back();

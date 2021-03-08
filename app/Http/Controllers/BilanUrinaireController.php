@@ -18,6 +18,14 @@ class BilanUrinaireController extends Controller
         return view('bilanUrinaire.index',['bilanUrinaire'=>$bilanUrinaire]);
     }
 
+    public function liste_urinaire($id)
+    {
+        $donnees =  BilanUrinaire::where('id_consultation', $id)
+            ->paginate(7);
+
+        return view('bilanUrinaire.index', compact('donnees'));
+    }
+
     public function create()
     {
         return view('bilanUrinaire.create');
@@ -52,6 +60,9 @@ class BilanUrinaireController extends Controller
         $bilanUrinaire->resultat=$request->resultat;
         $bilanUrinaire->nom_autre1=$request->nom_autre1;
         $bilanUrinaire->resultat1=$request->resultat1;
+
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $bilanUrinaire->id_consultation = $consult;
 
         if ($bilanUrinaire->save())
         {

@@ -24,7 +24,7 @@
                         <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="page1_tab" id="page1">
                             <div class="col">
                                 <div class="form-group row">
-                                    <label class="text-right col-form-label col-2 font-weight-bold">Date:</label>
+                                    <label class="text-right col-form-label col-2 font-weight-bold">Date<em style="color: red;">*</em> :</label>
                                     <input type="date" name="date" class="form-control col-4">
                                     <label class="text-right col-form-label col-2 font-weight-bold">Protéinurie/24h:</label>
                                     <input type="text" name="proteine" class="form-control col-4">

@@ -22,6 +22,9 @@ class CreateAntFamilialsTable extends Migration
             $table->string('enfantfille');
             $table->string('enfantgarcon');
             $table->string('conjoint');
+
+            $table->unsignedBigInteger('id_consultation');
+            $table->foreign('id_consultation')->references('id')->on('consultations');
             $table->timestamps();
         });
     }

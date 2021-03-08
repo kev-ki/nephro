@@ -17,6 +17,14 @@ class BilanSanguinController extends Controller
         return view('bilanSanguin.index');
     }
 
+    public function liste_sanguin($id)
+    {
+        $donnees =  BilanSanguin::where('id_consultation', $id)
+            ->paginate(7);
+
+        return view('bilanSanguin.index', compact('donnees'));
+    }
+
     public function create()
     {
         return view('bilanSanguin.create');
@@ -76,11 +84,11 @@ class BilanSanguinController extends Controller
         $bilanSanguin->phosphatase=$request->phosphatase;
         $bilanSanguin->pth=$request->pth;
 
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $bilanSanguin->id_consultation = $consult;
+
         if ($bilanSanguin->save())
         {
-            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_bilansanguin = $bilanSanguin->id;
-            $consult->update();
             Session::flash('message', 'informations enregistrées.');
             Session::flash('alert-class', 'alert-success');
             return back();

@@ -15,7 +15,7 @@
           @method('put')
           <div class="col">
               <div class="form-group row">
-                  <label for="resume" class=" col-2 text-right font-weight-bold">Resume</label>
+                  <label for="resume" class=" col-2 text-right font-weight-bold">Resume<em style="color: red;">*</em> :</label>
                   <textarea type="text"  name="resume" id="resume" class="col-10 form-control @error('resume') is-invalid @enderror"></textarea>
 
                   @error('resume')
@@ -26,7 +26,7 @@
               </div>
 
               <div class="form-group row">
-                  <label for="diagnostic" class=" col-2 text-right font-weight-bold" >Diagnostic:</label>
+                  <label for="diagnostic" class=" col-2 text-right font-weight-bold" >Diagnostic<em style="color: red;">*</em> :</label>
                   <textarea type="text" id="diagnostic"  name="diagnostic" class="col-10 form-control @error('diagnostic') is-invalid @enderror"></textarea>
 
                   @error('diagnostic')
@@ -48,7 +48,7 @@
               </div>--}}
 
               <div class="form-group row">
-                  <label for="conduite_tenir" class="col-2 text-right font-weight-bold" >Conduite à tenir:</label>
+                  <label for="conduite_tenir" class="col-2 text-right font-weight-bold" >Conduite à tenir<em style="color: red;">*</em> :</label>
                   <textarea type="text" id="conduite_tenir"  name="conduite_tenir" class="col-10 form-control"></textarea>
 
                   @error('conduite_tenir')

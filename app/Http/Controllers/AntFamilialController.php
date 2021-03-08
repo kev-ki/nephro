@@ -17,6 +17,14 @@ class AntFamilialController extends Controller
         return view('antFamilliaux.index');
     }
 
+    public function liste_familial($id)
+    {
+        $donnees =  AntFamilial::where('id_consultation', $id)
+            ->paginate(7);
+
+        return view('antFamilliaux.index', compact('donnees'));
+    }
+
     public function create()
     {
         return view('antFamilliaux.create');
@@ -33,11 +41,11 @@ class AntFamilialController extends Controller
         $antFamilliaux->enfantgarcon=$request->enfantgarcon;
         $antFamilliaux->conjoint=$request->conjoint;
 
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $antFamilliaux->id_consultation = $consult;
+
         if ($antFamilliaux->save())
         {
-            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_ant_famillial = $antFamilliaux->id;
-            $consult->update();
             Session::flash('message', 'informations enregistrées.');
             Session::flash('alert-class', 'alert-success');
             return back();

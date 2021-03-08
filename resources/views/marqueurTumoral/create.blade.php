@@ -17,7 +17,7 @@
                     @csrf
                     <div class="col">
                         <div class="form-group row">
-                            <label class="text-right col-form-label col-2 font-weight-bold">Date:</label>
+                            <label class="text-right col-form-label col-2 font-weight-bold">Date<em style="color: red;">*</em> :</label>
                             <input type="date" name="date" class="form-control col-4">
                             <label class="text-right col-form-label col-2 font-weight-bold">α-foeto-protéine:</label>
                             <input type="text" name="proteine" class="form-control col-4">

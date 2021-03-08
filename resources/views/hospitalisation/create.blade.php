@@ -20,7 +20,7 @@
                    <div class="row">
                        <div class="col-6">
                            <div class="row form-group">
-                               <label for="patientid" class="col-md-3 col-form-label text-right font-weight-bold">ID Patient :</label>
+                               <label for="patientid" class="col-md-3 col-form-label text-right font-weight-bold">ID Patient<em style="color: red;">*</em> :</label>
                                <select id="patientid" name="patientid" data-live-search="true" data-style="btn-outline-secondary" data-placeholder="Choisir un ID" class="col-md-9 selectpicker form-control @error('patientid') is-invalid @enderror">
                                    @foreach($hospi as $value)
                                        @foreach($patient as $valeur)
@@ -37,7 +37,7 @@
                                @enderror
                            </div>
                            <div class="row form-group">
-                               <label for="numerosalle" class="col-md-3 col-form-label text-right font-weight-bold">Numero Chambre :</label>
+                               <label for="numerosalle" class="col-md-3 col-form-label text-right font-weight-bold">Numero Chambre<em style="color: red;">*</em> :</label>
                                <input type="text" id="numerosalle" class="col-md-9 form-control @error('numerosalle') is-invalid @enderror" name="numerosalle" value="{{old('numerosalle')}}">
                                @error('numerosalle')
                                 <span class="invalid-feedback" role="alert">
@@ -47,7 +47,7 @@
                            </div>
 
                            <div class="row form-group">
-                               <label for="numerolit" class="col-md-3 col-form-label text-right font-weight-bold">Numero lit :</label>
+                               <label for="numerolit" class="col-md-3 col-form-label text-right font-weight-bold">Numero lit<em style="color: red;">*</em> :</label>
                                <input type="text" id="numerolit" class="col-md-9 form-control @error('numerolit') is-invalid @enderror" name="numerolit" value="{{old('numerolit')}}">
                                @error('numerolit')
                                 <span class="invalid-feedback" role="alert">
@@ -57,7 +57,7 @@
                            </div>
 
                            <div class="row form-group">
-                               <label for="diagnostiquePrincipale" class="col-md-3 col-form-label text-right font-weight-bold">Diagnostic Principal :</label>
+                               <label for="diagnostiquePrincipale" class="col-md-3 col-form-label text-right font-weight-bold">Diagnostic Principal<em style="color: red;">*</em> :</label>
                                <input type="text" id="diagnostiquePrincipale" class="col-md-9 form-control @error('diagnostiquePrincipale') is-invalid @enderror" name="diagnostiquePrincipale" value="{{old('diagnostiquePrincipale')}}">
                                @error('diagnostiquePrincipale')
                                <span class="invalid-feedback" role="alert">
@@ -67,7 +67,7 @@
                            </div>
 
                            <div class="form-group row">
-                               <label for="diagnostiquePrincipale" class="col-md-3 col-form-label text-right font-weight-bold">Diagnostic secondaire :</label>
+                               <label for="diagnostiquePrincipale" class="col-md-3 col-form-label text-right font-weight-bold">Diagnostic secondaire<em style="color: red;">*</em> :</label>
                                <input type="text" id="diagnostiquePrincipale" class="col-md-9 form-control @error('diagnostiquePrincipale') is-invalid @enderror" name="diagnostiqueSecondaire" value="{{old('diagnostiquePrincipale')}}">
                                @error('diagnostiquePrincipale')
                                 <span class="invalid-feedback" role="alert">
@@ -77,7 +77,7 @@
                            </div>
 
                            <div class="form-group row">
-                               <label for="diagnostiqueAssocie" class="col-md-3 col-form-label text-right font-weight-bold">Diagnostic associé:</label>
+                               <label for="diagnostiqueAssocie" class="col-md-3 col-form-label text-right font-weight-bold">Diagnostic associé<em style="color: red;">*</em> :</label>
                                <input type="text" id="diagnostiqueAssocie" class="col-md-9 form-control @error('identite') is-invalid @enderror" name="diagnostiqueAssocie" value="{{old('identite')}}">
                                @error('identite')
                                 <span class="invalid-feedback" role="alert">
@@ -89,7 +89,7 @@
 
                        <div class="col-6" >
                            <div class="form-group row">
-                               <label for="datenaissance" class="col-md-3 col-form-label text-right font-weight-bold">Diagnostic à l'entrée</label>
+                               <label for="datenaissance" class="col-md-3 col-form-label text-right font-weight-bold">Diagnostic à l'entrée<em style="color: red;">*</em> :</label>
                                <input type="text" id="datenaissance" class="col-md-9 form-control @error('datenaissance') is-invalid @enderror" name="diagnostiqueEntre" value="{{old('datenaissance')}}">
                                @error('datenaissance')
                                <span class="invalid-feedback" role="alert">
@@ -98,7 +98,7 @@
                                @enderror
                            </div>
                            <div class="form-group row">
-                               <label for="rhesus" class="col-md-3 col-form-label text-right font-weight-bold">Date d'entrée :</label>
+                               <label for="rhesus" class="col-md-3 col-form-label text-right font-weight-bold">Date d'entrée<em style="color: red;">*</em> :</label>
                                <input type="date" id="rhesus" class="col-md-9 form-control @error('rhesus') is-invalid @enderror" name="dateEntre" value="{{old('rhesus')}}">
                                @error('rhesus')
                                <span class="invalid-feedback" role="alert">
@@ -108,7 +108,7 @@
                            </div>
 
                            <div class="row form-group">
-                               <label for="parent1" class="col-md-3 col-form-label text-right font-weight-bold">Mode d'entrée :</label>
+                               <label for="parent1" class="col-md-3 col-form-label text-right font-weight-bold">Mode d'entrée<em style="color: red;">*</em> :</label>
                                <input type="text" id="parent1" class="col-md-9 form-control @error('parent1') is-invalid @enderror" name="modeentre" value="{{old('parent1')}}">
                                @error('parent1')
                                <span class="invalid-feedback" role="alert">

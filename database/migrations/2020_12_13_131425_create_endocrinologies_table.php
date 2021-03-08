@@ -24,9 +24,14 @@ class CreateEndocrinologiesTable extends Migration
             $table->string('prolactemie');
             $table->string('fsh');
             $table->string('lh');
-            $table->string('autreendo1');
-            $table->string('autreendo2');
-            $table->string('autreendo3');
+
+            $table->string('nom_autre');
+            $table->string('resultat');
+            $table->string('nom_autre1');
+            $table->string('resultat1');
+
+            $table->unsignedBigInteger('id_consultation');
+            $table->foreign('id_consultation')->references('id')->on('consultations');
             $table->timestamps();
         });
     }

@@ -54,9 +54,14 @@ class CreateBilanSanguinsTable extends Migration
             $table->string('sattetranferrine');
             $table->string('b12sanguin');
             $table->string('folatesanguin');
-            $table->string('autrebsang1');
-            $table->string('autrebsang2');
-            $table->string('autrebsang3');
+
+            $table->string('nom_autre');
+            $table->string('resultat');
+            $table->string('nom_autre1');
+            $table->string('resultat1');
+
+            $table->unsignedBigInteger('id_consultation');
+            $table->foreign('id_consultation')->references('id')->on('consultations');
             $table->timestamps();
         });
     }

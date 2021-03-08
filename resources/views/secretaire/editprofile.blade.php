@@ -17,7 +17,7 @@
                 @csrf
                 <div class="col">
                     <div class="form-group row">
-                        <label for="password" class="col-2 col-form-label text-right font-weight-bold text-right">Mot de passe :</label>
+                        <label for="password" class="col-2 col-form-label text-right font-weight-bold text-right">Mot de passe<em style="color: red;">*</em> :</label>
                         <input id="password" type="password" class="col-4 form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                         @error('password')
@@ -26,7 +26,7 @@
                         </div>
                         @enderror
 
-                        <label for="password-confirm" class="col-2 col-form-label text-right font-weight-bold text-right">Comfirmer mot de passe :</label>
+                        <label for="password-confirm" class="col-2 col-form-label text-right font-weight-bold text-right">Comfirmer mot de passe<em style="color: red;">*</em> :</label>
                         <input id="password-confirm" type="password" class="col-4 form-control" name="password_confirmation" required autocomplete="new-password">
                     </div>
                 </div>

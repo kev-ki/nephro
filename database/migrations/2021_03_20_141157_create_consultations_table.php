@@ -17,7 +17,8 @@ class CreateConsultationsTable extends Migration
             $table->id();
             $table->string('num_dossier')->index();
             $table->string('numQ');
-            $table->unsignedBigInteger('id_examgeneral')->index()->nullable();
+            $table->unsignedBigInteger('id_evolution')->index()->nullable();
+            /*$table->unsignedBigInteger('id_examgeneral')->index()->nullable();
             $table->unsignedBigInteger('id_examappareil')->index()->nullable();
             $table->unsignedBigInteger('id_bilansanguin')->index()->nullable();
             $table->unsignedBigInteger('id_electrophorese')->index()->nullable();
@@ -40,7 +41,8 @@ class CreateConsultationsTable extends Migration
             $table->unsignedBigInteger('id_endocrinologie')->index()->nullable();
             $table->unsignedBigInteger('id_img_endos_anatomo')->index()->nullable();
             $table->unsignedBigInteger('id_autre_ant_medicauxes')->index()->nullable();
-            $table->unsignedBigInteger('id_ant_famillial')->index()->nullable();
+            $table->unsignedBigInteger('id_ant_famillial')->index()->nullable();*/
+
             $table->longText('histoiremaladie');
             $table->longText('adresserpar')->nullable();
             $table->longText('resume')->nullable();
@@ -51,8 +53,8 @@ class CreateConsultationsTable extends Migration
             $table->string('diagnostic_associe')->nullable();
             $table->timestamps();
 
-            $table->foreign('id_electrophorese')->references('id')->on('electrophoreses');
-            $table->foreign('id_bilansanguin')->references('id')->on('bilan_sanguins');
+            $table->foreign('id_evolution')->references('id')->on('evolutions');
+            /*$table->foreign('id_bilansanguin')->references('id')->on('bilan_sanguins');
             $table->foreign('id_examappareil')->references('id')->on('examen_appareils');
             $table->foreign('id_examgeneral')->references('id')->on('examen_generals');
             $table->foreign('id_infection')->references('id')->on('ant_infections');
@@ -75,7 +77,7 @@ class CreateConsultationsTable extends Migration
             $table->foreign('id_genicoobs')->references('id')->on('gineco_obstetriques');
             $table->foreign('id_chirurgie')->references('id')->on('ant_chirurgicals');
             $table->foreign('id_autre_ant_medical')->references('id')->on('autre_ant_medicauxes');
-            $table->foreign('id_ant_famillial')->references('id')->on('ant_familials');
+            $table->foreign('id_ant_famillial')->references('id')->on('ant_familials');*/
         });
     }
 

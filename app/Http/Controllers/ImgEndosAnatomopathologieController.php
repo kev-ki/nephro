@@ -17,6 +17,37 @@ class ImgEndosAnatomopathologieController extends Controller
         return view('image_endosc_anatomo.index');
     }
 
+    public function liste_IEA(Request $req, $id)
+    {
+        if ($req->image === 'imagerie') {
+            $donnees= IMGEndosAnatomopathologie::where('id_consultation', $id)
+                ->where('type', 'imagerie')
+                ->paginate(7);
+        }
+
+        if ($req->endoscopie === 'endoscopie') {
+            $donnees= IMGEndosAnatomopathologie::where('id_consultation', $id)
+                ->where('type', 'endoscopie')
+                ->paginate(7);
+        }
+
+        if ($req->anatomopatholigique === 'anatomopatholigique') {
+            $donnees= IMGEndosAnatomopathologie::where('id_consultation', $id)
+                ->where('type', 'anatomopatholigique')
+                ->paginate(7);
+        }
+
+        if (!empty($donnees)) {
+            return view('image_endosc_anatomo.index', compact('donnees'));
+        }else {
+            Session::flash('message', 'données non existantes pour cette consultation!');
+            Session::flash('alert-class', 'alert-danger');
+
+            return back();
+        }
+
+    }
+
     public function create()
     {
         return view('image_endosc_anatomo.create');
@@ -24,7 +55,7 @@ class ImgEndosAnatomopathologieController extends Controller
 
     public function store(Request $request)
     {
-        /*$validation =Validator::make($request->all(), [
+        $validation =Validator::make($request->all(), [
             'date' => ['required', 'date'],
             'nature' => ['required'],
             'type' => ['required'],
@@ -34,7 +65,7 @@ class ImgEndosAnatomopathologieController extends Controller
         ]);
         if ($validation->fails()) {
             return redirect()->Back()->withInput()->withErrors($validation);
-        }*/
+        }
 
         $iMGEndosAnatomopathologie=new IMGEndosAnatomopathologie();
         $iMGEndosAnatomopathologie->date=$request->date;
@@ -44,11 +75,11 @@ class ImgEndosAnatomopathologieController extends Controller
         $iMGEndosAnatomopathologie->etablissement_explorateur=$request->etablissement_explorateur;
         $iMGEndosAnatomopathologie->commentaire=$request->commentaire;
 
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $iMGEndosAnatomopathologie->id_consultation = $consult;
+
         if ($iMGEndosAnatomopathologie->save())
         {
-            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_img_endos_anatomo = $iMGEndosAnatomopathologie->id;
-            $consult->update();
             Session::flash('message', 'informations enregistrées.');
             Session::flash('alert-class', 'alert-success');
             return back();
@@ -61,12 +92,29 @@ class ImgEndosAnatomopathologieController extends Controller
         }
     }
 
-    public function imageEndoscopieAnat(Request $req, $id)
+    public function imageEndoscopieAnat($id)
+    {
+        $iea = IMGEndosAnatomopathologie::where('id', $id)->first();
+        $consult = Consultation::where('id', $iea->id_consultation)
+            ->first();
+
+
+        if ($iea) {
+            $doc = Dossier::select('id_patient')
+                ->where('numD', $consult->num_dossier)
+                ->first();
+            $patient = Patient::where('idpatient', $doc->id_patient)
+                ->first();
+
+            return view('image_endosc_anatomo.show', compact('consult', 'iea', 'patient'));
+        }
+    }
+
+    /*public function imageEndoscopieAnat(Request $req, $id)
     {
         $consult = Consultation::where('id', $id)
             ->first();
-        //die($consult);
-        //die($req->image);
+
         if ($req->image === 'imagerie') {
             $iea= IMGEndosAnatomopathologie::where('id', $consult->id_img_endos_anatomo)
                 ->where('type', 'imagerie')
@@ -99,7 +147,7 @@ class ImgEndosAnatomopathologieController extends Controller
 
             return back();
         }
-    }
+    }*/
 
     public function edit(IMGEndosAnatomopathologie $iMGEndosAnatomopathologie)
     {

@@ -15,10 +15,14 @@ class CreateAffectionIMMSTable extends Migration
     {
         Schema::create('affection_i_m_m_s', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->string('type');
-            $table->date('datedecouverte');
+            $table->date('date_decouverte');
+            $table->string('nom_affection');
+            $table->string('precision_autre');
+            $table->string('type_affection');
             $table->string('traitement');
+
+            $table->unsignedBigInteger('id_consultation');
+            $table->foreign('id_consultation')->references('id')->on('consultations');
             $table->timestamps();
         });
     }

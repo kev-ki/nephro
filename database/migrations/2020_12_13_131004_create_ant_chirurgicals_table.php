@@ -17,6 +17,9 @@ class CreateAntChirurgicalsTable extends Migration
             $table->id();
             $table->date('date');
             $table->text('infochirurgie');
+
+            $table->unsignedBigInteger('id_consultation');
+            $table->foreign('id_consultation')->references('id')->on('consultations');
             $table->timestamps();
         });
     }

@@ -107,7 +107,7 @@
                             {{ $errors -> first('type_user') }}
                         </div>
                         @enderror
-                        <label for="chefservice" class="col-md-2 col-form-label font-weight-bold text-right">Chef de Service <em style="color: red;">*</em>:</label>
+                        <label for="chefservice" class="col-md-2 col-form-label font-weight-bold text-right">Chef de Service<em style="color: red;">*</em> :</label>
                         <select name="chefservice" data-style="btn-outline-secondary" class="col-md-4 form-control selectpicker @error('chefservice') is-invalid @enderror">
                             <option value="0">Non</option>
                             <option value="1">Oui</option>

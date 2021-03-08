@@ -17,6 +17,14 @@ class ElectrophoreseController extends Controller
         return view('electrophorese.index');
     }
 
+    public function liste_electro($id)
+    {
+        $donnees =  Electrophorese::where('id_consultation', $id)
+            ->paginate(7);
+
+        return view('electrophorese.index', compact('donnees'));
+    }
+
     public function create()
     {
         return view('electrophorese.create');
@@ -48,11 +56,11 @@ class ElectrophoreseController extends Controller
         $electrophorese->gamma=$request->gamma;
         $electrophorese->beta=$request->beta;
 
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $electrophorese->id_consultation = $consult;
+
         if ($electrophorese->save())
         {
-            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_electrophorese = $electrophorese->id;
-            $consult->update();
             Session::flash('message', 'informations enregistrées.');
             Session::flash('alert-class', 'alert-success');
             return back();

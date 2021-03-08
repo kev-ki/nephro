@@ -21,6 +21,9 @@ class CreateHemostasesTable extends Migration
             $table->string('inr');
             $table->string('tck');
             $table->string('dimere');
+
+            $table->unsignedBigInteger('id_consultation');
+            $table->foreign('id_consultation')->references('id')->on('consultations');
             $table->timestamps();
         });
     }

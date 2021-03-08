@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\AffectionIMM;
 use App\Consultation;
 use App\Dossier;
-use App\Malagiegeneral;
+use App\Maladiegenerale;
 use App\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -16,6 +16,15 @@ class AffectionIMMController extends Controller
     public function index()
     {
         return view('affectionIMM.index');
+    }
+
+    public function liste_Imm($id)
+    {
+        $donnees = AffectionIMM::where('id_consultation', $id)
+            ->paginate(6);
+        $consult = Consultation::where('id', $id)->first();
+
+        return view('affectionIMM.index', compact('donnees', 'consult'));
     }
 
     public function create()
@@ -46,11 +55,11 @@ class AffectionIMMController extends Controller
             $affectionIMM->precision_autre=Null;
         }
 
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $affectionIMM->id_consultation = $consult;
+
         if ($affectionIMM->save())
         {
-            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_affectionimm = $affectionIMM->id;
-            $consult->update();
             Session::flash('message', 'informations Affections Immunologiques enregistrées.');
             Session::flash('alert-class', 'alert-success');
             return back();

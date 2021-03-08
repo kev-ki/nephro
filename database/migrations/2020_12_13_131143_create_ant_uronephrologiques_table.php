@@ -18,19 +18,20 @@ class CreateAntUronephrologiquesTable extends Migration
             $table->string('nom');
             $table->date('datedecouverte');
             $table->integer('nombreepisode')->nullable();
-            $table->string('siege')->nullable();
-            $table->string('type')->nullable();
-            $table->string('traitementrecu')->nullable();
+            $table->string('siegeoeudeme')->nullable();
+            $table->string('type_hematurie')->nullable();
+            $table->string('type_trouble')->nullable();
+            $table->string('traitement')->nullable();
             $table->string('evolution')->nullable();
             $table->integer('nombrerechute')->nullable();
-            $table->string('duree_traitement')->nullable();
-            $table->string('dose')->nullable();
-            $table->string('autre_proteinurie')->nullable();
-            $table->string('precision_proteinurie')->nullable();
-            $table->string('autre_trouble')->nullable();
-            $table->string('precision_trouble')->nullable();
-            $table->string('signe')->nullable();
-            $table->string('precision_signe')->nullable();
+            $table->string('dose_corticoide')->nullable();
+            $table->string('duree_corticoide')->nullable();
+            $table->string('signe_accompagnement')->nullable();
+            $table->string('precision_type')->nullable();
+            $table->string('traitement_trouble')->nullable();
+
+            $table->unsignedBigInteger('id_consultation');
+            $table->foreign('id_consultation')->references('id')->on('consultations');
             $table->timestamps();
         });
     }

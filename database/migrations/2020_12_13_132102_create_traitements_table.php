@@ -18,7 +18,10 @@ class CreateTraitementsTable extends Migration
             $table->date('date');
             $table->string('prescription');
             $table->string('posologie');
-            $table->string('voieadmission');
+            $table->string('voie_administration');
+
+            $table->unsignedBigInteger('id_consultation');
+            $table->foreign('id_consultation')->references('id')->on('consultations');
             $table->timestamps();
         });
     }

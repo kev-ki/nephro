@@ -10,6 +10,7 @@
                 </div>
             @endif
         </div>
+
         <div class="card bg-white p-2 mb-2" style=" box-shadow: 0 0 5px whitesmoke;">
             <div class="col">
                 <div class="form-group row">
@@ -50,20 +51,20 @@
                         <a id="dropdown" class="nav-link dropdown-toggle btn btn-outline-primary dropdown-toggle-split" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Antécédents </a>
 
                         <ul class="dropdown-menu" aria-labelledby="dropdown">
-                            <li><a class="dropdown-item" href="{{route('uronephrologie.show', $consult->id)}}">Uronephrologiques</a></li>
-                            <li><a class="dropdown-item" href="{{route('infection.show', $consult->id)}}">Infectieux</a></li>
-                            <li><a class="dropdown-item" href="{{route('maladiegenerale.show', $consult->id)}}">Maladies Générales</a></li>
-                            <li><a class="dropdown-item" href="{{route('affectionIMM.show', $consult->id)}}">Affections Immunologiques</a></li>
-                            <li><a class="dropdown-item" href="{{route('affectionTumorale.show', $consult->id)}}">Affections Tumorales Malignes</a></li>
-                            <li><a class="dropdown-item" href="{{route('Autre_antecedent_medical.show', $consult->id)}}">Autres Antécédents Médicaux</a></li>
+                            <li><a class="dropdown-item" href="{{route('liste_uro', $consult->id)}}">Uronephrologiques</a></li>
+                            <li><a class="dropdown-item" href="{{route('liste_infection', $consult->id)}}">Infectieux</a></li>
+                            <li><a class="dropdown-item" href="{{route('liste_maladieG', $consult->id)}}">Maladies Générales</a></li>
+                            <li><a class="dropdown-item" href="{{route('liste_Imm', $consult->id)}}">Affections Immunologiques</a></li>
+                            <li><a class="dropdown-item" href="{{route('liste_TMaligne', $consult->id)}}">Affections Tumorales Malignes</a></li>
+                            <li><a class="dropdown-item" href="{{route('liste_AutreMed', $consult->id)}}">Autres Antécédents Médicaux</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{route('chirurgicaux.show', $consult->id)}}">Chirurgicaux</a></li>
+                            <li><a class="dropdown-item" href="{{route('liste_chirurgie', $consult->id)}}">Chirurgicaux</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{route('genico-obstetrique.show', $consult->id)}}">Gyneco-Obstétriques</a></li>
+                            <li><a class="dropdown-item" href="{{route('liste_obstetrique', $consult->id)}}">Gyneco-Obstétriques</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{route('habitude-alimentaire.show', $consult->id)}}">Habitudes Alimentaire et Mode de Vie</a></li>
+                            <li><a class="dropdown-item" href="{{route('liste_habitude', $consult->id)}}">Habitudes Alimentaire et Mode de Vie</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{route('antfamilial.show', $consult->id)}}">Familiaux</a></li>
+                            <li><a class="dropdown-item" href="{{route('liste_familial', $consult->id)}}">Familiaux</a></li>
                         </ul>
                     </div>
 
@@ -71,8 +72,8 @@
                         <a id="dropdown1" class="nav-link dropdown-toggle btn btn-outline-primary dropdown-toggle-split" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Examens Cliniques </a>
 
                         <ul class="dropdown-menu" aria-labelledby="dropdown1">
-                            <li><a class="dropdown-item" href="{{route('examen-appareil.show', $consult->id)}}">Examen Appareils</a></li>
-                            <li><a class="dropdown-item" href="{{route('examen-general.show', $consult->id)}}">Examen Général</a></li>
+                            <li><a class="dropdown-item" href="{{route('liste_appareil', $consult->id)}}">Examen Appareils</a></li>
+                            <li><a class="dropdown-item" href="{{route('liste_general', $consult->id)}}">Examen Général</a></li>
                         </ul>
                     </div>
 
@@ -80,31 +81,31 @@
                         <a id="dropdown2" class="nav-link dropdown-toggle btn btn-outline-primary dropdown-toggle-split" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Examens Paracliniques </a>
 
                         <ul class="dropdown-menu" aria-labelledby="dropdown2">
-                            <li><a class="dropdown-item" href="{{route('bilan-sanguin.show', $consult->id)}}">Bilan Sanguins</a></li>
-                            <li><a class="dropdown-item" href="{{route('electrophorese.show', $consult->id)}}">Electrophorèse des protéines</a></li>
-                            <li><a class="dropdown-item" href="{{route('serologie.show', $consult->id)}}">Sérologies</a></li>
-                            <li><a class="dropdown-item" href="{{route('parasitologie.show', $consult->id)}}">Parasitologie</a></li>
-                            <li><a class="dropdown-item" href="{{route('hemostase.show', $consult->id)}}">Hémostase</a></li>
-                            <li><a class="dropdown-item" href="{{route('endocrinologie.show', $consult->id)}}">Endocrinologie</a></li>
-                            <li><a class="dropdown-item" href="{{route('marqueur-tumoral.show', $consult->id)}}">Marqueurs Tumoraux</a></li>
-                            <li><a class="dropdown-item" href="{{route('bilan-urinaire.show', $consult->id)}}">Bilan Urinaire</a></li>
-                            <li><a class="dropdown-item" href="{{route('liquide-bio-selle.show', $consult->id)}}">Liquides Biologiques et selles</a></li>
+                            <li><a class="dropdown-item" href="{{route('liste_suiguin', $consult->id)}}">Bilan Sanguins</a></li>
+                            <li><a class="dropdown-item" href="{{route('liste_electro', $consult->id)}}">Electrophorèse des protéines</a></li>
+                            <li><a class="dropdown-item" href="{{route('liste_serologie', $consult->id)}}">Sérologies</a></li>
+                            <li><a class="dropdown-item" href="{{route('liste_parasito', $consult->id)}}">Parasitologie</a></li>
+                            <li><a class="dropdown-item" href="{{route('liste_hemostase', $consult->id)}}">Hémostase</a></li>
+                            <li><a class="dropdown-item" href="{{route('liste_endo', $consult->id)}}">Endocrinologie</a></li>
+                            <li><a class="dropdown-item" href="{{route('liste_marqueur', $consult->id)}}">Marqueurs Tumoraux</a></li>
+                            <li><a class="dropdown-item" href="{{route('liste_urinaire', $consult->id)}}">Bilan Urinaire</a></li>
+                            <li><a class="dropdown-item" href="{{route('liste_liquide', $consult->id)}}">Liquides Biologiques et selles</a></li>
                             <li>
-                                <form action="{{route('imagerie', $consult->id)}}" method="post">
+                                <form action="{{route('liste_imagerie', $consult->id)}}" method="post">
                                     @csrf
                                     <input type="hidden" name="image" value="imagerie">
                                     <button type="submit" class="dropdown-item">Imagerie</button>
                                 </form>
                             </li>
                             <li>
-                                <form action="{{route('endoscopie', $consult->id)}}" method="post">
+                                <form action="{{route('liste_endoscopie', $consult->id)}}" method="post">
                                     @csrf
                                     <input type="hidden" name="endoscopie" value="endoscopie">
                                     <button type="submit" class="dropdown-item">Endoscopie</button>
                                 </form>
                             </li>
                             <li>
-                                <form action="{{route('anatomopatholigique', $consult->id)}}" method="post">
+                                <form action="{{route('liste_anatomo', $consult->id)}}" method="post">
                                     @csrf
                                     <input type="hidden" name="anatomopatholigique" value="anatomopatholigique">
                                     <button type="submit" class="dropdown-item">Examens Anatomopathologiques</button>
@@ -113,7 +114,7 @@
                         </ul>
                     </div>
 
-                    <button class="btn btn-outline-primary mr-1 nav-link"><a href="#">Traitement</a></button>
+                    <button class="btn btn-outline-primary mr-1 nav-link"><a href="{{route('liste_traitement', $consult->id)}}">Traitement</a></button>
                     <button class="btn btn-outline-primary mr-1 nav-link"><a href="#">Evolution</a></button>
                     <button class="btn btn-outline-primary mr-1 nav-link"><a href="#">Autre Résultat</a></button>
                     <button class="btn btn-outline-secondary"><a style="color: #4e555b" href="#">Imprimer</a></button>

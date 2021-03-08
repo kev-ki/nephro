@@ -18,7 +18,7 @@
                 <input type="hidden" name="iduser" value="{{$user->id}}">
                 <div class="col">
                     <div class="form-group row">
-                        <label for="name" class="col-2 col-form-label text-right  font-weight-bold text-left">Nom :</label>
+                        <label for="name" class="col-2 col-form-label text-right  font-weight-bold text-left">Nom<em style="color: red;">*</em> :</label>
                         <input id="name" type="text" class="col-4 form-control @error('name') is-invalid @enderror" name="name" value="{{old('name') ?? $user->name}}">
 
                         @error('name')
@@ -27,7 +27,7 @@
                         </div>
                         @enderror
 
-                        <label for="prenom" class="col-2 col-form-label text-right  font-weight-bold text-left">Prenom :</label>
+                        <label for="prenom" class="col-2 col-form-label text-right  font-weight-bold text-left">Prenom<em style="color: red;">*</em> :</label>
                         <input id="prenom" type="text" class="col-4 form-control @error('prenom') is-invalid @enderror" name="prenom" value="{{old('prenom') ?? $user->prenom}}">
 
                         @error('prenom')
@@ -40,7 +40,7 @@
 
                 <div class="col">
                     <div class="form-group row">
-                        <label for="pseudo" class="col-2 col-form-label text-right  font-weight-bold text-left">Pseudo :</label>
+                        <label for="pseudo" class="col-2 col-form-label text-right  font-weight-bold text-left">Pseudo<em style="color: red;">*</em> :</label>
                         <input id="pseudo" type="text" class="col-4 form-control @error('pseudo') is-invalid @enderror" name="pseudo" value="{{ old('pseudo') ?? $user->pseudo }}">
 
                         @error('pseudo')
@@ -48,7 +48,7 @@
                             {{ $errors -> first('pseudo') }}
                         </div>
                         @enderror
-                        <label for="email" class="col-2 col-form-label text-right  font-weight-bold text-left">E-Mail :</label>
+                        <label for="email" class="col-2 col-form-label text-right  font-weight-bold text-left">E-Mail<em style="color: red;">*</em> :</label>
                         <input id="email" type="email" class="col-4 form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') ?? $user->email }}" required>
 
                         @error('email')
@@ -61,7 +61,7 @@
 
                 <div class="col">
                     <div class="form-group row">
-                        <label for="password" class="col-2 col-form-label text-right  font-weight-bold text-left">Mot de passe :</label>
+                        <label for="password" class="col-2 col-form-label text-right  font-weight-bold text-left">Mot de passe<em style="color: red;">*</em> :</label>
                         <input id="password" type="password" class="col-4 form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password">
 
                         @error('password')
@@ -70,14 +70,14 @@
                         </div>
                         @enderror
 
-                        <label for="password-confirm" class="col-2 col-form-label text-right  font-weight-bold text-left">Comfirmer mot de passe :</label>
+                        <label for="password-confirm" class="col-2 col-form-label text-right  font-weight-bold text-left">Comfirmer mot de passe<em style="color: red;">*</em> :</label>
                         <input id="password-confirm" type="password" class="col-4 form-control" name="password_confirmation" autocomplete="new-password">
                     </div>
                 </div>
 
                 <div class="col">
                     <div class="form-group row">
-                        <label for="statut" class="col-2 col-form-label text-right  font-weight-bold text-left">Statut :</label>
+                        <label for="statut" class="col-2 col-form-label text-right  font-weight-bold text-left">Statut<em style="color: red;">*</em> :</label>
                         <select id="statut" name="statut" data-style="btn-outline-secondary" class="col-md-4 selectpicker form-control @error('statut') is-invalid @enderror">
                             @foreach($user -> getStatusOptions() as $key => $value)
                                 <option value="{{ $key }}" {{ $user -> status == $key ? 'selected' : '' }}>{{ $value }}</option>
@@ -89,7 +89,7 @@
                         </div>
                         @enderror
 
-                        <label for="telephone" class="col-2 col-form-label text-right  font-weight-bold text-left">Téléphone :</label>
+                        <label for="telephone" class="col-2 col-form-label text-right  font-weight-bold text-left">Téléphone<em style="color: red;">*</em> :</label>
                         <input id="telephone" type="text" class="col-4 form-control" value="{{ old('telephone') ?? $user->telephone }}" name="telephone">
                         @error('telephone')
                         <div class="invalid-feedback">
@@ -101,7 +101,7 @@
 
                 <div class="col">
                     <div class="form-group row">
-                        <label for="type_user" class="col-md-2 col-form-label font-weight-bold text-right">Type Utilisateur:</label>
+                        <label for="type_user" class="col-md-2 col-form-label font-weight-bold text-right">Type Utilisateur<em style="color: red;">*</em> :</label>
                         <select name="type_user" data-style="btn-outline-secondary" class="col-md-4 selectpicker form-control @error('type_user') is-invalid @enderror">
                             @foreach($user -> getUserTypeOptions() as $key => $value)
                                 <option value="{{ $key }}" {{ $user -> type_user == $key ? 'selected' : '' }}>{{ $value }}</option>
@@ -112,7 +112,7 @@
                             {{ $errors -> first('type_user') }}
                         </div>
                         @enderror
-                        <label for="chefservice" class="col-md-2 col-form-label font-weight-bold text-right">Chef de Service:</label>
+                        <label for="chefservice" class="col-md-2 col-form-label font-weight-bold text-right">Chef de Service<em style="color: red;">*</em> :</label>
                         <select name="chefservice" data-style="btn-outline-secondary" class="col-md-4 form-control selectpicker @error('chefservice') is-invalid @enderror">
                             @if($user->chefservice == 0)
                                 <option value="0" selected>Non</option>

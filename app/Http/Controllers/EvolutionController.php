@@ -15,6 +15,14 @@ class EvolutionController extends Controller
         return view('evolution.index');
     }
 
+    public function liste_evolution($id)
+    {
+        $donnees =  Evolution::where('id_consultation', $id)
+            ->paginate(7);
+
+        return view('evolution.index', compact('donnees'));
+    }
+
     public function create()
     {
         return view('evolution.create');
@@ -31,15 +39,18 @@ class EvolutionController extends Controller
         }
 
         $evolution= new Evolution();
-        /*$evolution->date= $request->date;*/
-        $evolution->evolution= $request->evolution;
+        $evolution->date= $request->date('Y-m-d');
+        $evolution->infos_evolution= $request->evolution;
+
+        /*$consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $evolution->id_consultation = $consult;*/
 
         if ($evolution->save())
         {
             $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_img_endos_anatomo = $evolution->id;
+            $consult->id_evolution = $evolution->id;
             $consult->update();
-            Session::flash('message', 'informations enregistrées.');
+            Session::flash('message', 'informations évolution enregistrées.');
             Session::flash('alert-class', 'alert-success');
 
             return back();

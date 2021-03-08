@@ -17,6 +17,14 @@ class ParasitologieController extends Controller
         return view('parasitologie.index');
     }
 
+    public function liste_parasito($id)
+    {
+        $donnees =  Parasitologie::where('id_consultation', $id)
+            ->paginate(7);
+
+        return view('parasitologie.index', compact('donnees'));
+    }
+
     public function create()
     {
         return view('parasitologie.create');
@@ -42,11 +50,11 @@ class ParasitologieController extends Controller
         $parasitologie->nom_autre1=$request->nom_autre1;
         $parasitologie->resultat1=$request->resultat1;
 
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $parasitologie->id_consultation = $consult;
+
         if ($parasitologie->save())
         {
-            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_parasitologie = $parasitologie->id;
-            $consult->update();
             Session::flash('message', 'informations enregistrées.');
             Session::flash('alert-class', 'alert-success');
             return back();

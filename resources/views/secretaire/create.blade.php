@@ -19,7 +19,7 @@
                       <div class="col-md-4">
                           <p class="text-uppercase font-weight-bold mb-3">Informations du Patient</p>
                           <div class="row mb-2">
-                              <label for="id_patient" class="col-md-4 text-right col-form-label font-weight-bold">Patient :</label>
+                              <label for="id_patient" class="col-md-4 text-right col-form-label font-weight-bold">Patient<em style="color: red;">*</em> :</label>
                               <select name="id_patient" data-live-search="true" data-placeholder="Choisir le patient" data-style="btn-outline-secondary" class="col-md-8 selectpicker form-control @error('id_patient') @enderror">
                                   <option value="00">Non Enregistrer</option>
                                   @foreach($liste_patient as $patient)
@@ -34,7 +34,7 @@
                           </div>
 
                           <div class="row mb-2">
-                              <label for="nom" class="col-md-4 col-form-label text-right font-weight-bold">Nom :</label>
+                              <label for="nom" class="col-md-4 col-form-label text-right font-weight-bold">Nom<em style="color: red;">*</em> :</label>
                               <input type="text" id="nom" name="nom" class="col-md-8 form-control @error('nom') @enderror" value="{{old('nom')}}">
                               @error('nom')
                                   <span class="invalid-feedback" role="alert">
@@ -44,7 +44,7 @@
                           </div>
 
                           <div class="row mb-2">
-                              <label for="prenom" class="col-md-4 col-form-label text-right font-weight-bold">Prenom :</label>
+                              <label for="prenom" class="col-md-4 col-form-label text-right font-weight-bold">Prenom<em style="color: red;">*</em> :</label>
                               <input type="text" id="prenom" name="prenom" class="col-md-8 form-control @error('prenom') @enderror" value="{{old('prenom')}}">
                               @error('prenom')
                                   <span class="invalid-feedback" role="alert">
@@ -54,7 +54,7 @@
                           </div>
 
                           <div class="row mb-2">
-                              <label for="telephone" class="col-md-4 col-form-label text-right font-weight-bold">Telephone :</label>
+                              <label for="telephone" class="col-md-4 col-form-label text-right font-weight-bold">Telephone<em style="color: red;">*</em> :</label>
                               <input type="text" id="telephone" name="telephone" class="col-md-8 form-control @error('email') @enderror" value="{{old('telephone')}}">
                               @error('telephone')
                                   <span class="invalid-feedback" role="alert">
@@ -67,7 +67,7 @@
                       <div class="col-md-4">
                           <p class="text-uppercase font-weight-bold mb-3">Medecin concerné et motif</p>
                           <div class="row mb-2">
-                              <label for="nom" class="col-md-4 col-form-label text-right font-weight-bold">Medecin :</label>
+                              <label for="nom" class="col-md-4 col-form-label text-right font-weight-bold">Medecin<em style="color: red;">*</em> :</label>
                               <select name="medecin" data-style="btn-outline-secondary" data-live-search="true" data-placeholder="Choisir le medecin" class="col-md-8 form-control selectpicker @error('medecin') @enderror">
                                   @foreach($liste_medecin as $medecin)
                                       <option value="{{$medecin->id}}"> Dr {{$medecin->prenom}} {{$medecin->name}}</option>
@@ -81,7 +81,7 @@
                           </div>
 
                           <div class="row mb-2">
-                              <label for="motif" class="col-md-4 col-form-label text-right font-weight-bold">Motif :</label>
+                              <label for="motif" class="col-md-4 col-form-label text-right font-weight-bold">Motif<em style="color: red;">*</em> :</label>
                               <input type="text" id="motif" name="motif" class="col-md-8 form-control @error('motif') @enderror" value="{{old('motif')}}">
                               @error('motif')
                                   <span class="invalid-feedback" role="alert">
@@ -94,7 +94,7 @@
                       <div class="col-md-4">
                           <p class="text-uppercase font-weight-bold mb-3">Date et heure du rendez-vous</p>
                           <div class="row mb-2">
-                              <label for="daterdv" class="col-md-4 col-form-label text-right font-weight-bold">Date :</label>
+                              <label for="daterdv" class="col-md-4 col-form-label text-right font-weight-bold">Date<em style="color: red;">*</em> :</label>
                               <input type="date" id="daterdv" name="date_rendezvous" class="col-md-8 form-control @error('date_rendezvous') @enderror" value="{{old('date_rendezvous')}}">
                               @error('date_rendezvous')
                                   <div class="invalid-feedback" role="alert">
@@ -104,7 +104,7 @@
                           </div>
 
                           <div class="row mb-2">
-                              <label for="heurerdv" class="col-md-4 col-form-label text-right font-weight-bold">Heure :</label>
+                              <label for="heurerdv" class="col-md-4 col-form-label text-right font-weight-bold">Heure<em style="color: red;">*</em> :</label>
                               <input type="time" id="heurerdv" name="heure_rendezvous" class="col-md-8 form-control @error('heure_rendezvous') @enderror" value="{{old('heure_rendezvous')}}">
                               @error('heure_rendezvous')
                                   <span class="invalid-feedback" role="alert">

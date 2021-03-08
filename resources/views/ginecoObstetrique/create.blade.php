@@ -24,7 +24,7 @@
                         <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="page1_tab" id="page1">
                             <div class="col">
                                 <div class="form-group row">
-                                    <label class="text-right font-weight-bold col-md-2">Date des prémières règles:</label>
+                                    <label class="text-right font-weight-bold col-md-2">Date des prémières règles<em style="color: red;">*</em> :</label>
                                     <input type="date" name="datepremierregle" class="form-control col-md-4">
                                     <label class="text-right font-weight-bold col-md-2">Date des dernières règles:</label>
                                     <input type="date" name="datedernierregle" class="form-control col-md-4">

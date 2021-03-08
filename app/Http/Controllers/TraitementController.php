@@ -13,20 +13,31 @@ class TraitementController extends Controller
 {
     public function index()
     {
-        return view('Traitement.index');
+        return view('traitement.index');
+    }
+
+    public function liste_traitement($id)
+    {
+        $donnees =  Traitement::where('id_consultation', $id)
+            ->paginate(7);
+        $liste_medecin = User::where('type_user','1')->where('status','1')->get();
+
+        return view('traitement.index', compact('donnees', 'liste_medecin'));
     }
 
     public function create()
     {
         $medecin = User::where('type_user','1')->where('status','1')->get();
-        return view('Traitement.create',['liste_medecin'=> $medecin]);
+        return view('traitement.create',['liste_medecin'=> $medecin]);
     }
 
     public function store(Request $request)
     {
         $validation =Validator::make($request->all(), [
             'date' => ['required', 'date'],
-            'traitement' => ['required'],
+            'prescription' => ['required'],
+            'posologie' => ['required'],
+            'voie_administration' => ['required'],
             'prescripteur' => ['required'],
         ]);
         if ($validation->fails()) {
@@ -35,17 +46,17 @@ class TraitementController extends Controller
 
         $traitement=new Traitement();
         $traitement->date=$request->date;
-        $traitement->traitement=$request->traitement;
-        /*$traitement->prescription=$request->prescription;
+        //$traitement->ordonnance=$request->ordonnance;
+        $traitement->prescription=$request->prescription;
         $traitement->posologie=$request->posologie;
-        $traitement->voie_administration= $request->administration;*/
+        $traitement->voie_administration= $request->voie_administration;
         $traitement->prescripteur= $request->prescripteur;
+
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $traitement->id_consultation = $consult;
 
         if ($traitement->save())
         {
-            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_traitement = $traitement->id;
-            $consult->update();
             Session::flash('message', 'informations enregistrées.');
             Session::flash('alert-class', 'alert-success');
             return back();
@@ -59,21 +70,27 @@ class TraitementController extends Controller
 
     }
 
-    public function show(Traitement $Traitement)
+    public function show($id)
     {
-        return view('Traitement.show',['Traitement'=>$Traitement]);
+        $traitement = Traitement::where('id_consultation', $id)->first();
+        $consultation = Consultation::where('id', $traitement->id_consultation)
+            ->first();
+
+        $liste_medecin = User::where('type_user','1')->where('status','1')->get();
+
+        return view('traitement.show', compact('traitement', 'liste_medecin'));
     }
 
     public function edit(Traitement $Traitement)
     {
-        return view('Traitement.edit',['Traitement'=>$Traitement]);
+        return view('traitement.edit',['Traitement'=>$Traitement]);
     }
 
     public function update(Request $request, Traitement $traitement)
     {
         $validation =Validator::make($request->all(), [
             'date' => ['required', 'date'],
-            'traitement' => ['required'],
+            'ordonnance' => ['required'],
             'prescripteur' => ['required'],
         ]);
         if ($validation->fails()) {

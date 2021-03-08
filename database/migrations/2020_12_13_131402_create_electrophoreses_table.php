@@ -23,6 +23,9 @@ class CreateElectrophoresesTable extends Migration
             $table->string('alpha2');
             $table->string('gamma');
             $table->string('beta');
+
+            $table->unsignedBigInteger('id_consultation');
+            $table->foreign('id_consultation')->references('id')->on('consultations');
             $table->timestamps();
         });
     }

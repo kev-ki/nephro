@@ -21,21 +21,21 @@
                     @csrf
                     <div class="col">
                         <div class="form-group row">
-                            <label class="text-right col-form-label col-2 font-weight-bold">Date:</label>
+                            <label class="text-right col-form-label col-2 font-weight-bold">Date<em style="color: red;">*</em> :</label>
                             <input type="date" name="date" class="form-control col-4">
-                            <label class="text-right col-form-label col-2 font-weight-bold">Nature: </label>
+                            <label class="text-right col-form-label col-2 font-weight-bold">Nature<em style="color: red;">*</em> : </label>
                             <input type="text" name="nature" class="form-control col-4">
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group row">
-                            <label class="text-right col-form-label col-2 font-weight-bold">Analyse: </label>
+                            <label class="text-right col-form-label col-2 font-weight-bold">Analyse<em style="color: red;">*</em> : </label>
                             <textarea class="form-control col-10" name="analyse"></textarea>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group row">
-                            <label class="text-right col-form-label col-2 font-weight-bold">Antibiogramme: </label>
+                            <label class="text-right col-form-label col-2 font-weight-bold">Antibiogramme<em style="color: red;">*</em> : </label>
                             <textarea class="form-control col-10" name="antibiogramme"></textarea>
                         </div>
                     </div>

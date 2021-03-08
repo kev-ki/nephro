@@ -18,6 +18,14 @@ class AntInfectionController extends Controller
         return view('antInfection.index');
     }
 
+    public function liste_infection($id)
+    {
+        $donnees =  AntInfection::where('id_consultation', $id)
+            ->paginate(7);
+
+        return view('antInfection.index', compact('donnees'));
+    }
+
     public function create()
     {
         return view('antInfection.create');
@@ -85,11 +93,11 @@ class AntInfectionController extends Controller
             $antInfection->duree_tuberculose = Null;
         }
 
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $antInfection->id_consultation = $consult;
+
         if ($antInfection->save())
         {
-            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_infection = $antInfection->id;
-            $consult->update();
             Session::flash('message', 'Informations Infections enregistrées.');
             Session::flash('alert-class', 'alert-success');
             return back();

@@ -17,11 +17,16 @@ class CreateParasitologiesTable extends Migration
             $table->id();
             $table->date('date');
             $table->string('goutteepaisse');
-            $table->string('selle');
+            $table->string('selle_pok');
             $table->string('bmr');
-            $table->string('autre1')->nullable();
-            $table->string('autre2')->nullable();
-            $table->string('autre3')->nullable();
+
+            $table->string('nom_autre');
+            $table->string('resultat');
+            $table->string('nom_autre1');
+            $table->string('resultat1');
+
+            $table->unsignedBigInteger('id_consultation');
+            $table->foreign('id_consultation')->references('id')->on('consultations');
             $table->timestamps();
         });
     }

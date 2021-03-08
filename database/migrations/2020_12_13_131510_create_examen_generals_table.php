@@ -30,6 +30,9 @@ class CreateExamenGeneralsTable extends Migration
             $table->string('oedeme')->nullable();
             $table->string('siegeoedeme')->nullable();
             $table->string('deshydratation')->nullable();
+
+            $table->unsignedBigInteger('id_consultation');
+            $table->foreign('id_consultation')->references('id')->on('consultations');
             $table->timestamps();
         });
     }

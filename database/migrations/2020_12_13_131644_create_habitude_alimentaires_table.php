@@ -24,6 +24,9 @@ class CreateHabitudeAlimentairesTable extends Migration
             $table->string('type_auto_medication')->nullable();
             $table->string('precision_traditionnelle')->nullable();
             $table->string('precision_moderne')->nullable();
+
+            $table->unsignedBigInteger('id_consultation');
+            $table->foreign('id_consultation')->references('id')->on('consultations');
             $table->timestamps();
         });
     }

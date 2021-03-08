@@ -40,6 +40,7 @@ class ConsultationController extends Controller
         $consultation->numQ = $request->numQ;
         $consultation->histoiremaladie = $request->histoiremaladie;
         $consultation->motif_admission= $request->motifadmission;
+        $consultation->bilan_admission= $request->bilan_admission;
         $consultation->adresserpar= $request->adresserpar;
         $consultation->num_dossier= $request->num_dossier;
         $consultation->motif_hospitalisation= $request->motifhospitalisation;

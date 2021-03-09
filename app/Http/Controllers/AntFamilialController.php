@@ -21,8 +21,16 @@ class AntFamilialController extends Controller
     {
         $donnees =  AntFamilial::where('id_consultation', $id)
             ->paginate(7);
+        $consult = Consultation::where('id', $id)
+            ->first();
+        if (!empty($donnees)) {
+            return view('antFamilliaux.index', compact('donnees', 'consult'));
+        } else{
+            Session::flash('message', 'Données non existantes pour cette consultation!');
+            Session::flash('alert-class', 'alert-danger');
 
-        return view('antFamilliaux.index', compact('donnees'));
+            return back();
+        }
     }
 
     public function create()
@@ -60,12 +68,11 @@ class AntFamilialController extends Controller
 
     public function show($id)
     {
-        $consult = Consultation::where('id', $id)
+        $familial= AntFamilial::where('id', $id)
             ->first();
-        //die($consult);
-        $familial= AntFamilial::where('id', $consult->id_ant_famillial)
-            ->first();
-        //die($familial);
+        $consult = Consultation::where('id', $familial->id_consultation)
+        ->first();
+
         $doc = Dossier::select('id_patient')
             ->where('numD', $consult->num_dossier)
             ->first();
@@ -75,9 +82,6 @@ class AntFamilialController extends Controller
         if ($familial){
             return view('antFamilliaux.show', compact('consult', 'familial', 'patient'));
         }else {
-            Session::flash('message', 'données non existantes pour cette consultation!');
-            Session::flash('alert-class', 'alert-danger');
-
             return back();
         }
 

@@ -22,8 +22,16 @@ class AntInfectionController extends Controller
     {
         $donnees =  AntInfection::where('id_consultation', $id)
             ->paginate(7);
+        $consult = Consultation::where('id', $id)
+            ->first();
+        if (!empty($donnees)) {
+            return view('antInfection.index', compact('donnees', 'consult'));
+        } else{
+            Session::flash('message', 'Données non existantes pour cette consultation!');
+            Session::flash('alert-class', 'alert-danger');
 
-        return view('antInfection.index', compact('donnees'));
+            return back();
+        }
     }
 
     public function create()
@@ -111,11 +119,10 @@ class AntInfectionController extends Controller
 
     public function show($id)
     {
-        $consult = Consultation::where('id', $id)
+        $infection= AntInfection::where('id', $id)
             ->first();
-        //die($consult);
-        $infection= AntInfection::where('id', $consult->id_infection)
-            ->first();
+        $consult = Consultation::where('id', $infection->id_consultation)
+        ->first();
         $doc = Dossier::select('id_patient')
             ->where('numD', $consult->num_dossier)
             ->first();
@@ -125,12 +132,8 @@ class AntInfectionController extends Controller
         if ($infection){
             return view('antInfection.show', compact('consult', 'infection', 'patient'));
         }else {
-            Session::flash('message', 'données non existantes pour cette consultation!');
-            Session::flash('alert-class', 'alert-danger');
-
-            return back();
+           return back();
         }
-
     }
 
     public function edit(AntInfection $antInfection)

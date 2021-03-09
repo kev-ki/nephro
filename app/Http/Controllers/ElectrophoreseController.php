@@ -21,8 +21,17 @@ class ElectrophoreseController extends Controller
     {
         $donnees =  Electrophorese::where('id_consultation', $id)
             ->paginate(7);
+        $consult = Consultation::where('id', $id)
+            ->first();
 
-        return view('electrophorese.index', compact('donnees'));
+        if (!empty($donnees)) {
+            return view('electrophorese.index', compact('donnees', 'consult'));
+        } else{
+            Session::flash('message', 'Données non existantes pour cette consultation!');
+            Session::flash('alert-class', 'alert-danger');
+
+            return back();
+        }
     }
 
     public function create()
@@ -75,17 +84,22 @@ class ElectrophoreseController extends Controller
 
     public function show($id)
     {
-        $consult = Consultation::where('id', $id)
+
+        $electrophorese= Electrophorese::where('id', $id)
             ->first();
-        $electrophorese= Electrophorese::where('id', $consult->id_electrophorese)
-            ->first();
+        $consult = Consultation::where('id', $electrophorese->id_consultation)
+        ->first();
         $doc = Dossier::select('id_patient')
             ->where('numD', $consult->num_dossier)
             ->first();
         $patient = Patient::where('idpatient', $doc->id_patient)
             ->first();
 
-        return view('electrophorese.show', compact('consult', 'electrophorese', 'patient'));
+        if ($electrophorese) {
+            return view('electrophorese.show', compact('consult', 'electrophorese', 'patient'));
+        } else {
+            return back();
+        }
     }
 
     public function edit(Electrophorese $electrophorese)

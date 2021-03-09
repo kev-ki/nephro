@@ -111,7 +111,7 @@ class PatientController extends Controller
             Session::flash('alert-class', 'alert-success');
             return Back();
         }else {
-            Session::flash('message', 'Hospitalisation refusé! le patient a une hospitalisation en cours.');
+            Session::flash('message', 'action refusée! le patient a une hospitalisation en cours.');
             Session::flash('alert-class', 'alert-danger');
             return Back();
         }

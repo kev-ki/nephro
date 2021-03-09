@@ -81,7 +81,7 @@
                         <a id="dropdown2" class="nav-link dropdown-toggle btn btn-outline-primary dropdown-toggle-split" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Examens Paracliniques </a>
 
                         <ul class="dropdown-menu" aria-labelledby="dropdown2">
-                            <li><a class="dropdown-item" href="{{route('liste_suiguin', $consult->id)}}">Bilan Sanguins</a></li>
+                            <li><a class="dropdown-item" href="{{route('liste_sanguin', $consult->id)}}">Bilan Sanguins</a></li>
                             <li><a class="dropdown-item" href="{{route('liste_electro', $consult->id)}}">Electrophorèse des protéines</a></li>
                             <li><a class="dropdown-item" href="{{route('liste_serologie', $consult->id)}}">Sérologies</a></li>
                             <li><a class="dropdown-item" href="{{route('liste_parasito', $consult->id)}}">Parasitologie</a></li>

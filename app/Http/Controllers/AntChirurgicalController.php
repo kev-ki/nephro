@@ -21,8 +21,17 @@ class AntChirurgicalController extends Controller
     {
         $donnees = AntChirurgical::where('id_consultation', $id)
             ->paginate(7);
+        $consult = Consultation::where('id', $id)
+            ->first();
 
-        return view('chirurgical.index', compact('donnees'));
+        if (!empty($donnees)) {
+            return view('chirurgical.index', compact('donnees', 'consult'));
+        } else{
+            Session::flash('message', 'Données non existantes pour cette consultation!');
+            Session::flash('alert-class', 'alert-danger');
+
+            return back();
+        }
     }
 
     public function create()
@@ -62,10 +71,9 @@ class AntChirurgicalController extends Controller
 
     public function show($id)
     {
-        $consult = Consultation::where('id', $id)
+        $chirurgie= AntChirurgical::where('id', $id)
             ->first();
-        //die($consult);
-        $chirurgie= AntChirurgical::where('id', $consult->id_chirurgie)
+        $consult = Consultation::where('id', $chirurgie->id_consultation)
             ->first();
         $doc = Dossier::select('id_patient')
             ->where('numD', $consult->num_dossier)
@@ -76,9 +84,6 @@ class AntChirurgicalController extends Controller
         if ($chirurgie){
             return view('chirurgical.show', compact('consult', 'chirurgie', 'patient'));
         }else {
-            Session::flash('message', 'données non existantes pour cette consultation!');
-            Session::flash('alert-class', 'alert-danger');
-
             return back();
         }
     }

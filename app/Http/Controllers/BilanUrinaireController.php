@@ -22,8 +22,16 @@ class BilanUrinaireController extends Controller
     {
         $donnees =  BilanUrinaire::where('id_consultation', $id)
             ->paginate(7);
+        $consult = Consultation::where('id', $id)
+            ->first();
+        if (!empty($donnees)) {
+            return view('bilanUrinaire.index', compact('donnees', 'consult'));
+        } else{
+            Session::flash('message', 'Données non existantes pour cette consultation!');
+            Session::flash('alert-class', 'alert-danger');
 
-        return view('bilanUrinaire.index', compact('donnees'));
+            return back();
+        }
     }
 
     public function create()
@@ -83,10 +91,10 @@ class BilanUrinaireController extends Controller
 
     public function show($id)
     {
-        $consult = Consultation::where('id', $id)
+        $urinaire= BilanUrinaire::where('id', $id)
             ->first();
-        $urinaire= BilanUrinaire::where('id', $consult->id_bilanurinaire)
-            ->first();
+        $consult = Consultation::where('id', $urinaire->id_consultation)
+        ->first();
         $doc = Dossier::select('id_patient')
             ->where('numD', $consult->num_dossier)
             ->first();
@@ -96,9 +104,6 @@ class BilanUrinaireController extends Controller
         if ($urinaire){
             return view('bilanUrinaire.show', compact('consult', 'urinaire', 'patient'));
         }else {
-            Session::flash('message', 'données non existantes pour cette consultation!');
-            Session::flash('alert-class', 'alert-danger');
-
             return back();
         }
     }

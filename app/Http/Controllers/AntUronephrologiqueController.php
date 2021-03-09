@@ -22,9 +22,18 @@ class AntUronephrologiqueController extends Controller
     public function liste_uro($id)
     {
         $donnees =  AntUronephrologique::where('id_consultation', $id)
-            ->paginate(7);
+            ->get();
+        $consult = Consultation::where('id', $id)
+            ->first();
 
-        return view('antUronephrologique.index', compact('donnees'));
+        if (!empty($donnees)) {
+            return view('antUronephrologique.index', compact('donnees', 'consult'));
+        } else{
+            Session::flash('message', 'Données non existantes pour cette consultation!');
+            Session::flash('alert-class', 'alert-danger');
+
+            return back();
+        }
     }
 
     public function create()
@@ -121,11 +130,10 @@ class AntUronephrologiqueController extends Controller
 
     public function show($id)
     {
-        $consult = Consultation::where('id', $id)
+        $uro= AntUronephrologique::where('id', $id)
             ->first();
-        //die($consult);
-        $uro= AntUronephrologique::where('id', $consult->id_uronephro)
-            ->first();
+        $consult = Consultation::where('id', $uro->id_consultation)
+        ->first();
         $doc = Dossier::select('id_patient')
             ->where('numD', $consult->num_dossier)
             ->first();
@@ -135,9 +143,6 @@ class AntUronephrologiqueController extends Controller
         if ($uro){
             return view('antUronephrologique.show', compact('uro', 'consult', 'patient'));
         }else {
-            Session::flash('message', 'données non existantes pour cette consultation!');
-            Session::flash('alert-class', 'alert-danger');
-
             return back();
         }
     }

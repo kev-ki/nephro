@@ -21,8 +21,17 @@ class EndocrinologieController extends Controller
     {
         $donnees =  Endocrinologie::where('id_consultation', $id)
             ->paginate(7);
+        $consult = Consultation::where('id', $id)
+            ->first();
 
-        return view('endocrinologie.index', compact('donnees'));
+        if (!empty($donnees)) {
+            return view('endocrinologie.index', compact('donnees', 'consult'));
+        } else{
+            Session::flash('message', 'Données non existantes pour cette consultation!');
+            Session::flash('alert-class', 'alert-danger');
+
+            return back();
+        }
     }
 
     public function create()
@@ -76,10 +85,11 @@ class EndocrinologieController extends Controller
 
     public function show($id)
     {
-        $consult = Consultation::where('id', $id)
+
+        $endo= Endocrinologie::where('id', $id)
             ->first();
-        $endo= Endocrinologie::where('id', $consult->id_endocrinologie)
-            ->first();
+        $consult = Consultation::where('id', $endo->id_consultation)
+        ->first();
         $doc = Dossier::select('id_patient')
             ->where('numD', $consult->num_dossier)
             ->first();
@@ -89,9 +99,6 @@ class EndocrinologieController extends Controller
         if ($endo){
             return view('endocrinologie.show', compact('consult', 'endo', 'patient'));
         }else {
-            Session::flash('message', 'données non existantes pour cette consultation!');
-            Session::flash('alert-class', 'alert-danger');
-
             return back();
         }
     }

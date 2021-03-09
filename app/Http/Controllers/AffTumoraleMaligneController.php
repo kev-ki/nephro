@@ -22,8 +22,16 @@ class AffTumoraleMaligneController extends Controller
     {
         $donnees = AffTumoraleMaligne::where('id_consultation', $id)
             ->paginate(7);
+        $consult = Consultation::where('id', $id)->first();
 
-        return view('affectiontum.index', compact('donnees'));
+        if (!empty($donnees)) {
+            return view('affectiontum.index', compact('donnees', 'consult'));
+        } else{
+            Session::flash('message', 'Données non existantes pour cette consultation!');
+            Session::flash('alert-class', 'alert-danger');
+
+            return back();
+        }
     }
 
     public function create()
@@ -66,11 +74,10 @@ class AffTumoraleMaligneController extends Controller
 
     public function show($id)
     {
-        $consult = Consultation::where('id', $id)
+        $tumorale= AffTumoraleMaligne::where('id', $id)
             ->first();
-        //die($consult);
-        $tumorale= AffTumoraleMaligne::where('id', $consult->id_affectiontumorale)
-            ->first();
+        $consult = Consultation::where('id', $tumorale->id_consultation)
+        ->first();
         $doc = Dossier::select('id_patient')
             ->where('numD', $consult->num_dossier)
             ->first();
@@ -80,9 +87,6 @@ class AffTumoraleMaligneController extends Controller
         if ($tumorale){
             return view('affectiontum.show', compact('consult', 'tumorale', 'patient'));
         }else {
-            Session::flash('message', 'données non existantes pour cette consultation!');
-            Session::flash('alert-class', 'alert-danger');
-
             return back();
         }
     }

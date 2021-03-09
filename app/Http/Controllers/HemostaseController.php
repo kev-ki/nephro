@@ -22,7 +22,17 @@ class HemostaseController extends Controller
         $donnees =  Hemostase::where('id_consultation', $id)
             ->paginate(7);
 
-        return view('hemostase.index', compact('donnees'));
+        $consult = Consultation::where('id', $id)
+            ->first();
+
+        if (!empty($donnees)) {
+            return view('hemostase.index', compact('donnees', 'consult'));
+        } else{
+            Session::flash('message', 'Données non existantes pour cette consultation!');
+            Session::flash('alert-class', 'alert-danger');
+
+            return back();
+        }
     }
 
     public function create()
@@ -66,10 +76,10 @@ class HemostaseController extends Controller
 
     public function show($id)
     {
-        $consult = Consultation::where('id', $id)
+        $hemostase= Hemostase::where('id', $id)
             ->first();
-        $hemostase= Hemostase::where('id', $consult->id_hemostase)
-            ->first();
+        $consult = Consultation::where('id', $hemostase->id_consultation)
+        ->first();
         $doc = Dossier::select('id_patient')
             ->where('numD', $consult->num_dossier)
             ->first();
@@ -79,9 +89,6 @@ class HemostaseController extends Controller
         if ($hemostase){
             return view('hemostase.show', compact('consult', 'hemostase', 'patient'));
         }else {
-            Session::flash('message', 'données non existantes pour cette consultation!');
-            Session::flash('alert-class', 'alert-danger');
-
             return back();
         }
     }

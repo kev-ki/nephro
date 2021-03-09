@@ -22,8 +22,16 @@ class AutreAntMedicauxController extends Controller
     {
         $donnees =  AutreAntMedicaux::where('id_consultation', $id)
             ->paginate(7);
+        $consult = Consultation::where('id', $id)
+            ->first();
+        if (!empty($donnees)) {
+            return view('autreantmedical.index', compact('donnees', 'consult'));
+        } else{
+            Session::flash('message', 'Données non existantes pour cette consultation!');
+            Session::flash('alert-class', 'alert-danger');
 
-        return view('autreantmedical.index', compact('donnees'));
+            return back();
+        }
     }
 
     public function create()
@@ -71,10 +79,9 @@ class AutreAntMedicauxController extends Controller
 
     public function show($id)
     {
-        $consult = Consultation::where('id', $id)
+        $autremedical= AutreAntMedicaux::where('id', $id)
             ->first();
-        //die($consult);
-        $autremedical= AutreAntMedicaux::where('id', $consult->id_autre_ant_medical)
+        $consult = Consultation::where('id', $autremedical->id_consultation)
             ->first();
         $doc = Dossier::select('id_patient')
             ->where('numD', $consult->num_dossier)
@@ -85,9 +92,6 @@ class AutreAntMedicauxController extends Controller
         if ($autremedical){
             return view('autreantmedical.show', compact('consult', 'autremedical', 'patient'));
         }else {
-            Session::flash('message', 'données non existantes pour cette consultation!');
-            Session::flash('alert-class', 'alert-danger');
-
             return back();
         }
     }

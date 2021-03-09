@@ -24,7 +24,14 @@ class AffectionIMMController extends Controller
             ->paginate(6);
         $consult = Consultation::where('id', $id)->first();
 
-        return view('affectionIMM.index', compact('donnees', 'consult'));
+        if (!empty($donnees)) {
+            return view('affectionIMM.index', compact('donnees', 'consult'));
+        } else{
+            Session::flash('message', 'Données non existantes pour cette consultation!');
+            Session::flash('alert-class', 'alert-danger');
+
+            return back();
+        }
     }
 
     public function create()
@@ -74,11 +81,11 @@ class AffectionIMMController extends Controller
 
     public function show($id)
     {
-        $consult = Consultation::where('id', $id)
+        $imm= AffectionIMM::where('id', $id)
             ->first();
-        //die($consult);
-        $imm= AffectionIMM::where('id', $consult->id_affectionimm)
+        $consult = Consultation::where('id', $imm->id_consultation)
             ->first();
+
         $doc = Dossier::select('id_patient')
             ->where('numD', $consult->num_dossier)
             ->first();
@@ -88,9 +95,6 @@ class AffectionIMMController extends Controller
         if ($imm){
             return view('affectionIMM.show', compact('consult', 'imm', 'patient'));
         }else {
-            Session::flash('message', 'données non existantes pour cette consultation!');
-            Session::flash('alert-class', 'alert-danger');
-
             return back();
         }
     }

@@ -21,8 +21,16 @@ class BilanSanguinController extends Controller
     {
         $donnees =  BilanSanguin::where('id_consultation', $id)
             ->paginate(7);
+        $consult = Consultation::where('id', $id)
+            ->first();
+        if (!empty($donnees)) {
+            return view('bilanSanguin.index', compact('donnees', 'consult'));
+        } else{
+            Session::flash('message', 'Données non existantes pour cette consultation!');
+            Session::flash('alert-class', 'alert-danger');
 
-        return view('bilanSanguin.index', compact('donnees'));
+            return back();
+        }
     }
 
     public function create()
@@ -103,9 +111,9 @@ class BilanSanguinController extends Controller
 
     public function show($id)
     {
-        $consult = Consultation::where('id', $id)
+        $sanguin= BilanSanguin::where('id', $id)
             ->first();
-        $sanguin= BilanSanguin::where('id', $consult->id_bilansanguin)
+        $consult = Consultation::where('id', $sanguin->id_consultation)
             ->first();
         $doc = Dossier::select('id_patient')
             ->where('numD', $consult->num_dossier)
@@ -116,9 +124,6 @@ class BilanSanguinController extends Controller
         if ($sanguin){
             return view('bilanSanguin.show', compact('consult', 'sanguin', 'patient'));
         }else {
-            Session::flash('message', 'données non existantes pour cette consultation!');
-            Session::flash('alert-class', 'alert-danger');
-
             return back();
         }
     }

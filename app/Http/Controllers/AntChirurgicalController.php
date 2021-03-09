@@ -24,7 +24,9 @@ class AntChirurgicalController extends Controller
         $consult = Consultation::where('id', $id)
             ->first();
 
-        if (!empty($donnees)) {
+        $lignes = count($donnees);
+
+        if ($lignes) {
             return view('chirurgical.index', compact('donnees', 'consult'));
         } else{
             Session::flash('message', 'Données non existantes pour cette consultation!');

@@ -37,8 +37,12 @@ class ImgEndosAnatomopathologieController extends Controller
                 ->paginate(7);
         }
 
-        if (!empty($donnees)) {
-            return view('image_endosc_anatomo.index', compact('donnees'));
+        $consult = Consultation::where('id', $id)
+            ->first();
+        $lignes = count($donnees);
+
+        if ($lignes) {
+            return view('image_endosc_anatomo.index', compact('donnees', 'consult'));
         }else {
             Session::flash('message', 'données non existantes pour cette consultation!');
             Session::flash('alert-class', 'alert-danger');
@@ -94,7 +98,8 @@ class ImgEndosAnatomopathologieController extends Controller
 
     public function imageEndoscopieAnat($id)
     {
-        $iea = IMGEndosAnatomopathologie::where('id', $id)->first();
+        $iea = IMGEndosAnatomopathologie::where('id', $id)
+            ->first();
         $consult = Consultation::where('id', $iea->id_consultation)
             ->first();
 

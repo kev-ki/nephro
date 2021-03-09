@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\AntUronephrologique;
 use App\Consultation;
 use App\Dossier;
 use App\ExamenAppareil;
@@ -20,9 +19,19 @@ class ExamAppareilController extends Controller
     public function liste_appareil($id)
     {
         $donnees =  ExamenAppareil::where('id_consultation', $id)
-            ->paginate(7);
+            ->get();
+        $consult = Consultation::where('id', $id)
+            ->first();
+        $lignes = count($donnees);
 
-        return view('examenappareil.index', compact('donnees'));
+        if ($lignes) {
+            return view('examenappareil.index', compact('donnees', 'consult'));
+        } else{
+            Session::flash('message', 'Données non existantes pour cette consultation!');
+            Session::flash('alert-class', 'alert-danger');
+
+            return back();
+        }
     }
 
     public function create()
@@ -71,23 +80,19 @@ class ExamAppareilController extends Controller
 
     public function show($id)
     {
-        $consult = Consultation::where('id', $id)
+        $appareil= ExamenAppareil::where('id', $id)
             ->first();
-        //die($consult);
-        $appareil= ExamenAppareil::where('id', $consult->id_examappareil)
-            ->first();
+        $consult = Consultation::where('id', $appareil->id_consultation)
+        ->first();
         $doc = Dossier::select('id_patient')
             ->where('numD', $consult->num_dossier)
             ->first();
-        $patient = \App\Patient::where('idpatient', $doc->id_patient)
+        $patient = Patient::where('idpatient', $doc->id_patient)
             ->first();
 
         if ($appareil){
             return view('examenappareil.show',compact('appareil', 'patient', 'consult'));
         }else {
-            Session::flash('message', 'données non existantes pour cette consultation!');
-            Session::flash('alert-class', 'alert-danger');
-
             return back();
         }
     }

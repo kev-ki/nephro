@@ -21,10 +21,12 @@ class AutreAntMedicauxController extends Controller
     public function liste_AutreMed($id)
     {
         $donnees =  AutreAntMedicaux::where('id_consultation', $id)
-            ->paginate(7);
+            ->get();
         $consult = Consultation::where('id', $id)
             ->first();
-        if (!empty($donnees)) {
+        $lignes = count($donnees);
+
+        if ($lignes) {
             return view('autreantmedical.index', compact('donnees', 'consult'));
         } else{
             Session::flash('message', 'Données non existantes pour cette consultation!');

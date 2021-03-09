@@ -22,8 +22,18 @@ class LiquideBioSelleController extends Controller
     {
         $donnees =  LiquideBioSelle::where('id_consultation', $id)
             ->paginate(7);
+        $consult = Consultation::where('id', $id)
+            ->first();
+        $lignes = count($donnees);
 
-        return view('liquideBioSelle.index', compact('donnees'));
+        if ($lignes) {
+            return view('liquideBioSelle.index', compact('donnees', 'consult'));
+        } else{
+            Session::flash('message', 'Données non existantes pour cette consultation!');
+            Session::flash('alert-class', 'alert-danger');
+
+            return back();
+        }
     }
 
     public function create()
@@ -69,9 +79,9 @@ class LiquideBioSelleController extends Controller
 
     public function show($id)
     {
-        $consult = Consultation::where('id', $id)
+        $liquide= LiquideBioSelle::where('id', $id)
             ->first();
-        $liquide= LiquideBioSelle::where('id', $consult->id_bioselle)
+        $consult = Consultation::where('id', $liquide->id_consultation)
             ->first();
         $doc = Dossier::select('id_patient')
             ->where('numD', $consult->num_dossier)

@@ -20,12 +20,12 @@ class HemostaseController extends Controller
     public function liste_hemostase($id)
     {
         $donnees =  Hemostase::where('id_consultation', $id)
-            ->paginate(7);
-
+            ->get();
         $consult = Consultation::where('id', $id)
             ->first();
+        $lignes = count($donnees);
 
-        if (!empty($donnees)) {
+        if ($lignes) {
             return view('hemostase.index', compact('donnees', 'consult'));
         } else{
             Session::flash('message', 'Données non existantes pour cette consultation!');

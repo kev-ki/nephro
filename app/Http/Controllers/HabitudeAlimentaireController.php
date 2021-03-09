@@ -20,9 +20,19 @@ class HabitudeAlimentaireController extends Controller
     public function liste_habitude($id)
     {
         $donnees =  HabitudeAlimentaire::where('id_consultation', $id)
-            ->paginate(7);
+            ->get();
+        $consult = Consultation::where('id', $id)
+            ->first();
+        $lignes = count($donnees);
 
-        return view('habitudealimentaire.index', compact('donnees'));
+        if ($lignes) {
+            return view('habitudealimentaire.index', compact('donnees', 'consult'));
+        } else{
+            Session::flash('message', 'Données non existantes pour cette consultation!');
+            Session::flash('alert-class', 'alert-danger');
+
+            return back();
+        }
     }
 
     public function create()
@@ -76,11 +86,10 @@ class HabitudeAlimentaireController extends Controller
 
     public function show($id)
     {
-        $consult = Consultation::where('id', $id)
+        $habitude= HabitudeAlimentaire::where('id', $id)
             ->first();
-        //die($consult);
-        $habitude= HabitudeAlimentaire::where('id', $consult->id_halimentaire)
-            ->first();
+        $consult = Consultation::where('id', $habitude->id_consultation)
+        ->first();
         $doc = Dossier::select('id_patient')
             ->where('numD', $consult->num_dossier)
             ->first();
@@ -90,9 +99,6 @@ class HabitudeAlimentaireController extends Controller
         if ($habitude){
             return view('habitudealimentaire.show', compact('consult', 'habitude', 'patient'));
         }else {
-            Session::flash('message', 'données non existantes pour cette consultation!');
-            Session::flash('alert-class', 'alert-danger');
-
             return back();
         }
     }

@@ -21,8 +21,18 @@ class ParasitologieController extends Controller
     {
         $donnees =  Parasitologie::where('id_consultation', $id)
             ->paginate(7);
+        $consult = Consultation::where('id', $id)
+            ->first();
+        $lignes = count($donnees);
 
-        return view('parasitologie.index', compact('donnees'));
+        if ($lignes) {
+            return view('parasitologie.index', compact('donnees', 'consult'));
+        } else{
+            Session::flash('message', 'Données non existantes pour cette consultation!');
+            Session::flash('alert-class', 'alert-danger');
+
+            return back();
+        }
     }
 
     public function create()
@@ -70,10 +80,10 @@ class ParasitologieController extends Controller
 
     public function show($id)
     {
-        $consult = Consultation::where('id', $id)
+        $parasitologie= Parasitologie::where('id', $id)
             ->first();
-        $parasitologie= Parasitologie::where('id', $consult->id_parasitologie)
-            ->first();
+        $consult = Consultation::where('id', $parasitologie->id_consultation)
+        ->first();
         $doc = Dossier::select('id_patient')
             ->where('numD', $consult->num_dossier)
             ->first();

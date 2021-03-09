@@ -21,10 +21,13 @@ class BilanUrinaireController extends Controller
     public function liste_urinaire($id)
     {
         $donnees =  BilanUrinaire::where('id_consultation', $id)
-            ->paginate(7);
+            ->get();
         $consult = Consultation::where('id', $id)
             ->first();
-        if (!empty($donnees)) {
+
+        $lignes = count($donnees);
+
+        if ($lignes) {
             return view('bilanUrinaire.index', compact('donnees', 'consult'));
         } else{
             Session::flash('message', 'Données non existantes pour cette consultation!');

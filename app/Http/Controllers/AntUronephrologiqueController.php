@@ -26,7 +26,9 @@ class AntUronephrologiqueController extends Controller
         $consult = Consultation::where('id', $id)
             ->first();
 
-        if (!empty($donnees)) {
+        $lignes = count($donnees);
+
+        if ($lignes) {
             return view('antUronephrologique.index', compact('donnees', 'consult'));
         } else{
             Session::flash('message', 'Données non existantes pour cette consultation!');

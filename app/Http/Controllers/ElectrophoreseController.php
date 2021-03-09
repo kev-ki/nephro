@@ -20,11 +20,13 @@ class ElectrophoreseController extends Controller
     public function liste_electro($id)
     {
         $donnees =  Electrophorese::where('id_consultation', $id)
-            ->paginate(7);
+            ->get();
         $consult = Consultation::where('id', $id)
             ->first();
 
-        if (!empty($donnees)) {
+        $lignes = count($donnees);
+
+        if ($lignes) {
             return view('electrophorese.index', compact('donnees', 'consult'));
         } else{
             Session::flash('message', 'Données non existantes pour cette consultation!');
@@ -84,7 +86,6 @@ class ElectrophoreseController extends Controller
 
     public function show($id)
     {
-
         $electrophorese= Electrophorese::where('id', $id)
             ->first();
         $consult = Consultation::where('id', $electrophorese->id_consultation)

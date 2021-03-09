@@ -22,7 +22,18 @@ class MarqueurTumoralController extends Controller
         $donnees =  MarqueurTumoral::where('id_consultation', $id)
             ->paginate(7);
 
-        return view('marqueurTumoral.index', compact('donnees'));
+        $consult = Consultation::where('id', $id)
+            ->first();
+        $lignes = count($donnees);
+
+        if ($lignes) {
+            return view('marqueurTumoral.index', compact('donnees', 'consult'));
+        } else{
+            Session::flash('message', 'Données non existantes pour cette consultation!');
+            Session::flash('alert-class', 'alert-danger');
+
+            return back();
+        }
     }
 
     public function create()
@@ -74,10 +85,10 @@ class MarqueurTumoralController extends Controller
 
     public function show($id)
     {
-        $consult = Consultation::where('id', $id)
+        $tumoral= MarqueurTumoral::where('id', $id)
             ->first();
-        $tumoral= MarqueurTumoral::where('id', $consult->id_marqueurtumoral)
-            ->first();
+        $consult = Consultation::where('id', $tumoral->id_consultation)
+        ->first();
         $doc = Dossier::select('id_patient')
             ->where('numD', $consult->num_dossier)
             ->first();

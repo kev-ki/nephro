@@ -20,9 +20,11 @@ class TraitementController extends Controller
     {
         $donnees =  Traitement::where('id_consultation', $id)
             ->paginate(7);
+        $consult = Consultation::where('id', $id)
+            ->first();
         $liste_medecin = User::where('type_user','1')->where('status','1')->get();
 
-        return view('traitement.index', compact('donnees', 'liste_medecin'));
+        return view('traitement.index', compact('donnees', 'liste_medecin', 'consult'));
     }
 
     public function create()

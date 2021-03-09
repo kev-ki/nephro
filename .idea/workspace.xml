@@ -21,12 +21,11 @@
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e4462e7-f364-445b-b81c-4200c423000f" name="Default Changelist" comment="">
+    <list default="true" id="7e4462e7-f364-445b-b81c-4200c423000f" name="Default Changelist" comment="sauvegarde_2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AffTumoraleMaligneController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AffTumoraleMaligneController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AffectionIMMController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AffectionIMMController.php" afterDir="false" />
@@ -39,10 +38,19 @@
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BilanUrinaireController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BilanUrinaireController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ElectrophoreseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ElectrophoreseController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EndocrinologieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EndocrinologieController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExamAppareilController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExamAppareilController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ExamGeneralController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ExamGeneralController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GenicoObstetriqueController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GenicoObstetriqueController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HabitudeAlimentaireController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HabitudeAlimentaireController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HemostaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HemostaseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PatientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PatientController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/antUronephrologique/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/antUronephrologique/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/consultation/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/consultation/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ImgEndosAnatomopathologieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ImgEndosAnatomopathologieController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LiquideBioSelleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LiquideBioSelleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MaladieGeneralController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MaladieGeneralController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MarqueurTumoralController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MarqueurTumoralController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ParasitologieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ParasitologieController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/SerologieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/SerologieController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TraitementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TraitementController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_13_132102_create_traitements_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_13_132102_create_traitements_table.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -284,8 +292,16 @@
       <workItem from="1614938215521" duration="15691000" />
       <workItem from="1615107019232" duration="23812000" />
       <workItem from="1615193932957" duration="15983000" />
-      <workItem from="1615281531759" duration="916000" />
+      <workItem from="1615281531759" duration="6864000" />
     </task>
+    <task id="LOCAL-00001" summary="sauvegarde_2">
+      <created>1615282752670</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1615282752678</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -296,19 +312,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/master" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -316,7 +320,8 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="sauvegarde_2" />
+    <option name="LAST_COMMIT_MESSAGE" value="sauvegarde_2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="309" y="82" key="#Inspections" timestamp="1613926341766">

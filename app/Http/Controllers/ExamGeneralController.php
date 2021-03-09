@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Consultation;
 use App\Dossier;
-use App\ExamenAppareil;
 use App\ExamenGeneral;
+use App\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -20,9 +20,19 @@ class ExamGeneralController extends Controller
     public function liste_general($id)
     {
         $donnees =  ExamenGeneral::where('id_consultation', $id)
-            ->paginate(7);
+            ->get();
+        $consult = Consultation::where('id', $id)
+            ->first();
+        $lignes = count($donnees);
 
-        return view('examenGeneral.index', compact('donnees'));
+        if ($lignes) {
+            return view('examenGeneral.index', compact('donnees', 'consult'));
+        } else{
+            Session::flash('message', 'Données non existantes pour cette consultation!');
+            Session::flash('alert-class', 'alert-danger');
+
+            return back();
+        }
     }
 
     public function create()
@@ -101,24 +111,19 @@ class ExamGeneralController extends Controller
 
     public function show($id)
     {
-        $consult = Consultation::where('id', $id)
+        $general= ExamenGeneral::where('id', $id)
             ->first();
-        //die($consult);
-        $general= ExamenGeneral::where('id', $consult->id_examgeneral)
-            ->first();
-        //die($general);
+        $consult = Consultation::where('id', $general->id_consultation)
+        ->first();
         $doc = Dossier::select('id_patient')
             ->where('numD', $consult->num_dossier)
             ->first();
-        $patient = \App\Patient::where('idpatient', $doc->id_patient)
+        $patient = Patient::where('idpatient', $doc->id_patient)
             ->first();
 
         if ($general){
             return view('examenGeneral.show',compact('patient','general', 'consult'));
         }else {
-            Session::flash('message', 'données non existantes pour cette consultation!');
-            Session::flash('alert-class', 'alert-danger');
-
             return back();
         }
     }

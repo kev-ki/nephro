@@ -22,8 +22,18 @@ class MaladieGeneralController extends Controller
     {
         $donnees =  Maladiegenerale::where('id_consultation', $id)
             ->paginate(7);
+        $consult = Consultation::where('id', $id)
+            ->first();
+        $lignes = count($donnees);
 
-        return view('maladiegeneral.index', compact('donnees'));
+        if ($lignes) {
+            return view('maladiegeneral.index', compact('donnees', 'consult'));
+        } else{
+            Session::flash('message', 'Données non existantes pour cette consultation!');
+            Session::flash('alert-class', 'alert-danger');
+
+            return back();
+        }
     }
 
     public function create()
@@ -85,11 +95,10 @@ class MaladieGeneralController extends Controller
 
     public function show($id)
     {
-        $consult = Consultation::where('id', $id)
+        $maladieG= Maladiegenerale::where('id', $id)
             ->first();
-        //die($consult);
-        $maladieG= Maladiegenerale::where('id', $consult->id_maladiegenerale)
-            ->first();
+        $consult = Consultation::where('id', $maladieG->id_consultation)
+        ->first();
         $doc = Dossier::select('id_patient')
             ->where('numD', $consult->num_dossier)
             ->first();

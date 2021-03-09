@@ -21,9 +21,21 @@ class GenicoObstetriqueController extends Controller
     public function liste_obstetrique($id)
     {
         $donnees =  GinecoObstetrique::where('id_consultation', $id)
-            ->paginate(7);
+            ->get();
+        $consult = Consultation::where('id', $id)
+            ->first();
+        $lignes = count($donnees);
 
-        return view('ginecoObstetrique.index', compact('donnees'));
+        if ($lignes) {
+            return view('ginecoObstetrique.index', compact('donnees', 'consult'));
+        } else{
+            Session::flash('message', 'Données non existantes pour cette consultation!');
+            Session::flash('alert-class', 'alert-danger');
+
+            return back();
+        }
+
+
     }
 
     public function create()
@@ -91,11 +103,10 @@ class GenicoObstetriqueController extends Controller
 
     public function show($id)
     {
-        $consult = Consultation::where('id', $id)
+        $gyneco= GinecoObstetrique::where('id', $id)
             ->first();
-        //die($consult);
-        $gyneco= GinecoObstetrique::where('id', $consult->id_genicoobs)
-            ->first();
+        $consult = Consultation::where('id', $gyneco->id_consultation)
+        ->first();
         $doc = Dossier::select('id_patient')
             ->where('numD', $consult->num_dossier)
             ->first();
@@ -105,9 +116,6 @@ class GenicoObstetriqueController extends Controller
         if ($gyneco){
             return view('ginecoObstetrique.show', compact('consult', 'gyneco', 'patient'));
         }else {
-            Session::flash('message', 'données non existantes pour cette consultation!');
-            Session::flash('alert-class', 'alert-danger');
-
             return back();
         }
     }

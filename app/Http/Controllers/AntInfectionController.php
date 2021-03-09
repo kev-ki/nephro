@@ -24,7 +24,10 @@ class AntInfectionController extends Controller
             ->paginate(7);
         $consult = Consultation::where('id', $id)
             ->first();
-        if (!empty($donnees)) {
+
+        $lignes = count($donnees);
+
+        if ($lignes) {
             return view('antInfection.index', compact('donnees', 'consult'));
         } else{
             Session::flash('message', 'Données non existantes pour cette consultation!');

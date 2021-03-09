@@ -22,7 +22,18 @@ class SerologieController extends Controller
         $donnees =  Serologie::where('id_consultation', $id)
             ->paginate(7);
 
-        return view('serologie.index', compact('donnees'));
+        $consult = Consultation::where('id', $id)
+            ->first();
+        $lignes = count($donnees);
+
+        if ($lignes) {
+            return view('serologie.index', compact('donnees', 'consult'));
+        } else{
+            Session::flash('message', 'Données non existantes pour cette consultation!');
+            Session::flash('alert-class', 'alert-danger');
+
+            return back();
+        }
     }
 
     public function create()

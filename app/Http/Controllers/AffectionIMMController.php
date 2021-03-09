@@ -21,10 +21,11 @@ class AffectionIMMController extends Controller
     public function liste_Imm($id)
     {
         $donnees = AffectionIMM::where('id_consultation', $id)
-            ->paginate(6);
+            ->get();
         $consult = Consultation::where('id', $id)->first();
+        $lignes = count($donnees);
 
-        if (!empty($donnees)) {
+        if ($lignes) {
             return view('affectionIMM.index', compact('donnees', 'consult'));
         } else{
             Session::flash('message', 'Données non existantes pour cette consultation!');

@@ -20,11 +20,13 @@ class EndocrinologieController extends Controller
     public function liste_endo($id)
     {
         $donnees =  Endocrinologie::where('id_consultation', $id)
-            ->paginate(7);
+            ->get();
         $consult = Consultation::where('id', $id)
             ->first();
 
-        if (!empty($donnees)) {
+        $lignes = count($donnees);
+
+        if ($lignes) {
             return view('endocrinologie.index', compact('donnees', 'consult'));
         } else{
             Session::flash('message', 'Données non existantes pour cette consultation!');
@@ -85,7 +87,6 @@ class EndocrinologieController extends Controller
 
     public function show($id)
     {
-
         $endo= Endocrinologie::where('id', $id)
             ->first();
         $consult = Consultation::where('id', $endo->id_consultation)

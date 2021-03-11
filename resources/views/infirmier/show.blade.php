@@ -2,18 +2,27 @@
 
 @section('content')
     <h1 class="text-center" style="background-color: #01A9CB; height: 30px; font-size: large; padding-top: 5px; font-weight: bold">Dossier Administratif de {{$patient->prenom}} {{$patient->nom}} [ ID : {{$patient->idpatient}} ]</h1>
-    <div class="container-fluid p-2" style="background-color: white">
-        <div class="card bg-white" style="">
+    <div class="container-fluid p-1 bg-white">
+        <div class="flash-message col-12">
+            @if(Session::has('message'))
+                <div class="alert {{Session::get('alert-class')}}">
+                    {{session::get('message')}}<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                </div>
+            @endif
+        </div>
+
+        <div class="card bg-white">
             <div class="card-header text-center font-weight-bold">
-                <ul class="nav nav-tabs mb-1  d-flex justify-content-center" id="table" role="tablist">
+                <ul class="nav nav-tabs  d-flex justify-content-center" id="table" role="tablist">
                     <li class="nav-item bouton-forme"><a style="font-size: 15px;" class="nav-link active" id="identite_tab" data-toggle="tab" href="#identite" role="tab" aria-controls="identite" aria-selected="true">Identité du patient</a></li>
                     <li class="nav-item ml-md-5 bouton-forme mr-md-5" style="font-size: 15px"><a style="font-size: 15px;" class="nav-link" id="coordonnee_tab" data-toggle="tab" href="#coordonnee" role="tab" aria-controls="coordonnee" aria-selected="false">Coordonnées du patient</a></li>
                 </ul>
             </div>
 
+            <p><a href="{{route('infirmier.index')}}"><<<< Annuaire des patients</a></p>
             <div class="tab-content" id="big_content">
                 <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="identite_tab" id="identite">
-                    <ul class="nav nav-tabs mb-1  d-flex justify-content-center" id="table" role="tablist">
+                    <ul class="nav nav-tabs  d-flex justify-content-center" id="table" role="tablist">
                         <li class="nav-item  bouton-forme" style="font-size: 15px;"><a class="nav-link active" id="page1_tab" data-toggle="tab" href="#page1" role="tab" aria-controls="page1" aria-selected="true">Page 1</a></li>
                         <li class="nav-item ml-md-5 bouton-forme mr-md-5" style="font-size: 15px"><a class="nav-link" id="page2_tab" data-toggle="tab" href="#page2" role="tab" aria-controls="page2" aria-selected="false">Page 2</a></li>
                         <li class="nav-item bouton-forme" style="font-size: 15px"><a class="nav-link" id="page3_tab" data-toggle="tab" href="#page3" role="tab" aria-controls="page3" aria-selected="false">Page 3</a></li>
@@ -210,9 +219,9 @@
 
             <div class="col">
                 <div class="row d-flex justify-content-center mb-2">
-                    <button class="btn btn-secondary mr-1"><a style="color: #fff" href="{{route('infirmier.edit', $patient->idpatient)}}">éditer le dossier</a></button><button class="btn btn-primary mr-1"><a style="color: #fff" href="{{route('infirmier.constanteindex', $patient->idpatient)}}">voir constantes</a></button>
-                    <button class="btn btn-primary mr-1"><a style="color: #fff" href="#">imprimer</a></button>
-                    <button class="btn btn-primary"><a style="color: #fff" href="#">exporter en PDF</a></button>
+                    <button class="btn btn-outline-secondary mr-1"><a style="color: #2d2d2d" href="{{route('infirmier.edit', $patient->idpatient)}}">éditer le dossier</a></button><button class="btn btn-outline-primary mr-1"><a style="color: #2d2d2d" href="{{route('infirmier.constanteindex', $patient->idpatient)}}">voir constantes</a></button>
+                    <button class="btn btn-outline-primary mr-1"><a style="color: #2d2d2d" href="#">imprimer</a></button>
+                    <button class="btn btn-outline-secondary"><a style="color: #2d2d2d" href="#">exporter en PDF</a></button>
                 </div>
             </div>
         </div>

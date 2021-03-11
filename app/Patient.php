@@ -15,8 +15,4 @@ class Patient extends Model
     public function dossier() {
         return $this->hasOne(Dossier::class);
     }
-
-    public function activitesocioprofessionnelle() {
-        return $this->hasOne(Activitesocioprofessionnelle::class);
-    }
 }

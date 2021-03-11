@@ -15,7 +15,14 @@ class HospitalisationController extends Controller
         $patients = Patient::all();
         $patients_hospi = Hospitalisation::where('date_sortie', '>=', date('Y-m-d'))
             ->paginate(7);
-        return view('infirmier.indexhospitalisation', compact('patients', 'patients_hospi'));
+
+        if (auth()->user()->type_user === 2)
+        {
+            return view('infirmier.indexhospitalisation', compact('patients', 'patients_hospi'));
+        }elseif (auth()->user()->type_user === 1)
+        {
+            return view('medecin.annuaire_hospitalisation', compact('patients', 'patients_hospi'));
+        }
     }
 
     public function create()
@@ -30,23 +37,11 @@ class HospitalisationController extends Controller
     {
         $donnees = $request->except('_method', '_token', 'submit');
         $validation = Validator::make($request->all(), [
-            'nomjf' => 'string|min:2|max:50',
-            'piecepatient' => 'required',
-            'identite' => 'required|string|min:3',
-            'sexualite' => 'required',
-            'ethnie' => 'required|string',
-            'profession' => 'required|string',
-            'culte' => 'required|string',
-            'assurance' => 'string',
-            'type_assurance' => 'string',
-            'sit_matrimoniale' => 'required|string',
-            'enfant1' => 'required|integer',
-            'enfant2' => 'required|integer',
-            'telephone1' => 'required|string|min:8|max:12',
-            'telephone2' => 'required',
-            'telephone3' => 'required',
-            'diagnostiqueSecondaire' => 'required',
-            'diagnostiquePrincipale' => 'required',
+            'modeentree' => 'required',
+            'diagnosticEntree' => 'required',
+            'dateEntree' => 'required | date',
+            'diagnosticSecondaire' => 'required',
+            'diagnosticPrincipale' => 'required',
             'numerolit' => 'required',
             'numerosalle' => 'required',
         ]);
@@ -59,33 +54,47 @@ class HospitalisationController extends Controller
 
         $hospitalisation->numerochambre=$request->numerosalle;
         $hospitalisation->numerolit=$request->numerolit;
-        //$hospitalisation->id_patient=$request->patientid;
-        $hospitalisation->diagnosticPrincipale=$request->diagnostiquePrincipale;
-        $hospitalisation->diagnosticSecondaire=$request->diagnostiqueSecondaire;
-        $hospitalisation->diagnosticAssocie=$request->diagnostiqueAssocie;
-        $hospitalisation->diagnosticEntree=$request->diagnostiqueEntre;
-        $hospitalisation->diagnosticSortie=$request->diagnostiqueSortie;
-        $hospitalisation->date_entree = $request->dateEntre;
+        $hospitalisation->diagnosticPrincipale=$request->diagnosticPrincipale;
+        $hospitalisation->diagnosticSecondaire=$request->diagnosticSecondaire;
+        $hospitalisation->diagnosticAssocie=$request->diagnosticAssocie;
+        $hospitalisation->diagnosticEntree=$request->diagnosticEntree;
+        $hospitalisation->diagnosticSortie=$request->diagnosticSortie;
+        $hospitalisation->date_entree = $request->dateEntree;
         $hospitalisation->date_sortie=$request->dateSortie;
         $hospitalisation->motif_hospitalisation=$request->motifhospitalisation;
-        $hospitalisation->mode_entree=$request->modeentre;
+        $hospitalisation->mode_entree=$request->modeentree;
         $hospitalisation->mode_sortie=$request->modesortie;
 
-        if ($hospitalisation->save())
+        if ($hospitalisation->save($donnees))
         {
-            $request->session()->flash('alert-succes','hospitalisation enregistrée avec succès');
+            Session::flash('message', "Données d'hospitalisation du patient enregistrées!");
+            Session::flash('alert-class', 'alert-success');
+
             return back();
         }
         else{
-            $request->session()->flash('alert-warning','hospitalisation non enregistrée');
+            Session::flash('message', "Erreur!! Données d'hospitalisation du patient non enregistrée!");
+            Session::flash('alert-class', 'alert-danger');
+
             return back();
         }
     }
 
     public function show($id)
     {
-        $hospitalisation=Hospitalisation::find($id);
-        return view('hospitalisation.show',['hospitalisation'=>$hospitalisation]);
+        $hospitalisation= Hospitalisation::find($id);
+        $patient = Patient::where('idpatient', $hospitalisation->id_patient)
+            ->first();
+
+        if (auth()->user()->type_user === 1)
+        {
+            return view('medecin.show_hospitalisation', compact('hospitalisation', 'patient'));
+        }
+        if (auth()->user()->type_user === 2)
+        {
+            return view('hospitalisation.show', compact('hospitalisation', 'patient'));
+        }
+
     }
 
     public function search(Request $req)
@@ -112,7 +121,14 @@ class HospitalisationController extends Controller
 
             if ($patients_hospi)
             {
-                return view('infirmier.indexhospitalisation', compact('patients', 'patients_hospi'));
+                if (auth()->user()->type_user === 2)
+                {
+                    return view('infirmier.indexhospitalisation', compact('patients', 'patients_hospi'));
+                }
+                if (auth()->user()->type_user === 1)
+                {
+                    return view('medecin.annuaire_hospitalisation', compact('patients', 'patients_hospi'));
+                }
             } else{
                 Session::flash('message', 'Hospitalision non trouvé.');
                 Session::flash('alert-class', 'alert-danger');
@@ -127,34 +143,68 @@ class HospitalisationController extends Controller
 
     public function edit($id)
     {
-        $hospitalisation=Hospitalisation::find($id);
-        return view('hospitalisation.edit',['hospitalisation'=>$hospitalisation]);
+        $hospitalisation= Hospitalisation::find($id);
+        $hospi_all = Hospitalisation::all();
+        $patients = Patient::all();
+        $patient = Patient::find($hospitalisation->id_patient);
+
+        if (auth()->user()->type_user === 2)
+        {
+            return view('hospitalisation.edit',compact('hospitalisation', 'hospi_all', 'patients', 'patient'));
+        }
+        if (auth()->user()->type_user === 1)
+        {
+            return view('medecin.edit_hospitalisation',compact('hospitalisation', 'hospi_all', 'patients', 'patient'));
+        }
     }
 
     public function update(Request $request, $id)
     {
-        $hospitalisation=Hospitalisation::find($id);
+        $donnees = $request->except('_method', '_token', 'submit');
+        $validation = Validator::make($request->all(), [
+            'mode_entree' => 'required',
+            'diagnosticEntree' => 'required',
+            'date_entree' => 'required | date',
+            'diagnosticSecondaire' => 'required',
+            'diagnosticPrincipale' => 'required',
+            'numerolit' => 'required',
+            'numerochambre' => 'required',
+        ]);
+        if ($validation->fails()) {
+            return redirect()->Back()->withInput()->withErrors($validation);
+        }
 
-        $hospitalisation->numerochambre=$request->numerosalle;
+        $hospitalisation= Hospitalisation::find($id);
+
+        //$hospitalisation->id_patient=$request->id_patient;
+        $hospitalisation->numerochambre=$request->numerochambre;
         $hospitalisation->numerolit=$request->numerolit;
-        $hospitalisation->diagnosticPrincipale=$request->diagnostiquePrincipale;
-        $hospitalisation->diagnosticSecondaire=$request->diagnostiqueSecondaire;
-        $hospitalisation->diagnosticAssocie=$request->diagnostiqueAssocie;
-        $hospitalisation->diagnosticEntree=$request->diagnostiqueEntre;
-        $hospitalisation->diagnosticSortie=$request->diagnostiqueSortie;
-        $hospitalisation->date_entree = $request->dateEntre;
-        $hospitalisation->date_sortie=$request->dateSortie;
-        $hospitalisation->motif_hospitalisation=$request->motifhospitalisation;
-        $hospitalisation->mode_entree=$request->modeentre;
-        $hospitalisation->mode_sortie=$request->modesortie;
+        $hospitalisation->diagnosticPrincipale=$request->diagnosticPrincipale;
+        $hospitalisation->diagnosticSecondaire=$request->diagnosticSecondaire;
+        $hospitalisation->diagnosticAssocie=$request->diagnosticAssocie;
+        $hospitalisation->diagnosticEntree=$request->diagnosticEntree;
+        $hospitalisation->diagnosticSortie=$request->diagnosticSortie;
+        $hospitalisation->date_entree = $request->date_entree;
+        $hospitalisation->date_sortie=$request->date_sortie;
+        //$hospitalisation->motif_hospitalisation=$request->motifhospitalisation;
+        $hospitalisation->mode_entree=$request->mode_entree;
+        $hospitalisation->mode_sortie=$request->mode_sortie;
 
-        if ($hospitalisation->save())
+        if ($hospitalisation->save($donnees))
         {
-            $request->session()->flash('alert-succes','hospitalisation enregistrée avec succès');
-            return back();
+            Session::flash('message', "Données d'hospitalisation du patient mise à jour!");
+            Session::flash('alert-class', 'alert-success');
+
+            if (auth()->user()->type_user === 2) {
+                return redirect()->route('hospitalisation.show', $hospitalisation->id);
+            }
+            if (auth()->user()->type_user === 1) {
+                return redirect()->route('hospitalisation.show', $hospitalisation->id);
+            }
         }
         else{
-            $request->session()->flash('alert-warning','hospitalisation non enregistrée');
+            Session::flash('message', "Mise à jour non effectuée!");
+            Session::flash('alert-class', 'alert-danger');
             return back();
         }
     }

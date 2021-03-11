@@ -1,4 +1,4 @@
-@extends('layouts.inflayout')
+@extends('layouts.medlayout')
 
 @section('content')
     <h1 class="text-center" style="background-color: #01A9CB; height: 30px; font-size: large; padding-top: 5px; font-weight: bold">Details hospitalisation de {{$patient->prenom}} {{$patient->nom}}</h1>

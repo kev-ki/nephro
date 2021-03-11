@@ -74,9 +74,7 @@ class TraitementController extends Controller
 
     public function show($id)
     {
-        $traitement = Traitement::where('id_consultation', $id)->first();
-        $consultation = Consultation::where('id', $traitement->id_consultation)
-            ->first();
+        $traitement = Traitement::find($id);
 
         $liste_medecin = User::where('type_user','1')->where('status','1')->get();
 

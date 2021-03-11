@@ -1,7 +1,7 @@
 @extends('layouts.inflayout')
 
 @section('content')
-<h1 class="text-center" style="background-color: #01A9CB; height: 30px; font-size: large; padding-top: 5px; font-weight: bold">Enregistrement de constantes patient</h1>
+<h1 class="text-center" style="background-color: #01A9CB; height: 30px; font-size: large; padding-top: 5px; font-weight: bold">Enregistrement des constantes du patient</h1>
 <div class="container-fluid p-2" style="background-color: white">
     <div class="flash-message col-12">
         @if(Session::has('message'))

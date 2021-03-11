@@ -39,7 +39,7 @@
                                 <td>{{$donnees->voie_administration}}</td>
                                 <td>
                                     @foreach($liste_medecin as $medecin)
-                                        @if($medecin->id === $donnees->prescripteur)
+                                        @if($medecin->id == $donnees->prescripteur)
                                            Dr {{$medecin->prenom}} {{$medecin->name}}
                                         @endif
                                     @endforeach

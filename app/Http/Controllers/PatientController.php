@@ -288,7 +288,6 @@ class PatientController extends Controller
         $patient->tel_pers_prevenir = Request('tel_pers_prevenir');
 
         $data1 = $patient->save($donnees);
-        /*die($data1);*/
         $data2 = $doc->save($donnees);
 
 
@@ -326,14 +325,10 @@ class PatientController extends Controller
             return redirect()->Back()->withInput()->withErrors($validation);
         }
 
-        //Folder
         $doc = Dossier::where('id_patient', $id)->first();
-        //die($doc);
         $doc->medecinresp = Request('medecinresp');
 
-        //Patient
         $patient = Patient::find($id);
-        //die($patient);
         $patient->sexualite = $request->sexualite;
         $patient->ethnie = $request->ethnie;
         $patient->profession = $request->profession;
@@ -352,14 +347,13 @@ class PatientController extends Controller
         $patient->tel_pers_prevenir = $request->tel_pers_prevenir;
 
         $data2 = $doc->save($donnees);
-        //die($data2);
         $data1 = $patient->save($donnees);
 
         if ($data1 && $data2) {
             Session::flash('message', 'Données du patient mise à jour.');
             Session::flash('alert-class', 'alert-success');
 
-            return redirect()->route('medecin.index');
+            return redirect()->route('medecin.show', $patient->idpatient);
         }else{
             Session::flash('message', 'Modifications non enregistrée');
             Session::flash('alert-class', 'alert-danger');

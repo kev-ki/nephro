@@ -258,14 +258,11 @@ class InfController extends Controller
             return redirect()->Back()->withInput()->withErrors($validation);
         }
 
-        //Folder
         $doc = Dossier::where('id_patient', $id)->first();
-        //die($doc);
+
         $doc->medecinresp = Request('medecinresp');
 
-        //Patient
         $patient = Patient::find($id);
-        //die($patient);
         $patient->sexualite = $request->sexualite;
         $patient->ethnie = $request->ethnie;
         $patient->profession = $request->profession;
@@ -284,14 +281,13 @@ class InfController extends Controller
         $patient->tel_pers_prevenir = $request->tel_pers_prevenir;
 
         $data2 = $doc->save($donnees);
-        //die($data2);
         $data1 = $patient->save($donnees);
 
         if ($data1 && $data2) {
             Session::flash('message', 'Données du patient mise à jour.');
             Session::flash('alert-class', 'alert-success');
 
-            return redirect()->route('infirmier.index');
+            return redirect()->route('infirmier.show', $patient->idpatient);
         }else{
             Session::flash('message', 'Modifications non enregistrée');
             Session::flash('alert-class', 'alert-danger');

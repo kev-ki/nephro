@@ -164,9 +164,9 @@ Route::get('infirmier/patient/{id}/constante/index', 'InfController@index_consta
 //Hospitalisation
 Route::resource('patient/hospitalisation', 'HospitalisationController');
 Route::post('infirmier/patient/hospitalisation/Search/', 'HospitalisationController@search')->name('hospi.search');
-Route::get('medecin/patient/hospitalisation/index/', 'MedecinController@index_hospi')->name('index_hospi');
+/*Route::get('medecin/patient/hospitalisation/index/', 'MedecinController@index_hospi')->name('index_hospi');
 Route::post('medecin/patient/hospitalisation/Search/', 'MedecinController@search_hospi')->name('search_hospi');
-Route::get('medecin/patient/hospitalisation/{id}/show/', 'MedecinController@show_hospi')->name('show_hospi');
+Route::get('medecin/patient/hospitalisation/{id}/show/', 'MedecinController@show_hospi')->name('show_hospi');*/
 
 //Constante
 Route::resource('patient/constante', 'ConstanteController');

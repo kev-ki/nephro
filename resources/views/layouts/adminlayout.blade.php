@@ -126,34 +126,32 @@
                 </div>
             </div>
         </div>
-
-
-        <!-- Bootstrap JavaScript -->
-        <script src="{{asset('js/jquery.min.js')}}"></script>
-        <script src="{{asset('js/popper.min.js')}}"></script>
-        <script src="{{asset('js/highcharts.js')}}"></script>
-        <script src="{{asset('js/bootstrap.min.js')}}"></script>
-        <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-        <script src="{{asset('js/bootstrap-select.min.js')}}"></script>
-
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('.selectpicker').selectpicker({
-                    style: 'btn-info',
-                    size: 7
-                });
-            });
-        </script>
-
-        <!-- Menu Toggle Script -->
-        <script>
-            $("#menu-toggle").click(function(e) {
-                e.preventDefault();
-                $("#wrapper").toggleClass("toggled");
-            });
-        </script>
-        <canvas id="myChart" width="400" height="400"></canvas>
     </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="{{asset('js/myjs.js')}}"></script>
+    <script src="{{asset('js/jquery.js')}}"></script>
+    {{--<script src="{{asset('js/popper.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>--}}
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap-select.min.js')}}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.selectpicker').selectpicker({
+                style: 'btn-info',
+                size: 7
+            });
+        });
+    </script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
 </body>
 
 </html>

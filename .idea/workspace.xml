@@ -25,36 +25,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e4462e7-f364-445b-b81c-4200c423000f" name="Default Changelist" comment="sauvegarde_2">
-      <change afterPath="$PROJECT_DIR$/resources/views/medecin/annuaire_hospitalisation.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/medecin/edit_hospitalisation.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/medecin/show_hospitalisation.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Hospitalisation.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Hospitalisation.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HospitalisationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HospitalisationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InfController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/InfController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MedecinController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MedecinController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PatientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PatientController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TraitementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TraitementController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Patient.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Patient.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/constante/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/constante/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/hospitalisation/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/hospitalisation/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/hospitalisation/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/hospitalisation/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/hospitalisation/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/hospitalisation/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/includes/acceuil.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/acceuil.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/infirmier/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/infirmier/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/infirmier/indexhospitalisation.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/infirmier/indexhospitalisation.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/infirmier/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/infirmier/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/adminlayout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/adminlayout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/inflayout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/inflayout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/medlayout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/medlayout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/seclayout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/seclayout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/medecin/indexhospitalisation.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/patient/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/patient/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/traitement/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/traitement/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/traitement/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/traitement/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-    </list>
+    <list default="true" id="7e4462e7-f364-445b-b81c-4200c423000f" name="Default Changelist" comment="sauvegarde_2" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -299,6 +270,7 @@
       <workItem from="1615325960422" duration="1753000" />
       <workItem from="1615329803564" duration="5244000" />
       <workItem from="1615369378238" duration="12920000" />
+      <workItem from="1615454956920" duration="661000" />
     </task>
     <task id="LOCAL-00001" summary="sauvegarde_2">
       <created>1615282752670</created>

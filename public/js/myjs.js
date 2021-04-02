@@ -149,13 +149,14 @@ function affectionIMM(that) {
     }
 }
 
-function examGenearl(that) {
+function examGeneralAmai(that) {
     if (that.value === 'amaigrissement') {
         document.getElementById('amaigrissement').style.display = 'flex';
     }else {
         document.getElementById('amaigrissement').style.display = 'none';
     }
-
+}
+function examGeneralAutre(that) {
     if (that.value === 'autre') {
         document.getElementById('lesion_langue').style.display = 'block';
     }else {
@@ -203,9 +204,20 @@ function hospisearch(that) {
     }
 }
 
+function serologieHbc(that) {
+    if (that.value === 'positif') {
+        document.getElementById('charge_hbc').style.display = 'block';
+    }else {
+        document.getElementById('charge_hbc').style.display = 'none';
+    }
+}
 
-
-
-
+function serologieHbs(that) {
+    if (that.value === 'positif') {
+        document.getElementById('charge_hbs').style.display = 'block';
+    }else {
+        document.getElementById('charge_hbs').style.display = 'none';
+    }
+}
 
 //==============================================================================================

@@ -16,18 +16,18 @@ class CreateHospitalisationsTable extends Migration
         Schema::create('hospitalisations', function (Blueprint $table) {
             $table->id();
             $table->string('id_patient')->index();
-            $table->string('numerochambre');
-            $table->string('numerolit');
+            $table->string('numerochambre')->nullable();
+            $table->string('numerolit')->nullable();
             $table->string('motif_hospitalisation');
-            $table->string('diagnosticPrincipale');
-            $table->string('diagnosticSecondaire');
-            $table->string('diagnosticAssocie');
-            $table->date('date_entree');
-            $table->string('mode_entree');
-            $table->string('diagnosticEntree');
-            $table->date('date_sortie');
-            $table->string('mode_sortie');
-            $table->string('diagnosticSortie');
+            $table->string('diagnosticPrincipale')->nullable();
+            $table->string('diagnosticSecondaire')->nullable();
+            $table->string('diagnosticAssocie')->nullable();
+            $table->date('date_entree')->nullable();
+            $table->string('mode_entree')->nullable();
+            $table->string('diagnosticEntree')->nullable();
+            $table->date('date_sortie')->nullable();
+            $table->string('mode_sortie')->nullable();
+            $table->string('diagnosticSortie')->nullable();
 
             $table->foreign('id_patient')->references('idpatient')->on('patients');
             $table->timestamps();

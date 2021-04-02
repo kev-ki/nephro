@@ -26,7 +26,7 @@
                     <div class="form-group row">
                         <label class="text-right col-form-label col-2 font-weight-bold">PSA:</label>
                         <input type="text" readonly name="psa" class="form-control col-4" value="{{$tumoral->psa}}">
-                        <label class="text-right col-form-label col-2 font-weight-bold">CA (125, 19-9, 15-3):</label>
+                        <label class="text-right col-form-label col-2 font-weight-bold">CA (125):</label>
                         <input type="text" readonly name="ca" class="form-control col-4" value="{{$tumoral->ca}}">
                     </div>
                 </div>

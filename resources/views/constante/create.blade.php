@@ -62,15 +62,15 @@
 
                    <div class="col">
                        <div class="form-group row">
-                           <label for="pulsation" class="col-md-2 col-form-label text-right font-weight-bold">Pulsation<em style="color: red;">*</em> :</label>
-                           <input type="text" id="pulsation" class="col-md-4 form-control @error('pulsation') is-invalid @enderror" name="pulsation" value="{{old('pulsation')}}">
-                           @error('pulsation')
+                           <label for="temperature" class="col-md-2 col-form-label text-right font-weight-bold">Temperature<em style="color: red;">*</em> :</label>
+                           <input type="text" id="temperature" class="col-md-4 form-control @error('temperature') is-invalid @enderror" name="temperature" value="{{old('temperature')}}">
+                           @error('temperature')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                            @enderror
 
-                           <label for="statuts" class="col-md-2 col-form-label text-right font-weight-bold">Statuts<em style="color: red;">*</em> :</label>
+                           <label for="statuts" class="col-md-2 col-form-label text-right font-weight-bold">Status<em style="color: red;">*</em> :</label>
                            <input type="text" id="statuts" class="col-md-4 form-control @error('statuts') is-invalid @enderror" name="statuts" value="{{old('statuts')}}">
                            @error('statuts')
                            <span class="invalid-feedback" role="alert">
@@ -85,6 +85,32 @@
                            <label for="pouls" class="col-md-2 col-form-label text-right font-weight-bold">Pouls<em style="color: red;">*</em> :</label>
                            <input type="text" id="pouls" class="col-md-4 form-control @error('pouls') is-invalid @enderror" name="pouls" value="{{old('pouls')}}">
                            @error('pouls')
+                           <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                           @enderror
+                           <label for="saturation_oxygene" class="col-md-2 col-form-label text-right font-weight-bold">Saturation en Oxygène<em style="color: red;">*</em> :</label>
+                           <input type="text" id="saturation_oxygene" class="col-md-4 form-control @error('saturation_oxygene') is-invalid @enderror" name="saturation_oxygene" value="{{old('saturation_oxygene')}}">
+                           @error('saturation_oxygene')
+                           <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                           @enderror
+                       </div>
+                   </div>
+
+                   <div class="col">
+                       <div class="form-group row">
+                           <label for="frequence_respiratoire" class="col-md-2 col-form-label text-right font-weight-bold">Frequence Respiratoire<em style="color: red;">*</em> :</label>
+                           <input type="text" id="frequence_respiratoire" class="col-md-4 form-control @error('frequence_respiratoire') is-invalid @enderror" name="frequence_respiratoire" value="{{old('frequence_respiratoire')}}">
+                           @error('frequence_respiratoire')
+                           <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                           @enderror
+                           <label for="frequence_cardiaque" class="col-md-2 col-form-label text-right font-weight-bold">Frequence Cardiaque<em style="color: red;">*</em> :</label>
+                           <input type="text" id="frequence_cardiaque" class="col-md-4 form-control @error('frequence_cardiaque') is-invalid @enderror" name="frequence_cardiaque" value="{{old('frequence_cardiaque')}}">
+                           @error('frequence_cardiaque')
                            <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

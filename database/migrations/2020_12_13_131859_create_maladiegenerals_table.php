@@ -13,7 +13,7 @@ class CreateMalagiegeneralsTable extends Migration
      */
     public function up()
     {
-        Schema::create('malagiegenerals', function (Blueprint $table) {
+        Schema::create('maladiegenerals', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
             $table->string('type')->nullable();

@@ -34,8 +34,17 @@
                                 <div class="form-group row">
                                     <label class="text-right col-md-form-label col-md-2 font-weight-bold">CD4/CV:</label>
                                     <input type="text" name="cd4cb" class="form-control col-md-4">
-                                    <label class="text-right col-md-form-label col-md-2 font-weight-bold">Ag Hbs:</label>
-                                    <input type="text" name="aghbs" class="form-control col-md-4">
+                                    <label for="hbs" class="text-right col-md-form-label col-md-2 font-weight-bold">Ag Hbs:</label>
+                                    <select name="aghbs" id="hbs" onchange="serologieHbs(this)" class="form-control col-md-4 selectpicker" data-style="btn-outline-secondary" data-placeholder="Choisir">
+                                        <option value="positif">Positif</option>
+                                        <option value="negatif">Négatif</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col" id="charge_hbs" style="display: none">
+                                <div class="form-group row">
+                                    <label class="text-right col-md-form-label col-md-2 font-weight-bold">Charge Virale (Ag Hbs) :</label>
+                                    <input type="text" name="charge_hbs" class="form-control col-md-10">
                                 </div>
                             </div>
                             <div class="col">
@@ -43,7 +52,16 @@
                                     <label class="text-right col-md-form-label col-md-2 font-weight-bold">AgHbe:</label>
                                     <input type="text" name="aghbe" class="form-control col-md-4">
                                     <label class="text-right col-md-form-label col-md-2 font-weight-bold">Acanti Hbc:</label>
-                                    <input type="text" name="acantihbc" class="form-control col-md-4">
+                                    <select name="acantihbc" id="hbc" onchange="serologieHbc(this)" class="form-control col-md-4 selectpicker" data-style="btn-outline-secondary" data-placeholder="Choisir">
+                                        <option value="positif">Positif</option>
+                                        <option value="negatif">Négatif</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col" id="charge_hbc" style="display: none">
+                                <div class="form-group row">
+                                    <label class="text-right col-md-form-label col-md-2 font-weight-bold">Charge Virale (Acanti Hbc) :</label>
+                                    <input type="text" name="charge_hbc"  class="form-control col-md-10">
                                 </div>
                             </div>
                             <div class="col">

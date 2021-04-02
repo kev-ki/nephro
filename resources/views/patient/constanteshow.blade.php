@@ -20,18 +20,30 @@
                             <input type="text" readonly class="form-control col-7" value="{{$constante->tension}}">
                         </div>
                         <div class="row form-group">
+                            <label class="font-weight-bold col-5 text-right">Frequence Cardiaque:</label>
+                            <input type="text" readonly class="form-control col-7" value="{{$constante->frequence_cardiaque}}">
+                        </div>
+                        <div class="row form-group">
                             <label class="font-weight-bold text-right col-5">Pouls:</label>
-                            <input type="text" readonly class="form-control col-7" value="{{$constante->pool}}">
+                            <input type="text" readonly class="form-control col-7" value="{{$constante->pouls}}">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="row form-group">
-                            <label class="font-weight-bold text-right col-5">Pulsation:</label>
-                            <input type="text" readonly class="form-control col-7" value="{{$constante->pulsation}}">
+                            <label class="font-weight-bold text-right col-5">Temperature:</label>
+                            <input type="text" readonly class="form-control col-7" value="{{$constante->temperature}}">
                         </div>
                         <div class="row form-group">
-                            <label class="font-weight-bold col-5 text-right">Statut:</label>
-                            <input type="text" readonly class="form-control col-7" value="{{$constante->statut}}">
+                            <label class="font-weight-bold col-5 text-right">Status:</label>
+                            <input type="text" readonly class="form-control col-7" value="{{$constante->status}}">
+                        </div>
+                        <div class="row form-group">
+                            <label class="font-weight-bold col-5 text-right">Saturation en Oxygene:</label>
+                            <input type="text" readonly class="form-control col-7" value="{{$constante->saturation_oxygene}}">
+                        </div>
+                        <div class="row form-group">
+                            <label class="font-weight-bold col-5 text-right">Frequence Respiratoire:</label>
+                            <input type="text" readonly class="form-control col-7" value="{{$constante->frequence_respiratoire}}">
                         </div>
                         <div class="row form-group">
                             <label class="font-weight-bold text-right col-5">Date de prise:</label>
@@ -41,8 +53,9 @@
                 </div>
             </div>
 
-            <div class="row d-flex justify-content-center mb-2">
-                <button class="btn btn-primary"><a style="color: #fff" href="#">Imprimer</a></button>
+            <div class="row d-flex justify-content-center p-2 mb-2">
+                <button class="btn-sm btn-secondary mr-1"><a style="color: #2d2d2d" href="{{route('medecin.constante_edit', $constante->id)}}">edit</a></button>
+                <button class="btn-sm btn-primary"><a style="color: #fff" href="#">imprimer</a></button>
             </div>
         </div>
     </div>

@@ -52,23 +52,29 @@ class AutreAntMedicauxController extends Controller
             return redirect()->Back()->withInput()->withErrors($validation);
         }
 
-        $autre=new AutreAntMedicaux();
-        $autre->type_antecedent= $request->type;
-        $autre->nom_antecedent=$request->nom;
-        $autre->date_decouverte=$request->datedecouverte;
-        $autre->traitement=$request->traitement;
+        if ($request->datedecouverte < date('Y-m-d')) {
+            $autre=new AutreAntMedicaux();
+            $autre->type_antecedent= $request->type;
+            $autre->nom_antecedent=$request->nom;
+            $autre->date_decouverte=$request->datedecouverte;
+            $autre->traitement=$request->traitement;
 
-        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-        $autre->id_consultation = $consult;
+            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+            $autre->id_consultation = $consult->id;
 
-        if ($autre->save())
-        {
-            Session::flash('message', 'informations enregistrées.');
-            Session::flash('alert-class', 'alert-success');
-            return back();
-        }
-        else{
-            Session::flash('message', 'Verifier tous les champs SVP!');
+            if ($autre->save())
+            {
+                Session::flash('message', 'informations enregistrées.');
+                Session::flash('alert-class', 'alert-success');
+                return back();
+            }
+            else{
+                Session::flash('message', 'Verifier tous les champs SVP!');
+                Session::flash('alert-class', 'alert-danger');
+                return back();
+            }
+        }else {
+            Session::flash('message', 'Veuillez renseigner une date de decouverte valide SVP!');
             Session::flash('alert-class', 'alert-danger');
             return back();
         }

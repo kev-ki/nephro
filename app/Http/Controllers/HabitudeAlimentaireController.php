@@ -51,36 +51,46 @@ class HabitudeAlimentaireController extends Controller
             'duree' => ['required'],
         ]);
         if ($validation->fails()) {
-            return redirect()->Back()->withInput()->withErrors($validation);
-        }
-
-        $habitudeHalimentaire=new HabitudeAlimentaire();
-        $habitudeHalimentaire->aliment=$request->aliment;
-        $habitudeHalimentaire->type=$request->type;
-        $habitudeHalimentaire->quantite=$request->quantite;
-        $habitudeHalimentaire->mode_consommation=$request->frequence;
-        $habitudeHalimentaire->date_debut=$request->datedebut;
-        $habitudeHalimentaire->duree=$request->duree;
-
-        $habitudeHalimentaire->medication_traditionnel = $request->traditionnelle;
-        $habitudeHalimentaire->mode_administration = $request->mode_administration;
-        $habitudeHalimentaire->medication_moderne = $request->moderne;
-        $habitudeHalimentaire->produits = $request->produits;
-
-        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-        $habitudeHalimentaire->id_consultation = $consult;
-
-        if ($habitudeHalimentaire->save())
-        {
-            Session::flash('message', 'informations enregistrées.');
-            Session::flash('alert-class', 'alert-success');
-            return back();
-        }
-        else{
-            Session::flash('message', 'Verifier tous les champs SVP!');
+            Session::flash('message', 'Vérifier que tous les champs sont renseignés SVP!');
             Session::flash('alert-class', 'alert-danger');
             return back();
         }
+
+        if ($request->datedebut <= date('Y-m-d')) {
+            $habitudeHalimentaire=new HabitudeAlimentaire();
+            $habitudeHalimentaire->aliment=$request->aliment;
+            $habitudeHalimentaire->type=$request->type;
+            $habitudeHalimentaire->quantite=$request->quantite;
+            $habitudeHalimentaire->mode_consommation=$request->frequence;
+            $habitudeHalimentaire->date_debut=$request->datedebut;
+            $habitudeHalimentaire->duree=$request->duree;
+
+            $habitudeHalimentaire->medication_traditionnel = $request->traditionnelle;
+            $habitudeHalimentaire->mode_administration = $request->mode_administration;
+            $habitudeHalimentaire->medication_moderne = $request->moderne;
+            $habitudeHalimentaire->produits = $request->produits;
+
+            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+            $habitudeHalimentaire->id_consultation = $consult->id;
+
+            if ($habitudeHalimentaire->save())
+            {
+                Session::flash('message', 'informations enregistrées.');
+                Session::flash('alert-class', 'alert-success');
+                return back();
+            }
+            else{
+                Session::flash('message', 'Verifier que tous les champs ont été renseignés SVP!');
+                Session::flash('alert-class', 'alert-danger');
+                return back();
+            }
+        }else {
+            Session::flash('message', 'Date de debut invalide!');
+            Session::flash('alert-class', 'alert-danger');
+            return back();
+        }
+
+
 
     }
 

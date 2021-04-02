@@ -53,7 +53,7 @@ class AntFamilialController extends Controller
         $antFamilliaux->conjoint=$request->conjoint;
 
         $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-        $antFamilliaux->id_consultation = $consult;
+        $antFamilliaux->id_consultation = $consult->id;
 
         if ($antFamilliaux->save())
         {

@@ -27,7 +27,7 @@
 
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="btn btn-primary mr-1">Enregistrer</button>
-                        <div class="btn btn-secondary"><a style="color: white" href="{{route('genico-obstetrique.create')}}">Suivant</a></div>
+                        <div class="btn btn-secondary"><a style="color: white" href="{{route('gyneco-obstetrique.create')}}">Suivant</a></div>
                     </div>
                 </form>
             </div>

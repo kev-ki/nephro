@@ -47,40 +47,46 @@ class MarqueurTumoralController extends Controller
             'date' => ['required', 'date'],
         ]);
         if ($validation->fails()) {
+            Session::flash('message', 'Vérifier que tous les champs sont renseignés SVP!');
+            Session::flash('alert-class', 'alert-danger');
             return redirect()->Back()->withInput()->withErrors($validation);
         }
 
-        $marqueurTumoral=new MarqueurTumoral();
+        if ($request->date <= date('Y-m-d')) {
+            $marqueurTumoral=new MarqueurTumoral();
 
-        $marqueurTumoral->date=$request->date;
-        $marqueurTumoral->afproteine=$request->proteine;
-        $marqueurTumoral->ldh=$request->ldh;
-        $marqueurTumoral->ace=$request->ace;
-        $marqueurTumoral->psa=$request->psa;
-        $marqueurTumoral->ca=$request->ca;
-        $marqueurTumoral->calcitonine=$request->calcitonine;
+            $marqueurTumoral->date=$request->date;
+            $marqueurTumoral->afproteine=$request->proteine;
+            $marqueurTumoral->ldh=$request->ldh;
+            $marqueurTumoral->ace=$request->ace;
+            $marqueurTumoral->psa=$request->psa;
+            $marqueurTumoral->ca=$request->ca;
+            $marqueurTumoral->calcitonine=$request->calcitonine;
 
-        $marqueurTumoral->nom_autre=$request->nom_autre;
-        $marqueurTumoral->resultat=$request->resultat;
-        $marqueurTumoral->nom_autre1=$request->nom_autre1;
-        $marqueurTumoral->resultat1=$request->resultat1;
+            $marqueurTumoral->nom_autre=$request->nom_autre;
+            $marqueurTumoral->resultat=$request->resultat;
+            $marqueurTumoral->nom_autre1=$request->nom_autre1;
+            $marqueurTumoral->resultat1=$request->resultat1;
 
-        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-        $marqueurTumoral->id_consultation = $consult;
+            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+            $marqueurTumoral->id_consultation = $consult->id;
 
-        if ($marqueurTumoral->save())
-        {
-            Session::flash('message', 'informations enregistrées.');
-            Session::flash('alert-class', 'alert-success');
-            return back();
-        }
-        else{
-            Session::flash('message', 'Verifier tous les champs SVP!');
+            if ($marqueurTumoral->save())
+            {
+                Session::flash('message', 'informations enregistrées.');
+                Session::flash('alert-class', 'alert-success');
+                return back();
+            }
+            else{
+                Session::flash('message', 'Vérifier que tous les champs ont été renseignés SVP!');
+                Session::flash('alert-class', 'alert-danger');
+                return back();
+            }
+        }else {
+            Session::flash('message', 'Date invalide!');
             Session::flash('alert-class', 'alert-danger');
-
             return back();
         }
-
     }
 
     public function show($id)

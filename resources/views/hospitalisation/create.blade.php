@@ -17,6 +17,17 @@
            @method('post')
            <div>
                <div class="col">
+                   {{--<div class="row form-group">
+
+                       <div class="col-md-1"></div>
+                       <input type="text" id="motif" placeholder="Motif d'Hospitalisation" class="col-md-11 form-control @error('motif') is-invalid @enderror" name="motif" value="{{old('motif')}}">
+                       @error('motif')
+                       <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                       @enderror
+                   </div>--}}
+
                    <div class="row">
                        <div class="col-6">
                            <div class="row form-group">
@@ -38,7 +49,11 @@
                            </div>
                            <div class="row form-group">
                                <label for="numerosalle" class="col-md-3 col-form-label text-right font-weight-bold">Numero Chambre<em style="color: red;">*</em> :</label>
-                               <input type="text" id="numerosalle" class="col-md-9 form-control @error('numerosalle') is-invalid @enderror" name="numerosalle" value="{{old('numerosalle')}}">
+                               <select name="numerosalle" id="numerosalle" data-placeholder="Choisir" class="form-control col-md-9 selectpicker @error('numerosalle') is-invalid @enderror" data-style="btn-outline-secondary">
+                                   @foreach($chambres as $chambre)
+                                       <option value="{{$chambre->numch}}">{{$chambre->numch}}</option>
+                                   @endforeach
+                               </select>
                                @error('numerosalle')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -48,7 +63,11 @@
 
                            <div class="row form-group">
                                <label for="numerolit" class="col-md-3 col-form-label text-right font-weight-bold">Numero lit<em style="color: red;">*</em> :</label>
-                               <input type="text" id="numerolit" class="col-md-9 form-control @error('numerolit') is-invalid @enderror" name="numerolit" value="{{old('numerolit')}}">
+                               <select name="numerolit" id="numerolit" data-placeholder="Choisir" class="form-control col-md-9 selectpicker @error('numerolit') is-invalid @enderror" data-style="btn-outline-secondary">
+                                   @foreach($lits as $lit)
+                                       <option value="{{$lit->numlit}}">{{$lit->numlit}}</option>
+                                   @endforeach
+                               </select>
                                @error('numerolit')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

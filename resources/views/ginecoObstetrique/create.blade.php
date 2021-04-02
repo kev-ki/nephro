@@ -18,7 +18,7 @@
                 </ul>
             </div>
             <div class="card-body">
-                <form action="{{route('genico-obstetrique.store')}}" method="post">
+                <form action="{{route('gyneco-obstetrique.store')}}" method="post">
                     @csrf
                     <div class="tab-content" id="pages_content">
                         <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="page1_tab" id="page1">
@@ -122,7 +122,7 @@
                                         <option value="non">Non</option>
                                     </select>
                                     <label class="text-right col-md-2 font-weight-bold">HTA pendant la (les)grossesse (s):</label>
-                                    <select name="hta" id="hta" class="col-md-4 form-control selectpicker" data-placeholder="Choisir">
+                                    <select name="hta" id="hta" class="col-md-4 form-control selectpicker" data-placeholder="Choisir" data-style="btn-outline-secondary">
                                         <option value="oui">Oui</option>
                                         <option value="non">Non</option>
                                     </select>

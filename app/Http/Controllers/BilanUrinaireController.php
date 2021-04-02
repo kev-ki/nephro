@@ -48,46 +48,51 @@ class BilanUrinaireController extends Controller
             'date' => ['required', 'date'],
         ]);
         if ($validation->fails()) {
+            Session::flash('message', 'Verifier que tous les champs ont été renseignés SVP!');
+            Session::flash('alert-class', 'alert-danger');
             return redirect()->Back()->withInput()->withErrors($validation);
         }
 
-        $bilanUrinaire= new BilanUrinaire();
-        $bilanUrinaire->date=$request->date;
-        $bilanUrinaire->volume=$request->volume;
-        $bilanUrinaire->proteinurie=$request->proteinurie;
-        $bilanUrinaire->leucyte=$request->leucyte;
-        $bilanUrinaire->hematie=$request->hemacie;
-        $bilanUrinaire->creatinurie=$request->creatinurie;
-        $bilanUrinaire->ureecreati=$request->ureecreati;
-        $bilanUrinaire->albuminecreati=$request->albuminecreati;
-        $bilanUrinaire->uraturie=$request->uraturie;
-        $bilanUrinaire->natriurese=$request->natriurese;
-        $bilanUrinaire->kaliurese=$request->kaliurese;
-        $bilanUrinaire->caliciturie=$request->caliciturie;
-        $bilanUrinaire->phosphaturie=$request->phosphaturie;
-        $bilanUrinaire->cristallurie=$request->cristallurie;
+        if ($request->date <= date('Y-m-d')) {
+            $bilanUrinaire= new BilanUrinaire();
+            $bilanUrinaire->date=$request->date;
+            $bilanUrinaire->volume=$request->volume;
+            $bilanUrinaire->proteinurie=$request->proteinurie;
+            $bilanUrinaire->leucyte=$request->leucyte;
+            $bilanUrinaire->hematie=$request->hemacie;
+            $bilanUrinaire->creatinurie=$request->creatinurie;
+            $bilanUrinaire->ureecreati=$request->ureecreati;
+            $bilanUrinaire->albuminecreati=$request->albuminecreati;
+            $bilanUrinaire->uraturie=$request->uraturie;
+            $bilanUrinaire->natriurese=$request->natriurese;
+            $bilanUrinaire->kaliurese=$request->kaliurese;
+            $bilanUrinaire->caliciturie=$request->caliciturie;
+            $bilanUrinaire->phosphaturie=$request->phosphaturie;
+            $bilanUrinaire->cristallurie=$request->cristallurie;
 
-        $bilanUrinaire->nom_autre=$request->nom_autre;
-        $bilanUrinaire->resultat=$request->resultat;
-        $bilanUrinaire->nom_autre1=$request->nom_autre1;
-        $bilanUrinaire->resultat1=$request->resultat1;
+            $bilanUrinaire->nom_autre=$request->nom_autre;
+            $bilanUrinaire->resultat=$request->resultat;
+            $bilanUrinaire->nom_autre1=$request->nom_autre1;
+            $bilanUrinaire->resultat1=$request->resultat1;
 
-        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-        $bilanUrinaire->id_consultation = $consult;
-
-        if ($bilanUrinaire->save())
-        {
             $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-            $consult->id_bilanurinaire = $bilanUrinaire->id;
-            $consult->update();
-            Session::flash('message', 'informations enregistrées.');
-            Session::flash('alert-class', 'alert-success');
-            return back();
-        }
-        else{
-            Session::flash('message', 'Verifier tous les champs SVP!');
-            Session::flash('alert-class', 'alert-danger');
+            $bilanUrinaire->id_consultation = $consult->id;
 
+            if ($bilanUrinaire->save())
+            {
+                Session::flash('message', 'informations enregistrées.');
+                Session::flash('alert-class', 'alert-success');
+                return back();
+            }
+            else{
+                Session::flash('message', 'Verifier que tous les champs ont été renseignés SVP!');
+                Session::flash('alert-class', 'alert-danger');
+
+                return back();
+            }
+        }else {
+            Session::flash('message', 'Date invalide!');
+            Session::flash('alert-class', 'alert-danger');
             return back();
         }
     }

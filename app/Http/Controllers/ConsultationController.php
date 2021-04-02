@@ -31,8 +31,13 @@ class ConsultationController extends Controller
         $validation = Validator::make($request->all(), [
             'histoiremaladie' => 'required',
             'adresserpar' => 'required',
+            'bilan_admission' => 'required',
+            'motifadmission' => 'required',
+            'numQ' => 'required',
         ]);
         if ($validation->fails()) {
+            Session::flash('message', 'Renseignez tous les champs SVP!');
+            Session::flash('alert-class', 'alert-danger');
             return redirect()->Back()->withInput()->withErrors($validation);
         }
 

@@ -52,32 +52,39 @@ class AffectionIMMController extends Controller
             return redirect()->Back()->withInput()->withErrors($validation);
         }
 
-        $affectionIMM=new AffectionIMM();
-        $affectionIMM->type_affection= $request->type;
-        $affectionIMM->nom_affection=$request->nom;
-        $affectionIMM->date_decouverte=$request->datedecouverte;
-        $affectionIMM->traitement=$request->traitement;
-        if ($request->nom === 'autre') {
-            $affectionIMM->precision_autre=$request->precision;
+
+
+        if ($request->datedecouverte < date('Y-m-d')) {
+            $affectionIMM=new AffectionIMM();
+            $affectionIMM->type_affection= $request->type;
+            $affectionIMM->nom_affection=$request->nom;
+            $affectionIMM->date_decouverte=$request->datedecouverte;
+            $affectionIMM->traitement=$request->traitement;
+            if ($request->nom === 'autre') {
+                $affectionIMM->precision_autre=$request->precision;
+            }else {
+                $affectionIMM->precision_autre=Null;
+            }
+
+            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+            $affectionIMM->id_consultation = $consult->id;
+
+            if ($affectionIMM->save())
+            {
+                Session::flash('message', 'informations Affections Immunologiques enregistrées.');
+                Session::flash('alert-class', 'alert-success');
+                return back();
+            }
+            else{
+                Session::flash('message', 'Verifier tous les champs SVP!');
+                Session::flash('alert-class', 'alert-danger');
+                return back();
+            }
         }else {
-            $affectionIMM->precision_autre=Null;
-        }
-
-        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-        $affectionIMM->id_consultation = $consult;
-
-        if ($affectionIMM->save())
-        {
-            Session::flash('message', 'informations Affections Immunologiques enregistrées.');
-            Session::flash('alert-class', 'alert-success');
-            return back();
-        }
-        else{
-            Session::flash('message', 'Verifier tous les champs SVP!');
+            Session::flash('message', 'Veuillez entrer une date valide SVP!');
             Session::flash('alert-class', 'alert-danger');
             return back();
         }
-
     }
 
     public function show($id)

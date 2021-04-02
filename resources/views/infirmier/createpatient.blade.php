@@ -2,7 +2,7 @@
 
 @section('content')
     <h1 class="text-center" style="background-color: #01A9CB; height: 30px; font-weight: bold; font-size: large; padding-top: 5px;">Enregistrement du patient</h1>
-    <div class="container-fluid p-2" style="background-color: white">
+    <div class="container-fluid p-1" style="background-color: white">
         <div class="flash-message col-12">
             @if(Session::has('message'))
                 <div class="alert {{Session::get('alert-class')}}">
@@ -11,7 +11,7 @@
             @endif
         </div>
 
-        <ul class="nav nav-tabs mb-1  d-flex justify-content-center" id="table" role="tablist">
+        <ul class="nav nav-tabs d-flex justify-content-center" id="table" role="tablist">
             <li class="nav-item bouton-forme" style="font-size: 15px;"><a class="nav-link active" id="page1_tab" data-toggle="tab" href="#page1" role="tab" aria-controls="page1" aria-selected="true">Page 1</a></li>
             <li class="nav-item ml-md-5 bouton-forme mr-md-5" style="font-size: 15px"><a class="nav-link" id="page2_tab" data-toggle="tab" href="#page2" role="tab" aria-controls="page2" aria-selected="false">Page 2</a></li>
             <li class="nav-item bouton-forme" style="font-size: 15px;"><a class="nav-link" id="page3_tab" data-toggle="tab" href="#page3" role="tab" aria-controls="page3" aria-selected="false">Page 3</a></li>

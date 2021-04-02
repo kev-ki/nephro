@@ -21,9 +21,12 @@ class CreateConstantesTable extends Migration
             $table->float('poids');
             $table->float('taille');
             $table->string('tension');
-            $table->string('pool')->nullable();
-            $table->string('pulsation')->nullable();
-            $table->string('statut')->nullable();
+            $table->string('pouls')->nullable();
+            $table->string('temperature')->nullable();
+            $table->string('saturation_oxygene')->nullable();
+            $table->string('frequence_respiratoire')->nullable();
+            $table->string('frequence_cardiaque')->nullable();
+            $table->string('status')->nullable();
 
             $table->foreign('idpatient')->references('idpatient')->on('patients');
             $table->foreign('iduser')->references('id')->on('users');

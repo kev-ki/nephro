@@ -158,10 +158,10 @@
                                             <label class="font-weight-bold col-md-3 text-right">Culte:</label>
                                             <input class="form-control col-md-9" readonly value="{{$patient->culte}}">
                                         </div>
-                                        <div class="row form-group">
+                                        {{--<div class="row form-group">
                                             <label class="font-weight-bold col-md-3 text-right">Profession:</label>
                                             <input type="text" readonly class="form-control col-md-9" value="{{$profession->libelle}}">
-                                        </div>
+                                        </div>--}}
                                     </div>
                                 </div>
                             </div>
@@ -227,11 +227,43 @@
 
                     <button class="btn btn-outline-primary mr-1"><a style="color: #444" href="{{route('consultation.begin', $patient->idpatient)}}">examiner</a></button>
 
-                    <button class="btn btn-outline-primary mr-1"><a style="color: #444" href="{{route('medecin.hospitaliser', $patient->idpatient)}}">hospitaliser</a></button>
+                    <button type="button" class="btn btn-outline-primary mr-1" data-toggle="modal" data-target="#staticBackdrop">hospitaliser</button>
 
                     <button class="btn btn-outline-primary"><a style="color: #444" href="#">imprimer</a></button>
                 </div>
             </div>
+
+            <!-- Button trigger modal -->
+            {{--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Launch static backdrop modal
+            </button>--}}
+
+            <!-- Modal -->
+            <form action="{{route('medecin.hospitaliser', $patient->idpatient)}}" method="post">
+                @csrf
+                <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-center" id="staticBackdropLabel" style="font-size: large">Hospitalisation du patient</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="card p-2">
+                                    <div class="form-group">
+                                        <label for="motif" class="col-form-label" style="font-size: large">Motif<em style="color: red;">*</em> :</label>
+                                        <input type="text" id="motif" name="motif_hospitalisation" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end p-1">
+                                <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">Fermer</button>
+                                <button class="btn btn-primary">Enregistrer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 @endsection

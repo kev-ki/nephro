@@ -50,39 +50,44 @@ class EndocrinologieController extends Controller
             return redirect()->Back()->withInput()->withErrors($validation);
         }
 
-        $endocrinologie= new Endocrinologie();
-        $endocrinologie->date=$request->date;
+        if ($request->date < date('Y-m-d')) {
+            $endocrinologie= new Endocrinologie();
+            $endocrinologie->date=$request->date;
 
-        $endocrinologie->ft3= $request->ft3;
-        $endocrinologie->ft4= $request->ft4;
-        $endocrinologie->cortisolomie=$request->cortisolomie;
-        $endocrinologie->testsynacthene=$request->testsynacthene;
-        $endocrinologie->prolactemie=$request->prolactemie;
-        $endocrinologie->fsh=$request->fsh;
-        $endocrinologie->lh=$request->lh;
+            $endocrinologie->ft3= $request->ft3;
+            $endocrinologie->ft4= $request->ft4;
+            $endocrinologie->cortisolomie=$request->cortisolomie;
+            $endocrinologie->testsynacthene=$request->testsynacthene;
+            $endocrinologie->prolactemie=$request->prolactemie;
+            $endocrinologie->fsh=$request->fsh;
+            $endocrinologie->lh=$request->lh;
 
-        $endocrinologie->nom_autre=$request->nom_autre;
-        $endocrinologie->resultat=$request->resultat;
-        $endocrinologie->nom_autre1=$request->nom_autre1;
-        $endocrinologie->resultat1=$request->resultat1;
+            $endocrinologie->nom_autre=$request->nom_autre;
+            $endocrinologie->resultat=$request->resultat;
+            $endocrinologie->nom_autre1=$request->nom_autre1;
+            $endocrinologie->resultat1=$request->resultat1;
 
-        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-        $endocrinologie->id_consultation = $consult;
+            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+            $endocrinologie->id_consultation = $consult->id;
 
-        if ($endocrinologie->save())
-        {
-            Session::flash('message', 'informations enregistrées.');
-            Session::flash('alert-class', 'alert-success');
+            if ($endocrinologie->save())
+            {
+                Session::flash('message', 'informations enregistrées.');
+                Session::flash('alert-class', 'alert-success');
 
-            return back();
-        }
-        else{
-            Session::flash('message', 'Verifier tous les champs SVP!');
+                return back();
+            }
+            else{
+                Session::flash('message', 'Verifier tous les champs SVP!');
+                Session::flash('alert-class', 'alert-danger');
+
+                return back();
+            }
+        }else {
+            Session::flash('message', 'Veuillez renseigner une date valide!');
             Session::flash('alert-class', 'alert-danger');
-
             return back();
         }
-
     }
 
     public function show($id)

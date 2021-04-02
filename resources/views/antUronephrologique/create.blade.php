@@ -25,7 +25,7 @@
                                 <option value="hematurie">Hématurie </option>
                                 <option value="troublemictiondiurese">Troubles de la miction et de la diurèse</option>
                             </select>
-                            <label class="col-md-2 font-weight-bold text-right" for="datedecouverte">Date de decouverte:</label>
+                            <label class="col-md-2 font-weight-bold text-right" for="datedecouverte">Date de decouverte<em style="color: red;">*</em> :</label>
                             <input type="date" name="datedecouverte" id="datedecouverte" class="form-control col-md-4">
                         </div>
                     </div>

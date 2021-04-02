@@ -43,14 +43,6 @@
                     </div>
                     <div class="col">
                         <div class="form-group row">
-                            <label class="text-right col-form-label col-2 font-weight-bold">Cortisolémie:</label>
-                            <input type="text" name="cortisolomie" class="form-control col-4">
-                            <label class="text-right col-form-label col-2 font-weight-bold">Test au synacthène:</label>
-                            <input type="text" name="testsynacthene" class="form-control col-4">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group row">
                             <label class="text-right col-form-label col-2 font-weight-bold">Prolactémie:</label>
                             <input type="text" name="prolactemie" class="form-control col-4">
                             <label class="text-right col-form-label col-2 font-weight-bold">FSH:</label>

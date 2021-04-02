@@ -3,14 +3,15 @@
 namespace App\Exports;
 
 use App\Activitesocioprofessionnelle;
+use App\AffectionIMM;
+use App\AffTumoraleMaligne;
+use App\AntInfection;
+use App\AntUronephrologique;
 use App\Consultation;
 use App\Dossier;
+use App\Maladiegeneral;
 use App\Patient;
-use Illuminate\Contracts\Support\Responsable;
-use Illuminate\Database\Query\Builder;
-use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithEvents;
@@ -66,79 +67,72 @@ class PatientExport implements
         }
 
         $consultation = Consultation::all();
-        $medicaux = '';
-        $autre_medicaux = ''; $examen = '';
         //die($consultation);
-        foreach ($consultation as $consult){
-            if ($dossier == $consult->num_dossier){
-                if (!empty($consult->id_uronephro))
-                {
+        $medi = [];
+
+        foreach ($consultation as $consult) {
+            foreach (AntUronephrologique::all() as $value) {
+                if ($consult->id == $value->id_consultation) {
                     $uro = "uronephrologique";
-                    if (!empty($medicaux)){
-                        $medicaux = $medicaux.', '.$uro;
-                    }else{
-                        $medicaux = $uro;
-                    }
+                    //$medi[] = $uro;
                 }
-                //die($uro);
-                if ($consult->id_infection)
-                {
+            }
+        }
+        foreach ($consultation as $consult) {
+            foreach (AntInfection::all() as $value) {
+                if ($consult->id === $value->id_consultation) {
                     $infection = "infectieux";
-                    if (!empty($medicaux)){
-                        $medicaux = $medicaux.', '.$infection;
-                    }else{
-                        $medicaux = $infection;
-                    }
+                    //$medi[] = $infection;
                 }
-                if ($consult->id_maladiegenerale)
-                {
+            }
+        }
+        foreach ($consultation as $consult) {
+            foreach (Maladiegeneral::all() as $value) {
+                if ($consult->id == $value->id_consultation) {
                     $maladieg = "maladie générale";
-                    if (!empty($medicaux)){
-                        $medicaux = $medicaux.', '.$maladieg;
-                    }else{
-                        $medicaux = $maladieg;
-                    }
+                    //$medi[] = $maladieg;
                 }
-                if ($consult->id_affectionimm)
-                {
+            }
+        }
+        foreach ($consultation as $consult) {
+            foreach (AffectionIMM::all() as $value) {
+                if ($consult->id == $value->id_consultation) {
                     $imm = "affection immunologique";
-                    if (!empty($medicaux)){
-                        $medicaux = $medicaux.', '.$imm;
-                    }else{
-                        $medicaux = $imm;
-                    }
+                    //$medi[] = $imm;
                 }
-                if ($consult->id_affectiontumorale)
-                {
+            }
+        }
+        foreach ($consultation as $consult) {
+            foreach (AffTumoraleMaligne::all() as $value) {
+                if ($consult->id == $value->id_consultation) {
                     $tumorale = "affection maligne tumorale";
-                    if (!empty($medicaux)){
-                        $medicaux = $medicaux.', '.$tumorale;
-                    }else{
-                        $medicaux = $tumorale;
-                    }
+                    //$medi[] = $tumorale;
                 }
+            }
+        }
+
+
+
+
+
+
+
+
+            /*if ($dossier == $consult->num_dossier){
                 if ($consult->id_autre_ant_medical)
                 {
-                    $autre_medicaux =$autre_medicaux."Oui";
+                    $autre_medicaux ="Oui";
                 }
 //===========================================================================
                 if ($consult->id_examgeneral)
                 {
                     $general = "examen général";
-                    if (!empty($examen)){
-                        $examen = $examen.', '.$general;
-                    }else{
-                        $examen = $general;
-                    }
+                    $exam[] = $general;
                 }
 
                 if ($consult->id_examappareil) {
                     $appareil = "examen appareil";
-                    if (!empty($examen)){
-                        $examen = $examen.', '.$appareil;
-                    }else{
-                        $examen = $appareil;
-                    }
+                    $exam[] = $appareil;
                 }
 //===========================================================================
                 if (!empty($consult->id_chirurgie))
@@ -160,17 +154,44 @@ class PatientExport implements
                 {
                     $familial = "Oui";
                 }
-            }
-        }
+            }*/
 
-        if (empty($medicaux)) {
+
+        if (!empty($uro)){
+            $medi[] = $uro;
+        }
+        if (!empty($infection)){
+            $medi[] = $infection;
+        }
+        if (!empty($maladieg)){
+            $medi[] = $maladieg;
+        }
+        if (!empty($imm)){
+            $medi[] = $imm;
+        }
+        if (!empty($tumorale)){
+            $medi[] = $tumorale;
+        }
+        /*if (!empty($uro)){
+            $medi[] = $uro;
+        }if (!empty($uro)){
+            $medi[] = $uro;
+        }if (!empty($uro)){
+            $medi[] = $uro;
+        }*/
+        //dd($medi);
+        if (empty($medi)) {
             $medicaux = "aucun antécédent";
+        }else{
+            $medicaux = implode(',', $medi);
         }
         if (empty($autre_medicaux)) {
             $autre_medicaux = "pas d'autres antécédents médicaux";
         }
-        if (empty($examen)) {
+        /*if (empty($examen)) {
             $examen = "aucun examen";
+        }else{
+            $examen = implode(',', $exam);
         }
         if (empty($chirurgie)){
             $chirurgie = "Non";
@@ -183,7 +204,7 @@ class PatientExport implements
         }
         if (empty($familial)){
             $familial = "Non";
-        }
+        }*/
 
 
         return [
@@ -201,11 +222,11 @@ class PatientExport implements
             $patient->telephone1,
             $medicaux,
             $autre_medicaux,
-            $chirurgie,
+           /* $chirurgie,
             $gyneco,
             $habitude,
             $familial,
-            $examen,
+            $examen,*/
         ];
     }
 

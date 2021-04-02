@@ -16,7 +16,7 @@
                     @csrf
                     <div class="col">
                         <div class="form-group row">
-                            <label class="text-right col-md-form-label col-md-2 font-weight-bold">Date:</label>
+                            <label class="text-right col-md-form-label col-md-2 font-weight-bold">Date<em style="color: red;">*</em> :</label>
                             <input type="date" name="date" class="form-control col-md-10 @error('date') is-invalid @enderror">
                             @error('date')
                             <span class="invalid-feedback" role="alert">
@@ -25,7 +25,7 @@
                             @enderror
                         </div>
                         <div class="form-group row">
-                            <label class="text-right col-md-form-label col-md-2 font-weight-bold">Prescription:</label>
+                            <label class="text-right col-md-form-label col-md-2 font-weight-bold">Prescription<em style="color: red;">*</em> :</label>
                             <input type="text" name="prescription" class="form-control col-md-10 @error('prescription') is-invalid @enderror">
                             @error('prescription')
                             <span class="invalid-feedback" role="alert">
@@ -34,7 +34,7 @@
                             @enderror
                         </div>
                         <div class="form-group row">
-                            <label class="text-right col-md-form-label col-md-2 font-weight-bold">Posologie:</label>
+                            <label class="text-right col-md-form-label col-md-2 font-weight-bold">Posologie<em style="color: red;">*</em> :</label>
                             <textarea name="posologie" class="form-control col-md-10 @error('posologie') is-invalid @enderror"></textarea>
                             @error('posologie')
                             <span class="invalid-feedback" role="alert">
@@ -43,7 +43,7 @@
                             @enderror
                         </div>
                         <div class="form-group row">
-                            <label class="text-right col-md-form-label col-md-2 font-weight-bold">Voie d'administration:</label>
+                            <label class="text-right col-md-form-label col-md-2 font-weight-bold">Voie d'administration<em style="color: red;">*</em> :</label>
                             <textarea name="voie_administration" class="form-control col-md-10 @error('voie_administration') is-invalid @enderror"></textarea>
                             @error('voie_administration')
                             <span class="invalid-feedback" role="alert">
@@ -63,7 +63,7 @@
                         </div>--}}
 
                         <div class="form-group row">
-                            <label class="text-right col-md-form-label col-md-2 font-weight-bold">Prescripteur:</label>
+                            <label class="text-right col-md-form-label col-md-2 font-weight-bold">Prescripteur<em style="color: red;">*</em> :</label>
                             <select name="prescripteur" id="prescripteur" data-live-search="true" data-placeholder="Choisir un prescripteur" data-style="btn-outline-secondary" class="selectpicker form-control col-md-10 @error('prescripteur') is-invalid @enderror">
                                 @foreach($liste_medecin as $medecin)
                                     <option value="{{$medecin->id}}"> Dr {{$medecin->prenom}} {{$medecin->name}}</option>

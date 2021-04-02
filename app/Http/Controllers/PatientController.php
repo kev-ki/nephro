@@ -20,9 +20,12 @@ class PatientController extends Controller
 {
     public function index()
     {
-        $patient=Patient::orderBy('created_at','desc')->paginate(6);
+        $patient= Patient::orderBy('patients.created_at','desc')
+            ->join('dossiers', 'dossiers.id_patient', 'patients.idpatient')
+            ->where('dossiers.medecinresp', auth()->user()->id)
+            ->paginate(8);
 
-        return view('patient.index',['patient'=>$patient]);
+        return view('patient.index', compact('patient'));
     }
 
     public function edit($id)
@@ -91,16 +94,31 @@ class PatientController extends Controller
         return view('consultation.show', compact('consult', 'infopatient'));
     }
 
-    public function hospitaliser($id)
+    public function createHospitalisation() {
+        return view('patient.hospitaliser');
+    }
+
+    public function hospitaliser(Request $req, $id)
     {
+        $donnees = $req->except('_method', '_token', 'submit');
+        $validation = Validator::make($req->all(), [
+            'motif_hospitalisation' => 'required',
+        ]);
+        if ($validation->fails()) {
+            Session::flash('message', 'Veuillez renseigner le motif d\'hospitalisation SVP!');
+            Session::flash('alert-class', 'alert-danger');
+            return redirect()->Back()->withInput()->withErrors($validation);
+        }
+
         $patient = Patient::where('idpatient', $id)->first();
         $hospi = new Hospitalisation();
         $hospi->id_patient = $patient->idpatient;
+        $hospi->motif_hospitalisation = $req->motif_hospitalisation;
         $patienthospi = Hospitalisation::all();
         $i = 0;
-        foreach ($patienthospi as $patienthospi)
+        foreach ($patienthospi as $value)
         {
-            if ($patienthospi->id_patient === $patient->idpatient) {
+            if ($value->id_patient === $patient->idpatient) {
                 $i ++;
             }
         }
@@ -153,15 +171,18 @@ class PatientController extends Controller
     {
         if ($req->option) {
             if ($req->option === 'id'){
-                $patient = Patient::select('idpatient', 'sexe', 'created_at', 'telephone3')->where('idpatient', 'LIKE', '%'.$req->rechercher.'%')->paginate(6);
+                $patient = Patient::select('idpatient', 'sexe', 'created_at', 'telephone1')->where('idpatient', 'LIKE', '%'.$req->rechercher.'%')->paginate(6);
             }elseif ($req->option === 'nom') {
-                $patient = Patient::select('idpatient', 'sexe', 'created_at', 'telephone3')->where('nom', 'LIKE', '%'.$req->rechercher.'%')->paginate(6);
+                $patient = Patient::select('idpatient', 'sexe', 'created_at', 'telephone1')->where('nom', 'LIKE', '%'.$req->rechercher.'%')->paginate(6);
             }elseif ($req->option === 'prenom') {
-                $patient = Patient::select('idpatient', 'sexe', 'created_at', 'telephone3')->where('prenom', 'LIKE', '%'.$req->rechercher.'%')->paginate(6);
+                $patient = Patient::select('idpatient', 'sexe', 'created_at', 'telephone1')->where('prenom', 'LIKE', '%'.$req->rechercher.'%')->paginate(6);
             }elseif ($req->option === 'domicile') {
-                $patient = Patient::select('idpatient', 'sexe', 'created_at', 'telephone3')->where('telephone2', 'LIKE', '%'.$req->rechercher.'%')->paginate(6);
+                $patient = Patient::select('idpatient', 'sexe', 'created_at', 'telephone1')->where('telephone2', 'LIKE', '%'.$req->rechercher.'%')->paginate(6);
             }elseif ($req->option === 'cellulaire') {
-                $patient = Patient::select('idpatient', 'sexe', 'created_at', 'telephone3')->where('telephone3', 'LIKE', '%'.$req->rechercher.'%')->paginate(6);
+                $patient = Patient::select('idpatient', 'sexe', 'created_at', 'telephone1')->where('telephone1', 'LIKE', '%'.$req->rechercher.'%')->paginate(6);
+            }elseif ($req->option === 'dossier') {
+                $doc = Dossier::select('*')->where('numD', 'LIKE', '%'.$req->rechercher.'%')->first();
+                $patient = Patient::select('idpatient', 'sexe', 'created_at', 'telephone1')->where('idpatient', $doc->id_patient)->paginate(6);
             }
 
             if ($patient)
@@ -215,89 +236,110 @@ class PatientController extends Controller
             'parent2' => 'required|string|min:5',
             'profession' => 'required|string',
             'culte' => 'required|string',
-            'assurance' => 'string',
-            'type_assurance' => 'string',
             'sit_matrimoniale' => 'required|string',
             'region' => 'required|string',
             'ville_village' => 'required|string',
             'telephone1' => 'required|string|min:8|max:12',
-            'telephone2' => 'required|string|min:8|max:12',
-            'telephone3' => 'required|string|min:8|max:12',
             'pers_prevenir' => 'required|string',
             'tel_pers_prevenir' => 'required|string|min:8|max:12',
         ]);
 
         if ($validation->fails()) {
+            Session::flash('message', 'Verifier que tous les champs ont été renseignés SVP!');
+            Session::flash('alert-class', 'alert-danger');
             return redirect()->Back()->withInput()->withErrors($validation);
         }
-        $idpatient = $this->createID(Request('nom'),Request('prenom'),Request('sexe'),Request('datenaissance'),Request('lieunaissance'),Request('ville_village') );
 
-        /*die($idpatient);*/
-        //Folder
-        $doc = new Dossier();
-        $doc->numD = Request('numero_dossier');
-        $doc->iduser = auth()->user()->id;
-        $doc->id_patient = $idpatient;
-        /*$doc->numQ = Request('numero_quittance');*/
-        $doc->chefservice = Request('chefservice');
-        $doc->medecinresp = Request('medecinresp');
-        $doc->DES = Request('des');
+        if (Request('datenaissance') <= date('Y-m-d')) {
+            $idpatient = $this->createID(Request('nom'),Request('prenom'),Request('sexe'),Request('datenaissance'),Request('lieunaissance'),Request('ville_village') );
 
-        /*die($doc);*/
-        //Patient
-        $patient = new Patient();
-        $patient->idpatient = $idpatient;
-        $patient->iduser = auth()->user()->id;
-        $patient->nom = Request('nom');
-        $patient->prenom = Request('prenom');
-        $patient->nomjeunefille = Request('nomjf');
-        $patient->type_doc_id = Request('piecepatient');
-        $patient->num_doc_id = Request('identite');
-        $patient->sexualite = Request('sexualite');
-        $patient->datenaissance = Request('datenaissance');
-        $patient->lieunaissance = Request('lieunaissance');
+            $patients = Patient::all();
+            foreach ($patients as $value) {
+                if ($value->idpatient === $idpatient) {
+                    $count_id = 1;
+                }else {
+                    $count_id = 0;
+                }
+            }
 
-        if (Request('datenaissance')) {
-            $dateNaissance = Request('datenaissance');
-            $aujourdhui = date("Y-m-d");
-            $diff = date_diff(date_create($dateNaissance), date_create($aujourdhui));
-            $patient->age = $diff->format('%y');
-        }
+            if ($count_id === 0) {
+                $doc = new Dossier();
+                $doc->numD = Request('numero_dossier');
+                $doc->iduser = auth()->user()->id;
+                $doc->id_patient = $idpatient;
+                /*$doc->numQ = Request('numero_quittance');*/
+                $doc->chefservice = Request('chefservice');
+                $doc->medecinresp = Request('medecinresp');
+                $doc->DES = Request('des');
 
-        $patient->sexe = Request('sexe');
-        $patient->ethnie = Request('ethnie');
-        $patient->rhesus = Request('rhesus');
-        $patient->electrophoreseHB = Request('electrophoreseHB');
-        $patient->pere = Request('parent1');
-        $patient->mere = Request('parent2');
-        $patient->profession = Request('profession');
-        $patient->culte = Request('culte');
-        $patient->assurance = Request('assurance');
-        $patient->type_assurance = Request('type_assurance');
-        $patient->sit_matrimoniale = Request('sit_matrimoniale');
-        $patient->nombregarcons = Request('enfant1');
-        $patient->nombrefilles = Request('enfant2');
-        $patient->regionorigine = Request('region');
-        $patient->ville_village = Request('ville_village');
-        $patient->telephone1 = Request('telephone1');
-        $patient->telephone2 = Request('telephone2');
-        $patient->telephone3 = Request('telephone3');
-        $patient->tuteur = Request('tuteur');
-        $patient->quartier_secteur_tuteur = Request('quartier_secteur_tuteur');
-        $patient->pers_prevenir = Request('pers_prevenir');
-        $patient->tel_pers_prevenir = Request('tel_pers_prevenir');
+                $patient = new Patient();
+                $patient->idpatient = $idpatient;
+                $patient->iduser = auth()->user()->id;
+                $patient->nom = Request('nom');
+                $patient->prenom = Request('prenom');
+                $patient->nomjeunefille = Request('nomjf');
+                $patient->type_doc_id = Request('piecepatient');
+                $patient->num_doc_id = Request('identite');
+                $patient->sexualite = Request('sexualite');
+                $patient->datenaissance = Request('datenaissance');
+                $patient->lieunaissance = Request('lieunaissance');
 
-        $data1 = $patient->save($donnees);
-        $data2 = $doc->save($donnees);
+                if (Request('datenaissance')) {
+                    $dateNaissance = Request('datenaissance');
+                    $aujourdhui = date("Y-m-d");
+                    $diff = date_diff(date_create($dateNaissance), date_create($aujourdhui));
+                    $patient->age = $diff->format('%y');
+                }
 
+                $patient->sexe = Request('sexe');
+                $patient->ethnie = Request('ethnie');
+                $patient->rhesus = Request('rhesus');
+                $patient->electrophoreseHB = Request('electrophoreseHB');
+                $patient->pere = Request('parent1');
+                $patient->mere = Request('parent2');
+                $patient->profession = Request('profession');
+                $patient->culte = Request('culte');
+                $patient->assurance = Request('assurance');
+                $patient->type_assurance = Request('type_assurance');
+                $patient->sit_matrimoniale = Request('sit_matrimoniale');
+                $patient->nombregarcons = Request('enfant1');
+                $patient->nombrefilles = Request('enfant2');
+                $patient->regionorigine = Request('region');
+                $patient->ville_village = Request('ville_village');
+                $patient->telephone1 = Request('telephone1');
+                $patient->telephone2 = Request('telephone2');
+                $patient->telephone3 = Request('telephone3');
+                $patient->tuteur = Request('tuteur');
+                $patient->quartier_secteur_tuteur = Request('quartier_secteur_tuteur');
+                $patient->pers_prevenir = Request('pers_prevenir');
+                $patient->tel_pers_prevenir = Request('tel_pers_prevenir');
 
-        if ($data1 && $data2) {
-            Session::flash('message', 'Patient enregistrer.');
-            Session::flash('alert-class', 'alert-success');
+                $data1 = $patient->save($donnees);
+                if ($data1) {
+                    $data2 = $doc->save($donnees);
+                }else {
+                    Session::flash('message', 'Erreur! Données non enregistrer.');
+                    Session::flash('alert-class', 'alert-danger');
+                    return Back();
+                }
 
-            return redirect()->route('medecin.index');
-        }else{
-            Session::flash('message', 'Patient non enregistrer.');
+                if ($data1 && $data2) {
+                    Session::flash('message', 'Patient enregistrer.');
+                    Session::flash('alert-class', 'alert-success');
+
+                    return redirect()->route('medecin.index');
+                }else{
+                    Session::flash('message', 'Patient non enregistrer.');
+                    Session::flash('alert-class', 'alert-danger');
+                    return Back();
+                }
+            }elseif ($count_id === 1) {
+                Session::flash('message', 'Erreur! Un patient avec les même informations existe déjà.');
+                Session::flash('alert-class', 'alert-danger');
+                return Back();
+            }
+        }else {
+            Session::flash('message', 'Veuillez renseigner une date de naissance valide SVP.');
             Session::flash('alert-class', 'alert-danger');
             return Back();
         }
@@ -401,15 +443,12 @@ class PatientController extends Controller
 
     private function createID($name,$lastname,$sex,$datenaiss,$codeloc,$resid)
     {
-
         $nom = $name;
         $prenom = $lastname;
         $sexe = $sex;
         $dateNaiss = $datenaiss;
         $codeLoc = $codeloc;
         $residence = $resid;
-
-        //to calcul
 
         $search  = array('À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ò', 'Ó', 'Ô', 'Õ', 'Ö', 'Ù', 'Ú', 'Û', 'Ü', 'Ý', 'à', 'á', 'â', 'ã', 'ä', 'å', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ð', 'ò', 'ó', 'ô', 'õ', 'ö', 'ù', 'ú', 'û', 'ü', 'ý', 'ÿ');
 
@@ -453,7 +492,8 @@ class PatientController extends Controller
 
         $codepatient = substr($hashconcatTotaleconvertit, 50, 20);
 
-        $clecontrole = $hashconcatTotaleconvertit % 97;
+        $var = 97;
+        $clecontrole = $var - bcmod($hashconcatTotaleconvertit, $var);
 
         $idPatient = $codepatient." ".$clecontrole;
 

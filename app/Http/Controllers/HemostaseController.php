@@ -46,32 +46,41 @@ class HemostaseController extends Controller
             'date' => ['required', 'date'],
         ]);
         if ($validation->fails()) {
+            Session::flash('message', 'Verifier que tous les champs ont été renseignés SVP!');
+            Session::flash('alert-class', 'alert-danger');
             return redirect()->Back()->withInput()->withErrors($validation);
         }
 
-        $hemostase= new Hemostase();
-        $hemostase->date=$request->date;
-        $hemostase->tp=$request->tp;
-        $hemostase->tca=$request->tck;
-        $hemostase->tck=$request->tck;
-        $hemostase->dimere=$request->dimere;
+        if ($request->date <= date('Y-m-d')) {
+            $hemostase= new Hemostase();
+            $hemostase->date=$request->date;
+            $hemostase->tp=$request->tp;
+            $hemostase->tca=$request->tck;
+            $hemostase->tck=$request->tck;
+            $hemostase->dimere=$request->dimere;
 
-        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-        $hemostase->id_consultation = $consult;
+            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+            $hemostase->id_consultation = $consult->id;
 
-        if ($hemostase->save())
-        {
-            Session::flash('message', 'informations enregistrées.');
-            Session::flash('alert-class', 'alert-success');
+            if ($hemostase->save())
+            {
+                Session::flash('message', 'informations enregistrées.');
+                Session::flash('alert-class', 'alert-success');
 
-            return back();
-        }
-        else{
-            Session::flash('message', 'Verifier tous les champs SVP!');
+                return back();
+            }
+            else{
+                Session::flash('message', 'Verifier que tous les champs ont été renseignés SVP!');
+                Session::flash('alert-class', 'alert-danger');
+
+                return back();
+            }
+        }else {
+            Session::flash('message', 'Date examen invalide!');
             Session::flash('alert-class', 'alert-danger');
-
             return back();
         }
+
     }
 
     public function show($id)

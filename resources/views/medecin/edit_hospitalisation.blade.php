@@ -39,7 +39,12 @@
                                 </div>
                                 <div class="row form-group">
                                     <label for="numerochambre" class="col-md-3 col-form-label text-right font-weight-bold @error('numerochambre') is-invalid @enderror">Numero Chambre<em style="color: red;">*</em> :</label>
-                                    <input type="text" id="numerochambre" class="col-md-9 form-control" name="numerochambre" value="{{old('numerochambre') ?? $hospitalisation->numerochambre}}">
+                                    <select name="numerochambre" id="numerochambre" data-placeholder="Choisir" class="form-control col-md-9 selectpicker @error('numerochambre') is-invalid @enderror" data-style="btn-outline-secondary">
+                                        @foreach($chambres as $chambre)
+                                            <option value="{{$chambre->numch}}" {{$hospitalisation->numerochambre === $chambre->numch ? 'selected':''}}>{{$chambre->numch}}</option>
+                                        @endforeach
+                                    </select>
+
                                     @error('numerochambre')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -48,7 +53,12 @@
                                 </div>
                                 <div class="row form-group">
                                     <label for="numerolit" class="col-md-3 col-form-label text-right font-weight-bold">Numero lit<em style="color: red;">*</em> :</label>
-                                    <input type="text" id="numerolit" class="col-md-9 form-control @error('numerolit') is-invalid @enderror" name="numerolit" value="{{old('numerolit') ?? $hospitalisation->numerolit}}">
+                                    <select name="numerolit" id="numerolit" data-placeholder="Choisir" class="form-control col-md-9 selectpicker @error('numerolit') is-invalid @enderror" data-style="btn-outline-secondary">
+                                        @foreach($lits as $lit)
+                                            <option value="{{$lit->numlit}}" {{$hospitalisation->numerolit === $lit->numlit ? 'selected':''}}>{{$lit->numlit}}</option>
+                                        @endforeach
+                                    </select>
+
                                     @error('numerolit')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

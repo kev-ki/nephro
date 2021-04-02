@@ -49,7 +49,6 @@ class ImgEndosAnatomopathologieController extends Controller
 
             return back();
         }
-
     }
 
     public function create()
@@ -68,30 +67,37 @@ class ImgEndosAnatomopathologieController extends Controller
             'etablissement_explorateur' => ['required'],
         ]);
         if ($validation->fails()) {
+            Session::flash('message', 'Verifier que tous les champs ont été renseignés SVP!');
+            Session::flash('alert-class', 'alert-danger');
             return redirect()->Back()->withInput()->withErrors($validation);
         }
 
-        $iMGEndosAnatomopathologie=new IMGEndosAnatomopathologie();
-        $iMGEndosAnatomopathologie->date=$request->date;
-        $iMGEndosAnatomopathologie->type=$request->type;
-        $iMGEndosAnatomopathologie->nature=$request->nature;
-        $iMGEndosAnatomopathologie->nom_explorateur=$request->nom_explorateur;
-        $iMGEndosAnatomopathologie->etablissement_explorateur=$request->etablissement_explorateur;
-        $iMGEndosAnatomopathologie->commentaire=$request->commentaire;
+        if ($request->date <= date('Y-m-d')) {
+            $iMGEndosAnatomopathologie=new IMGEndosAnatomopathologie();
+            $iMGEndosAnatomopathologie->date=$request->date;
+            $iMGEndosAnatomopathologie->type=$request->type;
+            $iMGEndosAnatomopathologie->nature=$request->nature;
+            $iMGEndosAnatomopathologie->nom_explorateur=$request->nom_explorateur;
+            $iMGEndosAnatomopathologie->etablissement_explorateur=$request->etablissement_explorateur;
+            $iMGEndosAnatomopathologie->commentaire=$request->commentaire;
 
-        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-        $iMGEndosAnatomopathologie->id_consultation = $consult;
+            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+            $iMGEndosAnatomopathologie->id_consultation = $consult->id;
 
-        if ($iMGEndosAnatomopathologie->save())
-        {
-            Session::flash('message', 'informations enregistrées.');
-            Session::flash('alert-class', 'alert-success');
-            return back();
-        }
-        else{
-            Session::flash('message', 'Verifier tous les champs SVP!');
+            if ($iMGEndosAnatomopathologie->save())
+            {
+                Session::flash('message', 'informations enregistrées.');
+                Session::flash('alert-class', 'alert-success');
+                return back();
+            }
+            else{
+                Session::flash('message', 'Vérifier que tous les champs sont renseignés SVP!');
+                Session::flash('alert-class', 'alert-danger');
+                return back();
+            }
+        }else {
+            Session::flash('message', 'Date examen invalide!');
             Session::flash('alert-class', 'alert-danger');
-
             return back();
         }
     }

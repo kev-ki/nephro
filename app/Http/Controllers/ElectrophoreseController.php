@@ -46,42 +46,49 @@ class ElectrophoreseController extends Controller
         $validation =Validator::make($request->all(), [
             'date' => ['required', 'date'],
             'type' => ['required'],
-            'protide' => ['required'],
+            /*'protide' => ['required'],
             'albumine' => ['required'],
             'alpha1' => ['required'],
             'alpha2' => ['required'],
             'gamma' => ['required'],
-            'beta' => ['required'],
+            'beta' => ['required'],*/
         ]);
         if ($validation->fails()) {
+            Session::flash('message', 'Verifier que tous les champs ont été renseignés SVP!');
+            Session::flash('alert-class', 'alert-danger');
             return redirect()->Back()->withInput()->withErrors($validation);
         }
 
-        $electrophorese=new Electrophorese();
-        $electrophorese->date=$request->date;
-        $electrophorese->type=$request->type;
-        $electrophorese->protide=$request->protide;
-        $electrophorese->albumine=$request->albumine;
-        $electrophorese->alpha1=$request->alpha1;
-        $electrophorese->alpha2=$request->alpha2;
-        $electrophorese->gamma=$request->gamma;
-        $electrophorese->beta=$request->beta;
+        if ($request->date <= date('Y-m-d')){
+            $electrophorese=new Electrophorese();
+            $electrophorese->date=$request->date;
+            $electrophorese->type=$request->type;
+            $electrophorese->protide=$request->protide;
+            $electrophorese->albumine=$request->albumine;
+            $electrophorese->alpha1=$request->alpha1;
+            $electrophorese->alpha2=$request->alpha2;
+            $electrophorese->gamma=$request->gamma;
+            $electrophorese->beta=$request->beta;
 
-        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-        $electrophorese->id_consultation = $consult;
+            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+            $electrophorese->id_consultation = $consult->id;
 
-        if ($electrophorese->save())
-        {
-            Session::flash('message', 'informations enregistrées.');
-            Session::flash('alert-class', 'alert-success');
-            return back();
-        }
-        else{
-            Session::flash('message', 'Verifier tous les champs SVP!');
+            if ($electrophorese->save())
+            {
+                Session::flash('message', 'informations enregistrées.');
+                Session::flash('alert-class', 'alert-success');
+                return back();
+            }
+            else{
+                Session::flash('message', 'Verifier tous les champs SVP!');
+                Session::flash('alert-class', 'alert-danger');
+                return back();
+            }
+        }else {
+            Session::flash('message', 'Date invalide !');
             Session::flash('alert-class', 'alert-danger');
             return back();
         }
-
     }
 
     public function show($id)

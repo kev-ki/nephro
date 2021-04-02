@@ -17,7 +17,7 @@ class InfController extends Controller
 {
     public function index()
     {
-        $patient=Patient::orderBy('created_at','desc')->paginate(6);
+        $patient=Patient::orderBy('created_at','desc')->paginate(8);
 
         return view('infirmier.index',['patient'=>$patient]);
     }
@@ -211,22 +211,31 @@ class InfController extends Controller
     {
         if ($req->option) {
             if ($req->option === 'id'){
-                $patient = Patient::select('idpatient', 'sexe', 'created_at', 'telephone3')->where('idpatient', 'LIKE', '%'.$req->rechercher.'%')->paginate(6);
+                $patient = Patient::select('idpatient', 'sexe', 'created_at', 'telephone1')->where('idpatient', 'LIKE', '%'.$req->rechercher.'%')->paginate(6);
             }elseif ($req->option === 'nom') {
-                $patient = Patient::select('idpatient', 'sexe', 'created_at', 'telephone3')->where('nom', 'LIKE', '%'.$req->rechercher.'%')->paginate(6);
+                $patient = Patient::select('idpatient', 'sexe', 'created_at', 'telephone1')->where('nom', 'LIKE', '%'.$req->rechercher.'%')->paginate(6);
             }elseif ($req->option === 'prenom') {
-                $patient = Patient::select('idpatient', 'sexe', 'created_at', 'telephone3')->where('prenom', 'LIKE', '%'.$req->rechercher.'%')->paginate(6);
+                $patient = Patient::select('idpatient', 'sexe', 'created_at', 'telephone1')->where('prenom', 'LIKE', '%'.$req->rechercher.'%')->paginate(6);
             }elseif ($req->option === 'domicile') {
-                $patient = Patient::select('idpatient', 'sexe', 'created_at', 'telephone3')->where('telephone2', 'LIKE', '%'.$req->rechercher.'%')->paginate(6);
-            }elseif ($req->option === 'cellulaire') {
-                $patient = Patient::select('idpatient', 'sexe', 'created_at', 'telephone3')->where('telephone3', 'LIKE', '%'.$req->rechercher.'%')->paginate(6);
+                $patient = Patient::select('idpatient', 'sexe', 'created_at', 'telephone1')->where('telephone2', 'LIKE', '%'.$req->rechercher.'%')->paginate(6);
+            }elseif ($req->option === 'burkina') {
+                $patient = Patient::select('idpatient', 'sexe', 'created_at', 'telephone1')->where('telephone1', 'LIKE', '%'.$req->rechercher.'%')->paginate(6);
+            }elseif ($req->option === 'dossier') {
+                $doc = Dossier::select('*')->where('numD', 'LIKE', '%'.$req->rechercher.'%')->first();
+                $patient = Patient::select('idpatient', 'sexe', 'created_at', 'telephone1')->where('idpatient', $doc->id_patient)->paginate(6);
             }
 
-            if ($patient)
-            {
-                return view('infirmier.index', compact('patient'));
-            } else{
-                Session::flash('message', 'Patient non trouvé.');
+            if (isset($patient)){
+                if ($patient)
+                {
+                    return view('infirmier.index', compact('patient'));
+                } else{
+                    Session::flash('message', 'Patient non trouvé.');
+                    Session::flash('alert-class', 'alert-danger');
+                    return Back();
+                }
+            }else {
+                Session::flash('message', 'Erreur!');
                 Session::flash('alert-class', 'alert-danger');
                 return Back();
             }

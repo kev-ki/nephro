@@ -80,7 +80,7 @@
 
                             <div class="row form-group">
                                 <label for="modesortie" class="col-md-3 col-form-label text-right font-weight-bold">Mode de sortie :</label>
-                                <input readonly  type="text" readonly id="modesortie" class="col-md-9 form-control" name="modesortie" value="{{old('modesortie') ?? $hospitalisation->mode_sortie}}">
+                                <input  type="text" readonly id="modesortie" class="col-md-9 form-control" name="modesortie" value="{{old('modesortie') ?? $hospitalisation->mode_sortie}}">
                             </div>
                         </div>
                     </div>

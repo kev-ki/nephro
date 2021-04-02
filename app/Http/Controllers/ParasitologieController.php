@@ -46,35 +46,45 @@ class ParasitologieController extends Controller
             'date' => ['required', 'date'],
         ]);
         if ($validation->fails()) {
+            Session::flash('message', 'Verifier que tous les champs ont été renseignés SVP!');
+            Session::flash('alert-class', 'alert-danger');
             return redirect()->Back()->withInput()->withErrors($validation);
         }
 
-        $parasitologie= new Parasitologie();
-        $parasitologie->date=$request->date;
-        $parasitologie->goutteepaisse=$request->goutteEpaisse;
-        $parasitologie->selle_pok=$request->sellePOK;
-        $parasitologie->bmr=$request->bmr;
+        if ($request->date <= date('Y-m-d')) {
+            $parasitologie= new Parasitologie();
+            $parasitologie->date=$request->date;
+            $parasitologie->goutteepaisse=$request->goutteEpaisse;
+            $parasitologie->selle_pok=$request->sellePOK;
+            $parasitologie->bmr=$request->bmr;
 
-        $parasitologie->nom_autre=$request->nom_autre;
-        $parasitologie->resultat=$request->resultat;
-        $parasitologie->nom_autre1=$request->nom_autre1;
-        $parasitologie->resultat1=$request->resultat1;
+            $parasitologie->nom_autre=$request->nom_autre;
+            $parasitologie->resultat=$request->resultat;
+            $parasitologie->nom_autre1=$request->nom_autre1;
+            $parasitologie->resultat1=$request->resultat1;
 
-        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-        $parasitologie->id_consultation = $consult;
+            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+            $parasitologie->id_consultation = $consult->id;
 
-        if ($parasitologie->save())
-        {
-            Session::flash('message', 'informations enregistrées.');
-            Session::flash('alert-class', 'alert-success');
-            return back();
-        }
-        else{
-            Session::flash('message', 'Verifier tous les champs SVP!');
+            if ($parasitologie->save())
+            {
+                Session::flash('message', 'informations enregistrées.');
+                Session::flash('alert-class', 'alert-success');
+                return back();
+            }
+            else{
+                Session::flash('message', 'Verifier que tous les champs ont été renseignés SVP!');
+                Session::flash('alert-class', 'alert-danger');
+
+                return back();
+            }
+        }else {
+            Session::flash('message', 'Date invalide!');
             Session::flash('alert-class', 'alert-danger');
-
             return back();
         }
+
+
 
     }
 

@@ -51,21 +51,27 @@ class AntChirurgicalController extends Controller
             return redirect()->Back()->withInput()->withErrors($validation);
         }
 
-        $antChirurgical= new AntChirurgical();
-        $antChirurgical->date= $request->date;
-        $antChirurgical->infochirurgie= $request->chirurgical;
+        if ($request->date < date('Y-m-d')) {
+            $antChirurgical= new AntChirurgical();
+            $antChirurgical->date= $request->date;
+            $antChirurgical->infochirurgie= $request->chirurgical;
 
-        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-        $antChirurgical->id_consultation = $consult;
+            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+            $antChirurgical->id_consultation = $consult->id;
 
-        if ($antChirurgical->save())
-        {
-            Session::flash('message', 'informations Chirurgicaux enregistrées.');
-            Session::flash('alert-class', 'alert-success');
-            return back();
-        }
-        else{
-            Session::flash('message', 'Verifier tous les champs SVP!');
+            if ($antChirurgical->save())
+            {
+                Session::flash('message', 'informations Chirurgicaux enregistrées.');
+                Session::flash('alert-class', 'alert-success');
+                return back();
+            }
+            else{
+                Session::flash('message', 'Verifier tous les champs SVP!');
+                Session::flash('alert-class', 'alert-danger');
+                return back();
+            }
+        }else {
+            Session::flash('message', 'Veuillez entrer une date valide SVP!');
             Session::flash('alert-class', 'alert-danger');
             return back();
         }

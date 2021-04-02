@@ -32,15 +32,17 @@ class EvolutionController extends Controller
     {
         $validation =Validator::make($request->all(), [
             /*'date' => ['required', 'date'],*/
-            'evolution' => ['required'],
+            'infos_evolution' => ['required'],
         ]);
         if ($validation->fails()) {
+            Session::flash('message', 'Renseignez tous les champs SVP!');
+            Session::flash('alert-class', 'alert-danger');
             return redirect()->Back()->withInput()->withErrors($validation);
         }
 
         $evolution= new Evolution();
-        $evolution->date= $request->date('Y-m-d');
-        $evolution->infos_evolution= $request->evolution;
+        $evolution->date=  date('Y-m-d');
+        $evolution->infos_evolution= $request->infos_evolution;
 
         /*$consult = Consultation::where('id', Session::get('idconsultation'))->first();
         $evolution->id_consultation = $consult;*/
@@ -56,7 +58,7 @@ class EvolutionController extends Controller
             return back();
         }
         else{
-            Session::flash('message', 'Verifier tous les champs SVP!');
+            Session::flash('message', 'Erreur! Renseignez tous les champs SVP!');
             Session::flash('alert-class', 'alert-danger');
 
             return back();

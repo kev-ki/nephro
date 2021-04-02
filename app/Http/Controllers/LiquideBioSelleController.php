@@ -50,31 +50,37 @@ class LiquideBioSelleController extends Controller
             'antibiogramme' => ['required'],
         ]);
         if ($validation->fails()) {
+            Session::flash('message', 'Verifier que tous les champs ont été renseignés SVP!');
+            Session::flash('alert-class', 'alert-danger');
             return redirect()->Back()->withInput()->withErrors($validation);
         }
 
-        $liquideBioSelle=new LiquideBioSelle();
-        $liquideBioSelle->date=$request->date;
-        $liquideBioSelle->analyse=$request->analyse;
-        $liquideBioSelle->antibiogramme=$request->antibiogramme;
-        $liquideBioSelle->nature=$request->nature;
+        if ($request->date <= date('Y-m-d')) {
+            $liquideBioSelle=new LiquideBioSelle();
+            $liquideBioSelle->date=$request->date;
+            $liquideBioSelle->analyse=$request->analyse;
+            $liquideBioSelle->antibiogramme=$request->antibiogramme;
+            $liquideBioSelle->nature=$request->nature;
 
-        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-        $liquideBioSelle->id_consultation = $consult;
+            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+            $liquideBioSelle->id_consultation = $consult->id;
 
-        if ($liquideBioSelle->save())
-        {
-            Session::flash('message', 'informations enregistrées.');
-            Session::flash('alert-class', 'alert-success');
-            return back();
-        }
-        else{
-            Session::flash('message', 'Verifier tous les champs SVP!');
+            if ($liquideBioSelle->save())
+            {
+                Session::flash('message', 'informations enregistrées.');
+                Session::flash('alert-class', 'alert-success');
+                return back();
+            }
+            else{
+                Session::flash('message', 'Vérifier que tous les champs sont renseignés SVP!');
+                Session::flash('alert-class', 'alert-danger');
+                return back();
+            }
+        }else {
+            Session::flash('message', 'Date examen invalide!');
             Session::flash('alert-class', 'alert-danger');
-
             return back();
         }
-
     }
 
     public function show($id)

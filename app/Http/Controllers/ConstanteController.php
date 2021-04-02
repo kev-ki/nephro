@@ -12,14 +12,17 @@ class ConstanteController extends Controller
 {
     public function index()
     {
-
         return view('constante.index');
     }
 
     public function create()
     {
         $patient = Patient::all();
-        return view('constante.create', compact('patient'));
+        if (auth()->user()->type_user == 1) {
+            return view('medecin.constante_create', compact('patient'));
+        }elseif (auth()->user()->type_user == 2) {
+            return view('constante.create', compact('patient'));
+        }
     }
 
     public function store(Request $request)
@@ -29,13 +32,18 @@ class ConstanteController extends Controller
             'poids' => 'required',
             'taille' => 'required',
             'pouls' => 'required',
-            'pulsation' => 'required',
+            'temperature' => 'required',
             'tension' => 'required',
             'patientid' => 'required',
             'statuts' => 'required',
+            'saturation_oxygene' => 'required',
+            'frequence_respiratoire' => 'required',
+            'frequence_cardiaque' => 'required',
         ]);
 
         if ($validation->fails()) {
+            Session::flash('message', 'Renseignez tous les champs SVP.');
+            Session::flash('alert-class', 'alert-danger');
             return redirect()->Back()->withInput()->withErrors($validation);
         }
 
@@ -44,11 +52,15 @@ class ConstanteController extends Controller
         $constant->poids = $request->poids;
         $constant->taille = $request->taille;
         $constant->pouls = $request->pouls;
-        $constant->pulsation = $request->pulsation;
+        $constant->temperature = $request->temperature;
+        $constant->frequence_respiratoire = $request->frequence_respiratoire;
+        $constant->frequence_cardiaque = $request->frequence_cardiaque;
+        $constant->saturation_oxygene = $request->saturation_oxygene;
+        $constant->temperature = $request->temperature;
         $constant->tension = $request->tension;
         $constant->iduser = auth()->user()->id;
         $constant->idpatient = $request->patientid;
-        $constant->statut = $request->statuts;
+        $constant->status = $request->statuts;
 
         if ($constant->save($donnees))
         {
@@ -77,7 +89,11 @@ class ConstanteController extends Controller
         $patient=Patient::where('idpatient',$constante->idpatient)->first();
         $liste_patients = Patient::all();
 
-        return view('constante.edit', compact('constante', 'patient', 'liste_patients'));
+        if (auth()->user()->type_user == 1) {
+            return view('medecin.constante_edit', compact('constante', 'patient', 'liste_patients'));
+        }elseif (auth()->user()->type_user == 2) {
+            return view('constante.edit', compact('constante', 'patient', 'liste_patients'));
+        }
     }
 
     public function update(Request $request, $id)
@@ -86,14 +102,19 @@ class ConstanteController extends Controller
         $validation = Validator::make($request->all(), [
             'poids' => 'required',
             'taille' => 'required',
-            'pulsation' => 'required',
+            'temperature' => 'required',
+            'saturation_oxygene' => 'required',
+            'frequence_respiratoire' => 'required',
+            'frequence_cardiaque' => 'required',
             'tension' => 'required',
             'pouls' => 'required',
             'idpatient' => 'required',
-            'statut' => 'required',
+            'status' => 'required',
         ]);
 
         if ($validation->fails()) {
+            Session::flash('message', 'Renseignez tous les champs SVP.');
+            Session::flash('alert-class', 'alert-danger');
             return redirect()->Back()->withInput()->withErrors($validation);
         }
 

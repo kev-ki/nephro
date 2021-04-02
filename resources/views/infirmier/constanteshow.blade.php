@@ -16,10 +16,6 @@
                 <div class="row p-1">
                     <div class="col-6">
                         <div class="row form-group">
-                            <label class="font-weight-bold text-right col-5">Date de prise:</label>
-                            <input type="date" readonly class="form-control  col-7" value="{{$constante->dateprise}}">
-                        </div>
-                        <div class="row form-group">
                             <label class="font-weight-bold col-5 text-right">Poids:</label>
                             <input type="text" readonly class="form-control col-7" value="{{$constante->poids}} kg">
                         </div>
@@ -31,19 +27,35 @@
                             <label class="font-weight-bold col-5 text-right">Tension:</label>
                             <input type="text" readonly class="form-control col-7" value="{{$constante->tension}}">
                         </div>
-                    </div>
-                    <div class="col-6">
                         <div class="row form-group">
-                            <label class="font-weight-bold text-right col-5">Pulsation:</label>
-                            <input type="text" readonly class="form-control col-7" value="{{$constante->pulsation}}">
-                        </div>
-                        <div class="row form-group">
-                            <label class="font-weight-bold col-5 text-right">Statut:</label>
-                            <input type="text" readonly class="form-control col-7" value="{{$constante->statut}}">
+                            <label class="font-weight-bold col-5 text-right">Frequence Cardiaque:</label>
+                            <input type="text" readonly class="form-control col-7" value="{{$constante->frequence_cardiaque}}">
                         </div>
                         <div class="row form-group">
                             <label class="font-weight-bold text-right col-5">Pouls:</label>
                             <input type="text" readonly class="form-control col-7" value="{{$constante->pouls}}">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row form-group">
+                            <label class="font-weight-bold text-right col-5">Temperature:</label>
+                            <input type="text" readonly class="form-control col-7" value="{{$constante->temperature}}">
+                        </div>
+                        <div class="row form-group">
+                            <label class="font-weight-bold col-5 text-right">Status:</label>
+                            <input type="text" readonly class="form-control col-7" value="{{$constante->status}}">
+                        </div>
+                        <div class="row form-group">
+                            <label class="font-weight-bold col-5 text-right">Saturation en Oxygene:</label>
+                            <input type="text" readonly class="form-control col-7" value="{{$constante->saturation_oxygene}}">
+                        </div>
+                        <div class="row form-group">
+                            <label class="font-weight-bold col-5 text-right">Frequence Respiratoire:</label>
+                            <input type="text" readonly class="form-control col-7" value="{{$constante->frequence_respiratoire}}">
+                        </div>
+                        <div class="row form-group">
+                            <label class="font-weight-bold text-right col-5">Date de prise:</label>
+                            <input type="text" readonly class="form-control  col-7" value="{{$constante->dateprise}}">
                         </div>
                     </div>
                 </div>

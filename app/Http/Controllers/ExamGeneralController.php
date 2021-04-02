@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Constante;
 use App\Consultation;
 use App\Dossier;
 use App\ExamenGeneral;
@@ -37,7 +38,10 @@ class ExamGeneralController extends Controller
 
     public function create()
     {
-        return view('examenGeneral.create');
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $dossier = Dossier::where('numD', $consult->num_dossier)->first();
+        $constante = Constante::where('idpatient', $dossier->id_patient)->orderBy('dateprise', 'desc')->first();
+        return view('examenGeneral.create', compact('constante'));
     }
 
     public function store(Request $request)
@@ -53,40 +57,30 @@ class ExamGeneralController extends Controller
             'etat_langue' => ['required'],
         ]);
         if ($validation->fails()) {
-            return redirect()->Back()->withInput()->withErrors($validation);
+            Session::flash('message', 'Vérifier que tous les champs ont été renseignés SVP!');
+            Session::flash('alert-class', 'alert-danger');
+            return back();
         }
 
         $examenGeneral= new ExamenGeneral();
-        $examenGeneral->date=now();
+        $examenGeneral->date= date('Y-m-d');
         $examenGeneral->taille=$request->taille;
         $examenGeneral->poids=$request->poids;
         $examenGeneral->sc=$request->sc;
         $examenGeneral->temperature=$request->temperature;
         $examenGeneral->pouls=$request->pouls;
         $examenGeneral->ta=$request->ta;
-        $examenGeneral->etatgeneral=$request->etatgeneral;
+        $examenGeneral->etatgeneral= implode(',', $request->etatgeneral);
         $examenGeneral->poidsperdu=$request->pertepoid;
         $examenGeneral->duree_amaigrissement=$request->duree_amaigrissement;
 
         $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-        $examenGeneral->id_consultation = $consult;
+        $examenGeneral->id_consultation = $consult->id;
 
-        foreach ($request->conjonctive as $value) {
-            $examenGeneral->conjonctive=$examenGeneral->conjonctive.','.$value;
-        }
-
-        foreach ($request->etat_langue as $value) {
-            $examenGeneral->etat_langue=$examenGeneral->etat_langue.','.$value;
-        }
-
-        foreach ($request->oeudeme as $value) {
-            $examenGeneral->oeudeme=$examenGeneral->oeudeme.','.$value;
-        }
-
-        foreach ($request->siege as $value) {
-            $examenGeneral->siegeoeudeme=$examenGeneral->siegeoeudeme.','.$value;
-        }
-
+        $examenGeneral->conjonctive= implode(',', $request->conjonctive);
+        $examenGeneral->etat_langue= implode(',', $request->etat_langue);
+        $examenGeneral->oeudeme= implode(',', $request->oeudeme);
+        $examenGeneral->siegeoeudeme= implode(',', $request->siege);
         $examenGeneral->deshydratation=$request->deshydratation;
 
         if ($request->etat_langue === 'autre') {

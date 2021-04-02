@@ -34,8 +34,6 @@ class GenicoObstetriqueController extends Controller
 
             return back();
         }
-
-
     }
 
     public function create()
@@ -50,19 +48,49 @@ class GenicoObstetriqueController extends Controller
             'datedernierregle' => ['required', 'date'],
         ]);
         if ($validation->fails()) {
-            return redirect()->Back()->withInput()->withErrors($validation);
+            Session::flash('message', 'Vérifier que tous les champs sont renseignés SVP!');
+            Session::flash('alert-class', 'alert-danger');
+            return back();
         }
 
         $genicoObstetrique=new GinecoObstetrique();
-        $genicoObstetrique->datepremierregle=$request->datepremierregle;
-        $genicoObstetrique->datedernierregle=$request->datedernierregle;
-        $genicoObstetrique->datemenopause=$request->datemenopose;
+        if ($request->datepremierregle <= date('Y-m-d')){
+            $genicoObstetrique->datepremierregle=$request->datepremierregle;
+        }else {
+            Session::flash('message', 'Date de première menstrue invalide SVP!');
+            Session::flash('alert-class', 'alert-danger');
+            return back();
+        }
+
+        if ($request->datedernierregle <= date('Y-m-d')){
+            $genicoObstetrique->datedernierregle=$request->datedernierregle;
+        }else {
+            Session::flash('message', 'Date de dernière menstrue invalide SVP!');
+            Session::flash('alert-class', 'alert-danger');
+            return back();
+        }
+
+        if ($request->datemenopose <= date('Y-m-d')){
+            $genicoObstetrique->datemenopause=$request->datemenopose;
+        }else {
+            Session::flash('message', 'Date de menopause invalide SVP!');
+            Session::flash('alert-class', 'alert-danger');
+            return back();
+        }
+
         $genicoObstetrique->duree_contraception=$request->durecontraception;
         $genicoObstetrique->type_contraception=$request->typecontraception;
         $genicoObstetrique->gestite=$request->gestite;
         $genicoObstetrique->ev=$request->EV;
         $genicoObstetrique->dcd=$request->DCD;
-        $genicoObstetrique->datederniergrossesse=$request->datederniergrosse;
+
+        if ($request->datederniergrosse <= date('Y-m-d')){
+            $genicoObstetrique->datederniergrossesse=$request->datederniergrosse;
+        }else {
+            Session::flash('message', 'Date de dernière grossesse invalide SVP!');
+            Session::flash('alert-class', 'alert-danger');
+            return back();
+        }
 
         $genicoObstetrique->avortement_spontane=$request->spontane;
         $genicoObstetrique->nombre_avortement_spontane=$request->nombrespont;
@@ -86,7 +114,7 @@ class GenicoObstetriqueController extends Controller
         $genicoObstetrique->autreginecoobs=$request->autre;
 
         $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-        $genicoObstetrique->id_consultation = $consult;
+        $genicoObstetrique->id_consultation = $consult->id;
 
         if ($genicoObstetrique->save())
         {

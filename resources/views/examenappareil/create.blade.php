@@ -20,6 +20,7 @@
                             <label for="nomexamen"  class="col-2 text-right col-form-label font-weight-bold">Nom Appareil<em style="color: red;">*</em> :</label>
                             <select id="nomexamen" name="nomexamen" onchange="examAppareil(this)" data-live-search="true" data-placeholder="Choisir" data-style="btn-outline-secondary"  class="col-4 selectpicker form-control @error('sit_matrimoniale') is-invalid @enderror">
                                 <option value="uro-nephrologique">uro-néphrologique</option>
+                                <option value="uro-nephrologique">nérologique</option>
                                 <option value="cardiovasculaire">cardiovasculaire</option>
                                 <option value="respiratoire">respiratoire</option>
                                 <option value="digestif">digestif</option>

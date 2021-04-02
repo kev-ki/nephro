@@ -52,22 +52,28 @@ class AffTumoraleMaligneController extends Controller
             return redirect()->Back()->withInput()->withErrors($validation);
         }
 
-        $affectiontumorale=new AffTumoraleMaligne();
-        $affectiontumorale->type_affection= $request->type;
-        $affectiontumorale->traitement=$request->traitement;
-        $affectiontumorale->date_decouverte=$request->datedecouverte;
+        if ($request->datedecouverte < date('Y-m-d')) {
+            $affectiontumorale=new AffTumoraleMaligne();
+            $affectiontumorale->type_affection= $request->type;
+            $affectiontumorale->traitement=$request->traitement;
+            $affectiontumorale->date_decouverte=$request->datedecouverte;
 
-        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-        $affectiontumorale->id_consultation = $consult;
+            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+            $affectiontumorale->id_consultation = $consult->id;
 
-        if ($affectiontumorale->save())
-        {
-            Session::flash('message', 'informations Affections tumorales malignes enregistrées.');
-            Session::flash('alert-class', 'alert-success');
-            return back();
-        }
-        else{
-            Session::flash('message', 'Verifier tous les champs SVP!');
+            if ($affectiontumorale->save())
+            {
+                Session::flash('message', 'informations Affections tumorales malignes enregistrées.');
+                Session::flash('alert-class', 'alert-success');
+                return back();
+            }
+            else{
+                Session::flash('message', 'Verifier tous les champs SVP!');
+                Session::flash('alert-class', 'alert-danger');
+                return back();
+            }
+        }else {
+            Session::flash('message', 'Veuillez entrer une date valide SVP!');
             Session::flash('alert-class', 'alert-danger');
             return back();
         }

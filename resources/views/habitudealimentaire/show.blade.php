@@ -8,7 +8,7 @@
             <div class="card-body">
                 <div class="col">
                     <div class="form-group row">
-                        <label class="text-right font-weight-bold col-2">Aliment:</label>
+                        <label class="text-right font-weight-bold col-2">Habitude:</label>
                         <input type="text" readonly name="aliment" class="col-4 form-control" value="{{$habitude->aliment}}">
                         <label class="text-right font-weight-bold col-2">Type:</label>
                         <input type="text" readonly name="type" class="col-4 form-control" value="{{$habitude->type}}">

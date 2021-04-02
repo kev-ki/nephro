@@ -47,35 +47,42 @@ class ExamAppareilController extends Controller
             'infoexamen' => ['required'],
         ]);
         if ($validation->fails()) {
-            return redirect()->Back()->withInput()->withErrors($validation);
-        }
-
-        $examenAppareil= new ExamenAppareil();
-        $examenAppareil->nom_examen=$request->nomexamen;
-        $examenAppareil->details=$request->infoexamen;
-        $examenAppareil->date_examen=$request->dateexamen;
-
-        if ($request->nom_examen === 'autre') {
-            $examenAppareil->nom_autre = $request->nom_autre;
-        }else {
-            $examenAppareil->nom_autre = Null;
-        }
-
-        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-        $examenAppareil->id_consultation = $consult;
-
-        if ($examenAppareil->save())
-        {
-            Session::flash('message', 'informations enregistrées.');
-            Session::flash('alert-class', 'alert-success');
-            return back();
-        }
-        else{
-            Session::flash('message', 'Verifier tous les champs SVP!');
+            Session::flash('message', 'Vérifier que tous les champs ont été renseignés SVP!');
             Session::flash('alert-class', 'alert-danger');
             return back();
         }
 
+        if ($request->dateexamen <= date('Y-m-d')) {
+            $examenAppareil= new ExamenAppareil();
+            $examenAppareil->nom_examen=$request->nomexamen;
+            $examenAppareil->details=$request->infoexamen;
+            $examenAppareil->date_examen=$request->dateexamen;
+
+            if ($request->nom_examen === 'autre') {
+                $examenAppareil->nom_autre = $request->nom_autre;
+            }else {
+                $examenAppareil->nom_autre = Null;
+            }
+
+            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+            $examenAppareil->id_consultation = $consult->id;
+
+            if ($examenAppareil->save())
+            {
+                Session::flash('message', 'informations enregistrées.');
+                Session::flash('alert-class', 'alert-success');
+                return back();
+            }
+            else{
+                Session::flash('message', 'Verifier que tous les champs ont été renseignés SVP!');
+                Session::flash('alert-class', 'alert-danger');
+                return back();
+            }
+        }else {
+            Session::flash('message', 'Date examen invalide!');
+            Session::flash('alert-class', 'alert-danger');
+            return back();
+        }
     }
 
     public function show($id)

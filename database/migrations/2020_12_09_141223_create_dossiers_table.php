@@ -15,14 +15,15 @@ class CreateDossiersTable extends Migration
     {
         Schema::create('dossiers', function (Blueprint $table) {
             $table->string('numD')->primary();
-            $table->unsignedBigInteger('iduser')->index();
             $table->string('id_patient')->index();
-            $table->string('medecinresp');
+            $table->unsignedBigInteger('iduser')->index();
+            $table->unsignedBigInteger('medecinresp')->index();
             $table->string('chefservice');
-            $table->string('DES');
+            $table->string('DES')->nullable();
 
             $table->foreign('id_patient')->references('idpatient')->on('patients');
             $table->foreign('iduser')->references('id')->on('users');
+            $table->foreign('medecinresp')->references('id')->on('users');
             $table->timestamps();
         });
     }

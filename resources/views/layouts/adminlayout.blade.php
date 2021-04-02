@@ -107,6 +107,9 @@
                                             <title>paramètre du compte</title>
                                         </svg> Paramètre
                                     </a>
+                                    @if(auth()->user()->type_user === 1)
+                                        <a class="dropdown-item" href="{{route('medecin.index')}}">Compte Medecin</a>
+                                    @endif
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf

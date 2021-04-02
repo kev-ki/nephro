@@ -1,8 +1,8 @@
 @extends('layouts.medlayout')
 
 @section('content')
-    <h1 class="text-center" style="background-col-mdor: #01A9CB; height: 30px; font-size: large; padding-top: 5px; font-weight: bold">Evolution</h1>
-    <div class="container-fluid p-2" style="background-col-mdor: white">
+    <h1 class="text-center" style="background-color: #01A9CB; height: 30px; font-size: large; padding-top: 5px; font-weight: bold">Evolution</h1>
+    <div class="container" style="background-colotr: white">
         <div class="flash-message col-md-12">
             @if(Session::has('message'))
                 <div class="alert {{Session::get('alert-class')}}">
@@ -10,11 +10,11 @@
                 </div>
             @endif
         </div>
-        <div class="card p-2">
+        <div class="card">
             <div class="card-body">
                 <form action="{{route('evolution.store')}}" method="post">
                     @csrf
-                    <div class="col-md">
+                    <div class="col">
                         {{--<div class="form-group row">
                             <label class="text-right col-md-form-label col-md-2 font-weight-bold">Date:</label>
                             <input type="date" name="date" class="form-control col-md-10">

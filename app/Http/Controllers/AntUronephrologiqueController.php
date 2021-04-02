@@ -61,15 +61,10 @@ class AntUronephrologiqueController extends Controller
 
         if ($request->nom === 'oeudeme' || $request->nom === 'proteinurie')
         {
-            foreach ($request->traitement as $value)
-            {
-                $antUronephrologique->traitement= $antUronephrologique->traitement.','.$value;
-            }
+            $antUronephrologique->traitement= implode(',', $request->traitement);
+
             if (isset($request->siegeoeudeme)) {
-                foreach ($request->siegeoeudeme as $value)
-                {
-                    $antUronephrologique->siegeoeudeme= $antUronephrologique->siegeoeudeme.','.$value;
-                }
+                $antUronephrologique->siegeoeudeme= implode(',', $request->siegeoeudeme);
             }
 
             $antUronephrologique->evolution=$request->evolution;
@@ -85,9 +80,7 @@ class AntUronephrologiqueController extends Controller
 
         if ($request->nom === 'hematurie')
         {
-            foreach ($request->type_hematurie as $value) {
-                $antUronephrologique->type_hematurie= $antUronephrologique->type_hematurie.','.$value;
-            }
+            $antUronephrologique->type_hematurie= implode(',', $request->type_hematurie);
             $antUronephrologique->signe_accompagnement= $request->signeaccompagnement;
         }else {
             $antUronephrologique->type_hematurie=Null;
@@ -115,7 +108,7 @@ class AntUronephrologiqueController extends Controller
         }
 
         $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-        $antUronephrologique->id_consultation = $consult;
+        $antUronephrologique->id_consultation = $consult->id;
 
         if ($antUronephrologique->save())
         {

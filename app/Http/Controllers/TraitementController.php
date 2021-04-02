@@ -43,32 +43,43 @@ class TraitementController extends Controller
             'prescripteur' => ['required'],
         ]);
         if ($validation->fails()) {
+            Session::flash('message', 'Renseignez tous les champs SVP!');
+            Session::flash('alert-class', 'alert-danger');
             return redirect()->Back()->withInput()->withErrors($validation);
         }
 
-        $traitement=new Traitement();
-        $traitement->date=$request->date;
-        //$traitement->ordonnance=$request->ordonnance;
-        $traitement->prescription=$request->prescription;
-        $traitement->posologie=$request->posologie;
-        $traitement->voie_administration= $request->voie_administration;
-        $traitement->prescripteur= $request->prescripteur;
+        if ($request->date <= date('Y-m-d')) {
+            $traitement=new Traitement();
+            $traitement->date=$request->date;
+            //$traitement->ordonnance=$request->ordonnance;
+            $traitement->prescription=$request->prescription;
+            $traitement->posologie=$request->posologie;
+            $traitement->voie_administration= $request->voie_administration;
+            $traitement->prescripteur= $request->prescripteur;
 
-        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-        $traitement->id_consultation = $consult;
+            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+            $traitement->id_consultation = $consult->id;
 
-        if ($traitement->save())
-        {
-            Session::flash('message', 'informations enregistrées.');
-            Session::flash('alert-class', 'alert-success');
-            return back();
-        }
-        else{
-            Session::flash('message', 'Verifier tous les champs SVP!');
+            if ($traitement->save())
+            {
+                Session::flash('message', 'informations enregistrées.');
+                Session::flash('alert-class', 'alert-success');
+                return back();
+            }
+            else{
+                Session::flash('message', 'Verifier que tous les champs ont été renseignés SVP!');
+                Session::flash('alert-class', 'alert-danger');
+
+                return back();
+            }
+        }else {
+            Session::flash('message', 'Date invalide. Veuillez renseigner une date valide SVP!');
             Session::flash('alert-class', 'alert-danger');
-
             return back();
         }
+
+
+
 
     }
 

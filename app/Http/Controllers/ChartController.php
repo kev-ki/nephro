@@ -35,7 +35,7 @@ class ChartController extends Controller
 
     }
 
-    public function barchart($req)
+    public function barchart()
     {
         $users = Patient::select(DB::raw("count(*) as count"))
             ->whereYear('created_at', date('Y'))

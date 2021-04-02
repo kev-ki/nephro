@@ -16,20 +16,20 @@
                 <form action="{{route('examen-general.store')}}" method="post">
                     @csrf
                     <div class="col">
-                        <div class="form-group row">
-                            <input type="text" name="taille" placeholder="Taille" class="col-md-2 form-control">
-                            <input type="text" name="poids" placeholder="Poids" class="col-md-2 form-control">
-                            <input type="text" name="sc" placeholder="SC" class="col-md-2 form-control">
-                            <input type="text" name="ta" placeholder="TA" class="col-md-2 form-control">
-                            <input type="text" name="pouls" placeholder="Pouls" class="col-md-2 form-control">
-                            <input type="text" name="temperature" placeholder="Température" class="col-md-2 form-control"  >
+                        <div class="form-group row d-flex justify-content-end">
+                            <input type="text" name="taille" placeholder="Taille" class="col-sm-1 form-control" value="{{old('taille') ?? $constante->taille}}"><span class="text-center disabled btn btn-outline-secondary">Cm</span>
+                            <input type="text" name="poids" placeholder="Poids" class="col-sm-1 form-control" value="{{old('poids') ?? $constante->poids}}"><span class="text-center disabled btn btn-outline-secondary">Kg</span>
+                            <input type="text" name="sc" placeholder="SC" class="col-sm-1 form-control" value="{{old('sc') ?? $constante->saturation_oxygene}}"><span class="text-center disabled btn btn-outline-secondary"></span>
+                            <input type="text" name="ta" placeholder="TA" class="col-sm-1 form-control" value="{{old('ta') ?? $constante->frequence_cardiaque}}"><span class="text-center disabled btn btn-outline-secondary"></span>
+                            <input type="text" name="pouls" placeholder="Pouls" class="col-sm-1 form-control" value="{{old('pouls') ?? $constante->pouls}}"><span class="text-center disabled btn btn-outline-secondary"></span>
+                            <input type="text" name="temperature" placeholder="Température" class="col-sm-1 form-control" value="{{old('temperature') ?? $constante->temperature}}"><span class="text-center disabled btn btn-outline-secondary">°C</span>
                         </div>
                     </div>
 
                     <div class="col">
                         <div class="form-group row">
                             <label class="text-right col-md-2 font-weight-bold">Etat général<em style="color: red;">*</em> :</label>
-                            <select class="selectpicker form-control col-md-10" onchange="examGenearl(this)" data-placeholder="Choisir" data-style="btn-outline-secondary" name="etatgeneral">
+                            <select class="selectpicker form-control col-md-10" onchange="examGeneralAmai(this)" data-placeholder="Choisir" multiple data-style="btn-outline-secondary" name="etatgeneral[]">
                                 <option value="bon">Bon</option>
                                 <option value="moyen">Moyen</option>
                                 <option value="mauvais">Mauvais</option>
@@ -59,7 +59,7 @@
                                 <option value="icterique">Ictérique</option>
                             </select>
                             <label class="text-right col-md-2 font-weight-bold">Langue<em style="color: red;">*</em> :</label>
-                            <select class="selectpicker form-control col-md-4"  data-placeholder="Choisir" data-style="btn-outline-secondary" multiple onchange="examGenearl(this)" name="etat_langue[]">
+                            <select class="selectpicker form-control col-md-4"  data-placeholder="Choisir" data-style="btn-outline-secondary" multiple onchange="examGeneralAutre(this)" name="etat_langue[]">
                                 <option value="propre">Propre </option>
                                 <option value="saburrale">Saburrale </option>
                                 <option value="garde empreinte des dents">Garde l’empreinte des dents</option>

@@ -30,6 +30,13 @@ Route::resource('medecin', 'PatientController');/*->middleware('patient');*/
 Route::get('Medecin/{id}/edit', 'PatientController@editprofile')->name('medecin.editprofile');
 Route::put('Medecin/{id}', 'PatientController@updateprofile')->name('medecin.updateprofile');
 Route::get('Medecin/Rendez-Vous', 'MedecinController@index')->name('medecin.rdv');
+Route::get('Medecin/Rendez-Vous/create', 'RdvController@create')->name('medecin.rdv_create');
+Route::get('Medecin/Rendez-Vous/index', 'RdvController@index')->name('medecin.rdv_index');
+Route::get('Medecin/Rendez-Vous/{id}/edit', 'RdvController@edit')->name('medecin.rdv_edit');
+Route::post('Medecin/Rendez-Vous/store', 'RdvController@edit')->name('medecin.rdv_store');
+Route::put('Medecin/Rendez-Vous/{id}/update', 'RdvController@update')->name('medecin.rdv_update');
+Route::delete('Medecin/Rendez-Vous/{id}/delete', 'RdvController@destroy')->name('medecin.rdv_destroy');
+
 Route::post('medecin/Search/', 'PatientController@search')->name('medecin.search');
 Route::post('medecin/consultation/Search/{id}', 'PatientController@consultSearch')->name('consultation.search');
 Route::post('medecin/constante/Search/', 'PatientController@constanteSearch')->name('constante.search');
@@ -37,7 +44,12 @@ Route::get('Medecin/constante/{id}', 'PatientController@show_constante')->name('
 Route::get('Medecin/constante/index/{id}', 'PatientController@index_constante')->name('medecin.constanteindex');
 Route::get('medecin/consultation/{id}', 'PatientController@show_consultation')->name('medecin.consultation');
 Route::get('medecin/consultation/index/{id}', 'PatientController@index_consultation')->name('medecin.consultationindex');
-Route::get('medecin/hospitaliser/{id}', 'PatientController@hospitaliser')->name('medecin.hospitaliser');
+Route::post('medecin/hospitaliser/{id}', 'PatientController@hospitaliser')->name('medecin.hospitaliser');
+Route::get('medecin/hospitalisation/{id}/exeat', 'ArchiveHospitalisationController@libererPatient')->name('libererPatient');
+Route::get('medecin/hospitalisation/archivage/index', 'ArchiveHospitalisationController@index')->name('archivage.index');
+Route::get('medecin/hospitalisation/create', 'PatientController@createHospitalisation')->name('medecin.hospi_create');
+Route::get('patient/constantes/create', 'ConstanteController@create')->name('medecin.constante_create');
+Route::get('patient/constante/{id}/edit', 'ConstanteController@edit')->name('medecin.constante_edit');
 
 //Statistique et impression
 Route::get('statistique', 'StatistiqueController@index')->name('statistique');
@@ -71,7 +83,7 @@ Route::resource('chirurgicaux', 'AntChirurgicalController');
 Route::get('consultation/{id}/chirurgicaux', 'AntChirurgicalController@liste_chirurgie')->name('liste_chirurgie');
 
 Route::resource('gyneco-obstetrique', 'GenicoObstetriqueController');
-Route::get('consultation/{id}/Gyneco-obstetrique', 'GenicoObstetriqueController@liste_obstetrique')->name('liste_obstetrique');
+Route::get('consultation/{id}/GObstetrique', 'GenicoObstetriqueController@liste_obstetrique')->name('liste_obstetrique');
 
 Route::resource('habitude-alimentaire', 'HabitudeAlimentaireController');Route::get('consultation/{id}/Habitude-Alimentaire', 'HabitudeAlimentaireController@liste_habitude')->name('liste_habitude');
 
@@ -162,8 +174,13 @@ Route::get('infirmier/constante/{id}/show', 'InfController@show_constante')->nam
 Route::get('infirmier/patient/{id}/constante/index', 'InfController@index_constante')->name('infirmier.constanteindex');
 
 //Hospitalisation
-Route::resource('patient/hospitalisation', 'HospitalisationController');
+Route::resource('patients/hospitalisation', 'HospitalisationController');
+Route::get('hospitalisations/attente', 'HospitalisationController@faire_hospitaliser')->name('faire_hospitaliser');
 Route::post('infirmier/patient/hospitalisation/Search/', 'HospitalisationController@search')->name('hospi.search');
+Route::post('medecin/patient/hospitalisation/Search/', 'HospitalisationController@search')->name('medecin.hospi_search');
+Route::post('medecin/patient/archive-hospitalisation/Search/', 'ArchiveHospitalisationController@search')->name('medecin.archive_search');
+Route::post('infirmier/patient/archive-hospitalisation/Search/', 'ArchiveHospitalisationController@search')->name('infirmier.archive_search');
+
 /*Route::get('medecin/patient/hospitalisation/index/', 'MedecinController@index_hospi')->name('index_hospi');
 Route::post('medecin/patient/hospitalisation/Search/', 'MedecinController@search_hospi')->name('search_hospi');
 Route::get('medecin/patient/hospitalisation/{id}/show/', 'MedecinController@show_hospi')->name('show_hospi');*/
@@ -177,7 +194,7 @@ Route::post('infirmier/constante/Search/', 'infController@constanteSearch')->nam
 //Graphiques
 Route::get('piechart-first', 'ChartController@piechart_first');
 Route::get('piechart-second', 'ChartController@piechart_second');
-Route::post('barchart', 'ChartController@barchart')->name('barchart');
+Route::get('barchart', 'ChartController@barchart')->name('barchart');
 
 // Export / Import
 Route::get('export/excel', 'ImportExportController@export_excel')->name('export_excel');

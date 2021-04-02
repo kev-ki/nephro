@@ -47,69 +47,76 @@ class BilanSanguinController extends Controller
             'date' => ['required', 'date'],
         ]);
         if ($validation->fails()) {
-            return redirect()->Back()->withInput()->withErrors($validation);
-        }
-
-        $bilanSanguin=new BilanSanguin();
-        $bilanSanguin->nom_autre=$request->nom_autre;
-        $bilanSanguin->resultat=$request->resultat;
-        $bilanSanguin->nom_autre1=$request->nom_autre1;
-        $bilanSanguin->resultat1=$request->resultat1;
-        $bilanSanguin->folatesanguin=$request->folatesanguin;
-        $bilanSanguin->b12sanguin=$request->b12sanguin;
-        $bilanSanguin->sattetranferrine=$request->satetranferine;
-        $bilanSanguin->ferserique=$request->ferserique;
-        $bilanSanguin->crp=$request->crp;
-        $bilanSanguin->reticulocyte=$request->reticulocyte;
-        $bilanSanguin->leu=$request->leu;
-        $bilanSanguin->plaquette=$request->plaquette;
-        $bilanSanguin->gb=$request->gb;
-        $bilanSanguin->hb=$request->hb;
-        $bilanSanguin->hdl=$request->hd;
-        $bilanSanguin->vgm=$request->vgm;
-        $bilanSanguin->triglycederide=$request->triglycederide;
-        $bilanSanguin->cholesterol=$request->cholesterol;
-        $bilanSanguin->glycemie=$request->glycemie;
-        $bilanSanguin->amylas=$request->amylas;
-        $bilanSanguin->myoglobine=$request->myoglobine;
-        $bilanSanguin->troponine=$request->troponine;
-        $bilanSanguin->ldh=$request->ldh;
-        $bilanSanguin->cpk=$request->cpk;
-        $bilanSanguin->gammagt=$request->gammagt;
-        $bilanSanguin->biltotal=$request->biltotal;
-        $bilanSanguin->asat=$request->asat;
-        $bilanSanguin->pu=$request->pu;
-        $bilanSanguin->date=$request->date;
-        $bilanSanguin->azotemie=$request->azotemie;
-        $bilanSanguin->creatinemie=$request->creatinemie;
-        $bilanSanguin->clairance=$request->clairance;
-        $bilanSanguin->calcemie=$request->calcemie;
-        $bilanSanguin->uricemie=$request->uricemie;
-        $bilanSanguin->natremie=$request->natremie;
-        $bilanSanguin->kaliemie=$request->kaliemie;
-        $bilanSanguin->chloremie=$request->choremie;
-        $bilanSanguin->phosphoremie=$request->phosphoremie;
-        $bilanSanguin->magnesemie=$request->magnesemie;
-        $bilanSanguin->bicarbonatemie=$request->bicarbonatemie;
-        $bilanSanguin->protidemie=$request->protidemie;
-        $bilanSanguin->phosphatase=$request->phosphatase;
-        $bilanSanguin->pth=$request->pth;
-
-        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-        $bilanSanguin->id_consultation = $consult;
-
-        if ($bilanSanguin->save())
-        {
-            Session::flash('message', 'informations enregistrées.');
-            Session::flash('alert-class', 'alert-success');
-            return back();
-        }
-        else{
-            Session::flash('message', 'Verifier tous les champs SVP!');
+            Session::flash('message', 'Verifier que tous les champs ont été renseignés SVP!');
             Session::flash('alert-class', 'alert-danger');
             return back();
         }
 
+        if ($request->date <= date('Y-m-d')) {
+            $bilanSanguin=new BilanSanguin();
+            $bilanSanguin->nom_autre=$request->nom_autre;
+            $bilanSanguin->resultat=$request->resultat;
+            $bilanSanguin->nom_autre1=$request->nom_autre1;
+            $bilanSanguin->resultat1=$request->resultat1;
+            $bilanSanguin->folatesanguin=$request->folatesanguin;
+            $bilanSanguin->b12sanguin=$request->b12sanguin;
+            $bilanSanguin->sattetranferrine=$request->satetranferine;
+            $bilanSanguin->ferserique=$request->ferserique;
+            $bilanSanguin->crp=$request->crp;
+            $bilanSanguin->reticulocyte=$request->reticulocyte;
+            $bilanSanguin->leu=$request->leu;
+            $bilanSanguin->plaquette=$request->plaquette;
+            $bilanSanguin->gb=$request->gb;
+            $bilanSanguin->hb=$request->hb;
+            $bilanSanguin->hdl=$request->hd;
+            $bilanSanguin->vgm=$request->vgm;
+            $bilanSanguin->triglycederide=$request->triglycederide;
+            $bilanSanguin->cholesterol=$request->cholesterol;
+            $bilanSanguin->glycemie=$request->glycemie;
+            $bilanSanguin->amylas=$request->amylas;
+            $bilanSanguin->myoglobine=$request->myoglobine;
+            $bilanSanguin->troponine=$request->troponine;
+            $bilanSanguin->ldh=$request->ldh;
+            $bilanSanguin->cpk=$request->cpk;
+            $bilanSanguin->gammagt=$request->gammagt;
+            $bilanSanguin->biltotal=$request->biltotal;
+            $bilanSanguin->asat=$request->asat;
+            $bilanSanguin->pu=$request->pu;
+            $bilanSanguin->date=$request->date;
+            $bilanSanguin->azotemie=$request->azotemie;
+            $bilanSanguin->creatinemie=$request->creatinemie;
+            $bilanSanguin->clairance=$request->clairance;
+            $bilanSanguin->calcemie=$request->calcemie;
+            $bilanSanguin->uricemie=$request->uricemie;
+            $bilanSanguin->natremie=$request->natremie;
+            $bilanSanguin->kaliemie=$request->kaliemie;
+            $bilanSanguin->chloremie=$request->choremie;
+            $bilanSanguin->phosphoremie=$request->phosphoremie;
+            $bilanSanguin->magnesemie=$request->magnesemie;
+            $bilanSanguin->bicarbonatemie=$request->bicarbonatemie;
+            $bilanSanguin->protidemie=$request->protidemie;
+            $bilanSanguin->phosphatase=$request->phosphatase;
+            $bilanSanguin->pth=$request->pth;
+
+            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+            $bilanSanguin->id_consultation = $consult->id;
+
+            if ($bilanSanguin->save())
+            {
+                Session::flash('message', 'informations enregistrées.');
+                Session::flash('alert-class', 'alert-success');
+                return back();
+            }
+            else{
+                Session::flash('message', 'Verifier que tous les champs ont été renseignés SVP!');
+                Session::flash('alert-class', 'alert-danger');
+                return back();
+            }
+        }else {
+            Session::flash('message', 'Date invalide!');
+            Session::flash('alert-class', 'alert-danger');
+            return back();
+        }
     }
 
     public function show($id)

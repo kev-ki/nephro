@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AutreResultat;
+use App\Consultation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -23,7 +24,11 @@ class AutreResultatController extends Controller
     {
         $autreResultat=new AutreResultat();
         $autreResultat->nom=$request->nom;
+        $autreResultat->date=$request->date;
         $autreResultat->resultat=$request->resultat;
+
+        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+        $autreResultat->id_consultation = $consult->id;
 
         if ($autreResultat->save())
         {

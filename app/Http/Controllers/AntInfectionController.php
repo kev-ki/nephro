@@ -68,44 +68,52 @@ class AntInfectionController extends Controller
             $antInfection->date_last_episode = Null;
         }
 
-        if ($request->nom === 'bilharziose') {
-            $antInfection->datedecouverte = $request->datedecouverte;
-            $antInfection->siege_infection = $request->siegeinfection;
-        }else {
-            $antInfection->datedecouverte = Null;
-            $antInfection->siege_infection = Null;
-        }
+        if ($request->datedecouverte){
+            if ($request->datedecouverte < date('Y-m-d')) {
+                if ($request->nom === 'tuberculose') {
+                    $antInfection->datedecouverte = $request->datedecouverte;
+                    $antInfection->siege_infection = $request->siegeinfection;
+                    $antInfection->duree_tuberculose = $request->duree;
+                }else {
+                    $antInfection->datedecouverte = Null;
+                    $antInfection->siege_infection = Null;
+                    $antInfection->duree_tuberculose = Null;
+                }
 
+                if ($request->nom === 'bilharziose') {
+                    $antInfection->datedecouverte = $request->datedecouverte;
+                    $antInfection->siege_infection = $request->siegeinfection;
+                }else {
+                    $antInfection->datedecouverte = Null;
+                    $antInfection->siege_infection = Null;
+                }
+
+                if ($request->nom === 'infectionvirale') {
+                    $antInfection->datedecouverte = $request->datedecouverte;
+                    $antInfection->type_infection = $request->type_infection;
+                    $antInfection->siege_infection = $request->siegeinfection;
+                    $antInfection->nombreepisode = $request->nombreepisode;
+                }else {
+                    $antInfection->datedecouverte = Null;
+                    $antInfection->type_infection = Null;
+                    $antInfection->siege_infection = Null;
+                    $antInfection->nombreepisode = Null;
+                }
+            }else {
+                Session::flash('message', 'Veuillez entrer une date valide SVP!');
+                Session::flash('alert-class', 'alert-danger');
+                return back();
+            }
+        }
+        
         if ($request->nom === 'paludisme') {
             $antInfection->nb_acces_par_an = $request->nombreacces;
         }else {
             $antInfection->nb_acces_par_an = Null;
         }
 
-        if ($request->nom === 'infectionvirale') {
-            $antInfection->datedecouverte = $request->datedecouverte;
-            $antInfection->type_infection = $request->type_infection;
-            $antInfection->siege_infection = $request->siegeinfection;
-            $antInfection->nombreepisode = $request->nombreepisode;
-        }else {
-            $antInfection->datedecouverte = Null;
-            $antInfection->type_infection = Null;
-            $antInfection->siege_infection = Null;
-            $antInfection->nombreepisode = Null;
-        }
-
-        if ($request->nom === 'tuberculose') {
-            $antInfection->datedecouverte = $request->datedecouverte;
-            $antInfection->siege_infection = $request->siegeinfection;
-            $antInfection->duree_tuberculose = $request->duree;
-        }else {
-            $antInfection->datedecouverte = Null;
-            $antInfection->siege_infection = Null;
-            $antInfection->duree_tuberculose = Null;
-        }
-
         $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-        $antInfection->id_consultation = $consult;
+        $antInfection->id_consultation = $consult->id;
 
         if ($antInfection->save())
         {

@@ -47,51 +47,68 @@ class SerologieController extends Controller
             'date' => ['required', 'date'],
         ]);
         if ($validation->fails()) {
+            Session::flash('message', 'Verifier que tous les champs ont été renseignés SVP!');
+            Session::flash('alert-class', 'alert-danger');
             return redirect()->Back()->withInput()->withErrors($validation);
         }
 
-        $serologie=new Serologie();
-        $serologie->date=$request->date;
-        $serologie->cd4cv=$request->cd4cb;
-        $serologie->aghbs=$request->aghbs;
-        $serologie->aghbe=$request->aghbe;
-        $serologie->acantihvc=$request->acantihvc;
-        $serologie->serologie_vih=$request->serologievih;
-        $serologie->acantihbc=$request->acantihbc;
-        $serologie->aslo=$request->aslo;
-        $serologie->facteur_rhumatoide=$request->facteurrh;
-        $serologie->widal=$request->widal;
-        $serologie->ac_antinucleaire=$request->acnucleaire;
-        $serologie->ac_antidna=$request->acdna;
-        $serologie->ac_antism=$request->acsm;
-        $serologie->ac_antiphospholipide=$request->acph;
-        $serologie->tpha=$request->tpha;
-        $serologie->vdrl=$request->vdrl;
-        $serologie->serologie_amibienne=$request->serologieamibienne;
-        $serologie->serologie_dengue=$request->serologiedengue;
-        $serologie->serologie_bilharzienne=$request->serologiebilharzienne;
+        if ($request->date <= date('Y-m-d')) {
+            $serologie=new Serologie();
+            $serologie->date=$request->date;
+            $serologie->cd4cv=$request->cd4cb;
+            $serologie->aghbs=$request->aghbs;
+            if ($request->aghbs === 'positif') {
+                $serologie->charge_hbs = $request->charge_hbs;
+            }else {
+                $serologie->charge_hbs = null;
+            }
+            $serologie->aghbe=$request->aghbe;
+            $serologie->acantihvc=$request->acantihvc;
+            $serologie->serologie_vih=$request->serologievih;
+            $serologie->acantihbc=$request->acantihbc;
+            if ($request->acantihbc === 'positif') {
+                $serologie->charge_hbc = $request->charge_hbc;
+            }else {
+                $serologie->charge_hbs = null;
+            }
+            $serologie->aslo=$request->aslo;
+            $serologie->facteur_rhumatoide=$request->facteurrh;
+            $serologie->widal=$request->widal;
+            $serologie->ac_antinucleaire=$request->acnucleaire;
+            $serologie->ac_antidna=$request->acdna;
+            $serologie->ac_antism=$request->acsm;
+            $serologie->ac_antiphospholipide=$request->acph;
+            $serologie->tpha=$request->tpha;
+            $serologie->vdrl=$request->vdrl;
+            $serologie->serologie_amibienne=$request->serologieamibienne;
+            $serologie->serologie_dengue=$request->serologiedengue;
+            $serologie->serologie_bilharzienne=$request->serologiebilharzienne;
 
-        $serologie->nom_autre=$request->nom_autre;
-        $serologie->resultat=$request->resultat;
-        $serologie->nom_autre1=$request->nom_autre1;
-        $serologie->resultat1=$request->resultat1;
+            $serologie->nom_autre=$request->nom_autre;
+            $serologie->resultat=$request->resultat;
+            $serologie->nom_autre1=$request->nom_autre1;
+            $serologie->resultat1=$request->resultat1;
 
-        $consult = Consultation::where('id', Session::get('idconsultation'))->first();
-        $serologie->id_consultation = $consult;
+            $consult = Consultation::where('id', Session::get('idconsultation'))->first();
+            $serologie->id_consultation = $consult->id;
 
-        if ($serologie->save())
-        {
-            Session::flash('message', 'informations enregistrées.');
-            Session::flash('alert-class', 'alert-success');
-            return back();
-        }
-        else{
-            Session::flash('message', 'Verifier tous les champs SVP!');
+            if ($serologie->save())
+            {
+                Session::flash('message', 'informations enregistrées.');
+                Session::flash('alert-class', 'alert-success');
+                return back();
+            }
+            else{
+                Session::flash('message', 'Verifier que tous les champs ont été renseignés SVP!');
+                Session::flash('alert-class', 'alert-danger');
+
+                return back();
+            }
+        }else {
+            Session::flash('message', 'Date invalide!');
             Session::flash('alert-class', 'alert-danger');
-
             return back();
         }
-
     }
 
     public function show($id)

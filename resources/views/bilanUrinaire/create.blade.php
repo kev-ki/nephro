@@ -34,7 +34,7 @@
                                 <div class="form-group row">
                                     <label class="text-right col-form-label col-2 font-weight-bold">Volume/24h:</label>
                                     <input type="text" name="volume" class="form-control col-4">
-                                    <label class="text-right col-form-label col-2 font-weight-bold">Leucytes/mn:</label>
+                                    <label class="text-right col-form-label col-2 font-weight-bold">Leucocytes/mn:</label>
                                     <input type="text" name="leucyte" class="form-control col-4">
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                             </div>
                             <div class="col">
                                 <div class="form-group row">
-                                    <label class="text-right col-form-label col-2 font-weight-bold">Uréé/créatinurie:</label>
+                                    <label class="text-right col-form-label col-2 font-weight-bold">Uréé:</label>
                                     <input type="text" name="ureecreati" class="form-control col-4">
                                     <label class="text-right col-form-label col-2 font-weight-bold">Albumine/Créati:</label>
                                     <input type="text" name="albuminecreati" class="form-control col-4">

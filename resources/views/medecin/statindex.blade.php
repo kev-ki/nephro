@@ -167,7 +167,11 @@
                 </div>
 
                 <div class="tab-pane fade" role="tabpanel" aria-labelledby="graphe_tab" id="graphe">
-                   @include('graphe.chart')
+                    <div>
+                        <main class="py-2 p-3">
+                            @yield('graphes')
+                        </main>
+                    </div>
                 </div>
 
                 <div class="d-flex justify-content-center mb-1"><a href="{{route('medecin.pdf')}}" class="btn btn-primary">imprimer</a></div>

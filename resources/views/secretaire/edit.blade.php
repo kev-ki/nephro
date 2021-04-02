@@ -1,4 +1,3 @@
-
 @extends('layouts.seclayout')
 
 @section('content')
